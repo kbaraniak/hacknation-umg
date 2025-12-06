@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 import { getDivisions, getGroups } from "@/app/lib/client/pkdClient";
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
+import { Input } from '@heroui/input';
 
 type PKDValue = {
   section?: string;
@@ -15,7 +14,7 @@ type PKDValue = {
 const DIVISION_FALLBACK = Array.from({ length: 99 }, (_, i) => String(i + 1).padStart(2, "0"));
 const SUFFIX_FALLBACK = Array.from({ length: 99 }, (_, i) => String(i + 1)); // "1".."99"
 
-export default function PKDInput({ onChange }: { onChange?: (v: PKDValue) => void }) {
+export default function PKDInput({ onChangeAction }: { onChangeAction?: (v: PKDValue) => void }) {
   const [section, setSection] = React.useState("");
   const [division, setDivision] = React.useState("");
   const [suffix, setSuffix] = React.useState("");
@@ -25,12 +24,9 @@ export default function PKDInput({ onChange }: { onChange?: (v: PKDValue) => voi
   const [loadingSuffixes, setLoadingSuffixes] = React.useState(false);
 
   const sectionRef = React.useRef<HTMLInputElement | null>(null);
-  const divisionRef = React.useRef<any>(null);
-  const divisionInputRef = React.useRef<HTMLInputElement | null>(null);
-  const suffixRef = React.useRef<any>(null);
-  const [divisionOpen, setDivisionOpen] = React.useState(false);
+  const divisionInputRef = React.useRef<HTMLSelectElement | null>(null);
+  const suffixRef = React.useRef<HTMLSelectElement | null>(null);
   const [errors, setErrors] = React.useState<Record<string, string>>({});
-  const [divisionInput, setDivisionInput] = React.useState("");
 
   const validSection = (s: string) => /^[A-U]$/i.test(s);
   const validDivision = (d: string) => /^\d{2}$/.test(d) && Number(d) >= 1 && Number(d) <= 99;
@@ -70,17 +66,17 @@ export default function PKDInput({ onChange }: { onChange?: (v: PKDValue) => voi
   React.useEffect(() => {
     if (validSection(section)) {
       loadDivisions(section.toUpperCase(), false);
-      // open division suggestions and focus input
-      setDivisionOpen(true);
-      setTimeout(() => divisionInputRef.current?.focus(), 0);
+      // focus division input
     } else setDivisionSuggestions([]);
+    // reset dependent fields
     setDivision("");
     setSuffix("");
   }, [section, loadDivisions]);
 
   React.useEffect(() => {
-    if (validDivision(division) && validSection(section)) loadSuffixes(section.toUpperCase(), pad2(division), false);
-    else setSuffixSuggestions([]);
+    if (validDivision(division) && validSection(section)) {
+      loadSuffixes(section.toUpperCase(), pad2(division), false);
+    } else setSuffixSuggestions([]);
     setSuffix("");
   }, [division, section, loadSuffixes]);
 
@@ -93,7 +89,6 @@ export default function PKDInput({ onChange }: { onChange?: (v: PKDValue) => voi
     return () => clearInterval(iv);
   }, [section, division, loadDivisions, loadSuffixes]);
 
-  // on-focus refresh if local cache stale (force=false above handles TTL in client)
   const onDivisionFocus = () => {
     if (validSection(section)) loadDivisions(section.toUpperCase(), false);
   };
@@ -120,16 +115,9 @@ export default function PKDInput({ onChange }: { onChange?: (v: PKDValue) => voi
     return undefined;
   };
 
-  const onSectionBlur = () => {
-    const err = validateSection(section);
-    setErrors((e) => ({ ...e, section: err ?? "" }));
-  };
-
   const onDivisionBlur = () => {
     const err = validateDivision(division);
     setErrors((e) => ({ ...e, division: err ?? "" }));
-    // close dropdown when leaving
-    setDivisionOpen(false);
   };
 
   const onSuffixBlur = () => {
@@ -137,163 +125,215 @@ export default function PKDInput({ onChange }: { onChange?: (v: PKDValue) => voi
     setErrors((e) => ({ ...e, suffix: err ?? "" }));
   };
 
-  // validation + onChange output
+  // keep a ref to the callback so we don't create an effect loop when parent passes inline functions
+  const onChangeActionRef = React.useRef(onChangeAction);
   React.useEffect(() => {
+    onChangeActionRef.current = onChangeAction;
+  }, [onChangeAction]);
+
+  // validation + onChange output
+  const prevFullRef = React.useRef<string | undefined>(undefined);
+  React.useEffect(() => {
+    // empty division => means all divisions in the section (omit division)
+    // empty suffix => means all classes in the division (omit suffix)
     const pkdParts = [
       section ? section.toUpperCase() : undefined,
       division ? pad2(division) : undefined,
       suffix || undefined,
     ].filter(Boolean);
     const pkd = pkdParts.length ? pkdParts.join(".") : undefined;
-    onChange?.({
-      section: section ? section.toUpperCase() : undefined,
-      division: division || undefined,
-      suffix: suffix || undefined,
-      pkd,
-      full: pkd,
-    });
-  }, [section, division, suffix, onChange]);
 
-  const filterSuggestions = (list: string[], q: string) =>
-    list.filter((v) => v.startsWith(q) || v.includes(q)).slice(0, 10);
+    // only notify parent if the full pkd changed; prevents refresh/update loops when parent
+    // provides inline callbacks or when re-renders don't change value
+    if (prevFullRef.current !== pkd) {
+      prevFullRef.current = pkd;
+      onChangeActionRef.current?.({
+        section: section ? section.toUpperCase() : undefined,
+        division: division || undefined,
+        suffix: suffix || undefined,
+        pkd,
+        full: pkd,
+      });
+    }
+  }, [section, division, suffix]);
+
+  const [divisionQuery, setDivisionQuery] = React.useState("");
+  const [divisionOpen, setDivisionOpen] = React.useState(false);
+  const [divisionActive, setDivisionActive] = React.useState<number>(-1);
+
+  const [suffixQuery, setSuffixQuery] = React.useState("");
+  const [suffixOpen, setSuffixOpen] = React.useState(false);
+  const [suffixActive, setSuffixActive] = React.useState<number>(-1);
+
+  // sync queries when underlying selected values change (e.g. when parent clears)
+  React.useEffect(() => {
+    setDivisionQuery(division ? pad2(division) : "");
+  }, [division]);
+  React.useEffect(() => {
+    setSuffixQuery(suffix ? suffix : "");
+  }, [suffix]);
+
+  // close dropdowns on outside click
+  React.useEffect(() => {
+    const onDoc = (e: MouseEvent) => {
+      const target = e.target as Node;
+      if (divisionInputRef.current && !divisionInputRef.current.contains(target as any)) {
+        setDivisionOpen(false);
+        setDivisionActive(-1);
+      }
+      if (suffixRef.current && !suffixRef.current.contains(target as any)) {
+        setSuffixOpen(false);
+        setSuffixActive(-1);
+      }
+    };
+    document.addEventListener('click', onDoc);
+    return () => document.removeEventListener('click', onDoc);
+  }, []);
 
   return (
     <div className="w-full mt-8">
       <div className="flex items-end gap-4">
-        {/* Section (Autocomplete) */}
+        {/* Section */}
         <div className="flex flex-col">
           <label className="text-sm text-gray-700 mb-1">Sekcja</label>
           <div style={{ width: 80 }}>
-            <Autocomplete
-              options={[..."ABCDEFGHIJKLMNOPQRSTUV"].slice(0, 21)}
-              value={section || undefined}
-              onChange={(_, val) => {
-                const v = (val || "").toString().slice(0, 1).toUpperCase();
-                setSection(v);
-                // after selecting section, open division suggestions
-                if (validSection(v)) {
-                  setDivisionOpen(true);
-                  setTimeout(() => divisionInputRef.current?.focus(), 0);
-                }
-              }}
-              freeSolo={false}
-              disableClearable
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  inputRef={sectionRef}
-                  placeholder="A"
-                  size="small"
-                  onChange={(e) => {
-                    const v = e.target.value.slice(0, 1).toUpperCase();
-                    setSection(v);
-                  }}
-                  onBlur={onSectionBlur}
-                />
-              )}
-            />
-          </div>
-          {errors.section ? <div className="text-xs text-red-600 mt-1">{errors.section}</div> : null}
-        </div>
+            <div>
+              <Input
+                list="section-list"
+                ref={sectionRef as any}
+                value={section || ""}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSection(e.target.value.slice(0,1).toUpperCase())}
+                onBlur={() => {
+                  const err = validateSection(section);
+                  setErrors((e) => ({ ...e, section: err ?? "" }));
+                }}
+                placeholder="A"
+                aria-label="Sekcja"
+              />
+              <datalist id="section-list">
+                {[..."ABCDEFGHIJKLMNOPQRSTUV"].slice(0,21).map((c) => <option key={c} value={c} />)}
+              </datalist>
+            </div>
+           </div>
+           {errors.section ? <div className="text-xs text-red-600 mt-1">{errors.section}</div> : null}
+         </div>
 
-        {/* Division (MUI Autocomplete) */}
-        <div className="flex flex-col">
-          <label className="text-sm text-gray-700 mb-1">Dział</label>
-          <div style={{ width: 96 }}>
-            <Autocomplete
-                            ref={divisionRef}
-              options={divisionSuggestions}
-              value={division ? pad2(division) : undefined}
-              inputValue={divisionInput}
-              onInputChange={(_, input, reason) => {
-                // keep raw digits in input while typing
-                if (reason === 'input') {
-                  const digits = input.replace(/\D/g, '').slice(0, 2);
-                  setDivisionInput(digits);
-                  // if user completed two digits, commit division and move focus to suffix
-                  if (digits.length === 2) {
-                    const two = pad2(digits);
-                    setDivision(two);
-                    setDivisionInput(two);
+         {/* Division */}
+         <div className="flex flex-col">
+           <label className="text-sm text-gray-700 mb-1">Dział</label>
+           <div style={{ width: 96 }}>
+             <div className="relative" ref={divisionInputRef as any}>
+              <Input
+                value={divisionQuery}
+                placeholder={loadingDivisions ? 'ładowanie...' : divisionSuggestions[0] ?? 'np. 02'}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  const raw = e.target.value.replace(/\D/g, '').slice(0, 2);
+                  setDivisionQuery(raw);
+                  // if user typed full two digits, auto-select
+                  if (raw.length === 2) {
+                    setDivision(pad2(raw));
                     setDivisionOpen(false);
-                    setTimeout(() => suffixRef.current?.focus?.(), 0);
+                  } else {
+                    // do not clear underlying selection until commit
+                    setDivision('');
+                    setDivisionOpen(true);
                   }
-                }
-              }}
-              open={divisionOpen}
-              onOpen={() => setDivisionOpen(true)}
-              onClose={() => setDivisionOpen(false)}
-              onChange={(_, val) => {
-                // selection from list
-                const digits = val ? val.toString().replace(/\D/g, '').slice(0, 2) : '';
-                setDivision(digits);
-                setDivisionInput(digits ? pad2(digits) : '');
-                if (digits && digits.length === 2) setTimeout(() => suffixRef.current?.focus?.(), 0);
-              }}
-              disabled={!validSection(section)}
-              freeSolo={true}
-              disableClearable
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  inputRef={divisionInputRef}
-                  placeholder={loadingDivisions ? 'ładowanie...' : divisionSuggestions[0] ?? 'np. 02'}
-                  size="small"
-                  value={divisionInput}
-                  onChange={(e) => {
-                    if (!validSection(section)) return;
-                    const digits = e.target.value.replace(/\D/g, '').slice(0, 2);
-                    setDivisionInput(digits);
-                    // if user typed two digits, commit as division
-                    if (digits.length === 2) {
-                      const two = pad2(digits);
-                      setDivision(two);
-                      setDivisionInput(two);
-                      setDivisionOpen(false);
-                      setTimeout(() => suffixRef.current?.focus?.(), 0);
+                }}
+                onFocus={() => { onDivisionFocus(); setDivisionOpen(true); }}
+                onBlur={onDivisionBlur}
+                disabled={!validSection(section)}
+                onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                  if (!divisionOpen) return;
+                  if (e.key === 'ArrowDown') { e.preventDefault(); setDivisionActive((a) => Math.min(a + 1, Math.max(0, divisionSuggestions.length - 1))); }
+                  else if (e.key === 'ArrowUp') { e.preventDefault(); setDivisionActive((a) => Math.max(-1, a - 1)); }
+                  else if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (divisionActive === -1) {
+                      // commit typed value if it's two digits
+                      if (divisionQuery.length === 2) setDivision(pad2(divisionQuery));
                     } else {
-                      // keep division state cleared until user selects or finishes
-                      setDivision('');
+                      const sel = divisionSuggestions[divisionActive];
+                      if (sel) {
+                        setDivision(sel);
+                        setDivisionQuery(sel);
+                      }
                     }
-                  }}
-                  onFocus={() => { onDivisionFocus(); setDivisionOpen(true); }}
-                  onBlur={onDivisionBlur}
-                />
-              )}
-            />
+                    setDivisionOpen(false);
+                    setDivisionActive(-1);
+                  } else if (e.key === 'Escape') { setDivisionOpen(false); setDivisionActive(-1); }
+                }}
+              />
+
+              {divisionOpen && validSection(section) ? (
+                <ul className="absolute z-20 left-0 right-0 bg-gray-800 text-white border border-gray-700 rounded bottom-full mb-1 max-h-40 overflow-auto text-sm shadow-lg">
+                  <li className={`px-3 py-2 cursor-pointer ${divisionActive === -1 ? 'bg-gray-700' : 'hover:bg-gray-700'}`} onMouseDown={(e) => { e.preventDefault(); setDivision(''); setDivisionQuery(''); setDivisionOpen(false); }}>
+                    Wszystkie działy
+                  </li>
+                  {loadingDivisions ? (
+                    <li className="px-3 py-2 text-gray-400">Ładowanie działów...</li>
+                  ) : divisionSuggestions.length === 0 ? (
+                    <li className="px-3 py-2 text-gray-400">Brak sugestii</li>
+                  ) : (
+                    divisionSuggestions.map((d, i) => (
+                      <li key={d}
+                        className={`px-3 py-2 cursor-pointer ${divisionActive === i ? 'bg-gray-700' : 'hover:bg-gray-700'}`}
+                        onMouseDown={(e) => { e.preventDefault(); setDivision(d); setDivisionQuery(d); setDivisionOpen(false); }}
+                        onMouseEnter={() => setDivisionActive(i)}
+                      >{d}</li>
+                    ))
+                  )}
+                </ul>
+              ) : null}
+            </div>
           </div>
         </div>
 
-        {/* Suffix (MUI Autocomplete) */}
+        {/* Suffix */}
         <div className="flex flex-col">
           <label className="text-sm text-gray-700 mb-1">Klasa</label>
           <div style={{ width: 112 }}>
-            <Autocomplete
-              ref={suffixRef}
-              options={suffixSuggestions}
-              value={suffix || undefined}
-              onChange={(_, val) => {
-                const digits = val ? val.replace(/\D/g, "").slice(0, 2) : "";
-                setSuffix(digits);
-              }}
-              disabled={!validDivision(division)}
-              freeSolo={true}
-              disableClearable
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  placeholder={loadingSuffixes ? "ładowanie..." : suffixSuggestions[0] ?? "np. 31"}
-                  size="small"
-                  onChange={(e) => {
-                    if (!validDivision(division)) return;
-                    const digits = e.target.value.replace(/\D/g, "").slice(0, 2);
-                    setSuffix(digits);
-                  }}
-                  onFocus={onSuffixFocus}
-                  onBlur={onSuffixBlur}
-                />
-              )}
-            />
+            <div className="relative" ref={suffixRef as any}>
+              <Input
+                value={suffixQuery}
+                placeholder={loadingSuffixes ? 'ładowanie...' : suffixSuggestions[0] ?? 'np. 31'}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  const raw = e.target.value.replace(/\D/g, '').slice(0, 2);
+                  setSuffixQuery(raw);
+                  if (raw.length === 2) { setSuffix(raw); setSuffixOpen(false); } else { setSuffix(''); setSuffixOpen(true); }
+                }}
+                onFocus={() => { onSuffixFocus(); setSuffixOpen(true); }}
+                onBlur={onSuffixBlur}
+                disabled={!validDivision(division)}
+                onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                  if (!suffixOpen) return;
+                  if (e.key === 'ArrowDown') { e.preventDefault(); setSuffixActive((a) => Math.min(a + 1, Math.max(0, suffixSuggestions.length - 1))); }
+                  else if (e.key === 'ArrowUp') { e.preventDefault(); setSuffixActive((a) => Math.max(-1, a - 1)); }
+                  else if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (suffixActive === -1) { if (suffixQuery.length === 2) setSuffix(suffixQuery); setSuffixOpen(false); }
+                    else { const sel = suffixSuggestions[suffixActive]; if (sel) { setSuffix(sel); setSuffixQuery(sel); } setSuffixOpen(false); }
+                  } else if (e.key === 'Escape') { setSuffixOpen(false); setSuffixActive(-1); }
+                }}
+              />
+              {suffixOpen && validDivision(division) ? (
+                <ul className="absolute z-20 left-0 right-0 bg-gray-800 text-white border border-gray-700 rounded bottom-full mb-1 max-h-40 overflow-auto text-sm shadow-lg">
+                  <li className={`px-3 py-2 cursor-pointer ${suffixActive === -1 ? 'bg-gray-700' : 'hover:bg-gray-700'}`} onMouseDown={(e) => { e.preventDefault(); setSuffix(''); setSuffixQuery(''); setSuffixOpen(false); }}>Wszystkie klasy</li>
+                  {loadingSuffixes ? (
+                    <li className="px-3 py-2 text-gray-400">Ładowanie klas...</li>
+                  ) : suffixSuggestions.length === 0 ? (
+                    <li className="px-3 py-2 text-gray-400">Brak sugestii</li>
+                  ) : (
+                    suffixSuggestions.map((s, i) => (
+                      <li key={s}
+                        className={`px-3 py-2 cursor-pointer ${suffixActive === i ? 'bg-gray-700' : 'hover:bg-gray-700'}`}
+                        onMouseDown={(e) => { e.preventDefault(); setSuffix(s); setSuffixQuery(s); setSuffixOpen(false); }}
+                        onMouseEnter={() => setSuffixActive(i)}
+                      >{s}</li>
+                    ))
+                  )}
+                </ul>
+              ) : null}
+            </div>
           </div>
         </div>
       </div>

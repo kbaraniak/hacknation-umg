@@ -480,13 +480,18 @@ async def get_industry_index(
 
 @router.get("/compare")
 async def compare_branches(
-	codes: str = Query(..., description="Lista kodów PKD oddzielonych przecinkami (np. 46,47,46.11)"),
+	codes: str = Query(..., description="Lista kodów PKD lub sekcji oddzielonych przecinkami (np. 46,47,G,C)"),
 	version: Optional[str] = Query("2025", description="Wersja PKD (2007 lub 2025)"),
 	years: Optional[str] = Query(None, description="Zakres lat, np. 2020-2024")
 ):
 	"""
-	Porównaj wiele branż jednocześnie. Przyjmuje kody PKD (sekcja/dział/grupa).
+	Porównaj wiele branż jednocześnie. Przyjmuje kody PKD (działy, grupy) lub litery sekcji.
 	Zwraca metryki, score oraz serię czasową gotową do wizualizacji.
+	
+	Przykłady:
+	- /compare?codes=46,47 → porównaj działy 46 i 47
+	- /compare?codes=G,C → porównaj sekcje G i C
+	- /compare?codes=46.11,47.1 → porównaj grupy
 	"""
 	try:
 		pkd_version = PKDVersion.VERSION_2025 if version == "2025" else PKDVersion.VERSION_2007
@@ -636,17 +641,24 @@ async def compare_branches(
 
 @router.get("/trends")
 async def get_trends(
-	sections: str = Query(..., description="Sekcje PKD oddzielone przecinkami, np. G,C,F"),
+	codes: str = Query(..., description="Kody PKD lub sekcje oddzielone przecinkami (np. 46,47,G,C)"),
 	years: Optional[str] = Query(None, description="Zakres lat np. 2018-2024"),
 	metrics: Optional[str] = Query("revenue,growth,bankruptcies", description="Lista metryk")
 ):
 	"""
-	Trendy w czasie dla wielu sekcji jednocześnie. Zwraca dane do wykresów.
+	Trendy w czasie dla wielu branż jednocześnie. Zwraca dane do wykresów.
+	
+	Przyjmuje kody PKD (działy, grupy) lub litery sekcji.
+	
+	Przykłady:
+	- /trends?codes=46,47 → trendy dla działów 46 i 47
+	- /trends?codes=G,C → trendy dla sekcji G i C
+	- /trends?codes=46.11,47.1&years=2020-2024 → grupy w latach 2020-2024
 	"""
 	try:
-		sections_list = [s.strip() for s in sections.split(",") if s.strip()]
-		if not sections_list:
-			raise HTTPException(status_code=400, detail="Brak sekcji")
+		code_list = [c.strip() for c in codes.split(",") if c.strip()]
+		if not code_list:
+			raise HTTPException(status_code=400, detail="Brak kodów PKD")
 		
 		years_range = None
 		if years:
@@ -663,8 +675,61 @@ async def get_trends(
 		sections_data = {}
 		labels = []
 		
-		for sec in sections_list:
-			ind_data = service.get_data(section=sec, version=pkd_version)
+		for code_str in code_list:
+			# Usuń kropki z końca (dane mają "46.", API przyjmuje "46")
+			code_clean = code_str.rstrip('.')
+			
+			# Znajdź reprezentatywny kod PKD (tak jak w /compare)
+			rep_code = None
+			
+			# 1. Sprawdź czy to litera sekcji (A-U)
+			if len(code_clean) == 1 and code_clean.isalpha():
+				sec_codes = hierarchy.get_by_section(code_clean.upper())
+				rep_code = sec_codes[0] if sec_codes else None
+			# 2. Sprawdź bezpośrednie dopasowanie w codes
+			elif code_clean in hierarchy.codes:
+				rep_code = hierarchy.codes[code_clean]
+			# 3. Sprawdź w indeksie działów
+			elif code_clean in hierarchy.division_index:
+				div_codes = hierarchy.get_by_division(code_clean)
+				rep_code = div_codes[0] if div_codes else None
+			# 4. Sprawdź w indeksie grup
+			elif code_clean in hierarchy.group_index:
+				grp_codes = hierarchy.get_by_group(code_clean)
+				rep_code = grp_codes[0] if grp_codes else None
+			# 5. Fallback: próbuj sekcję
+			else:
+				sec_codes = hierarchy.get_by_section(code_clean.upper())
+				rep_code = sec_codes[0] if sec_codes else None
+			
+			if rep_code is None:
+				print(f"Warning: code {code_str} not found in /trends")
+				continue
+			
+			# Pobierz dane dla odpowiedniego poziomu hierarchii
+			if rep_code.subclass:
+				ind_data = service.get_data(
+					section=rep_code.section,
+					division=rep_code.division,
+					group=rep_code.group,
+					subclass=rep_code.subclass,
+					version=pkd_version
+				)
+			elif rep_code.group:
+				ind_data = service.get_data(
+					section=rep_code.section,
+					division=rep_code.division,
+					group=rep_code.group,
+					version=pkd_version
+				)
+			elif rep_code.division:
+				ind_data = service.get_data(
+					section=rep_code.section,
+					division=rep_code.division,
+					version=pkd_version
+				)
+			else:
+				ind_data = service.get_data(section=rep_code.section, version=pkd_version)
 			if not ind_data.financial_data:
 				continue
 			from classes.pkd_data_loader import FinancialMetrics

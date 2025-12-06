@@ -1,28 +1,17 @@
 "use client";
 import React from 'react';
-import { Box, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { Button } from '@heroui/button';
 import { PieChart, TrendingUp, AttachMoney, AccountBalance, ReportProblem } from '@mui/icons-material';
-import { blue } from '@mui/material/colors';
 import { saveToStorage } from '@/app/lib/client/storage'; // <- dodane
 
 type NavItem = { key: string; text: string; Icon: React.ElementType };
 
-export default function Sidebar({ onSelect }: { onSelect?: (item: NavItem) => void }) {
-    // Pomocniczy komponent dla ikonek
+export default function Sidebar({ onSelectAction }: { onSelectAction?: (item: NavItem) => void }) {
+    // Pomocniczy komponent dla ikonek (Tailwind)
     const IconWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-        <Box
-            sx={{
-                bgcolor: blue[500],
-                borderRadius: '12px',
-                width: 38,
-                height: 38,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}
-        >
+        <div className="bg-blue-600 rounded-lg w-9 h-9 flex items-center justify-center">
             {children}
-        </Box>
+        </div>
     );
 
     const navItems: NavItem[] = [
@@ -34,43 +23,38 @@ export default function Sidebar({ onSelect }: { onSelect?: (item: NavItem) => vo
     ];
 
     const renderNavItem = (item: NavItem) => (
-        <ListItemButton
-            key={item.key}
-            onClick={() => {
-                saveToStorage('selected_nav', item.key); // zapis do localStorage jako identyfikator (np. "size")
-                onSelect?.(item);
-            }}
-            sx={{ '&:hover': { bgcolor: 'grey.700', borderRadius: 1 } }}
-        >
-            <ListItemIcon>
-                <IconWrapper>
-                    <item.Icon sx={{ color: 'white' }} />
-                </IconWrapper>
-            </ListItemIcon>
-            <ListItemText primary={item.text} />
-        </ListItemButton>
+        <div key={item.key} className="mb-2">
+            <Button
+                variant="ghost"
+                color="neutral"
+                onClick={() => {
+                    saveToStorage('selected_nav', item.key);
+                    onSelectAction?.(item);
+                }}
+                className="w-full justify-start px-3 py-2"
+                aria-label={item.text}
+            >
+                <div className="mr-3">
+                    <IconWrapper>
+                        <item.Icon sx={{ color: 'white' }} />
+                    </IconWrapper>
+                </div>
+                <span className="text-left">{item.text}</span>
+            </Button>
+        </div>
     );
 
     return (
-        <Box
-            sx={{
-                width: 350,
-                height: '100vh',
-                bgcolor: 'grey.900',
-                color: 'white',
-                display: 'flex',
-                flexDirection: 'column',
-            }}
-        >
+        <div className="w-[350px] h-screen bg-gray-900 text-white flex flex-col">
             {/* Logo / App Title */}
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', py: 2 }}>
-                <h1 style={{ fontSize: '1.5rem', fontWeight: 600 }}>Wybierz Opcje</h1>
-            </Box>
+            <div className="flex items-center justify-center py-4">
+                <h1 className="text-xl font-semibold">Wybierz Opcje</h1>
+            </div>
 
             {/* Navigation */}
-            <List sx={{ px: 2, py: 3 }}>
+            <nav className="px-4 py-3">
                 {navItems.map(renderNavItem)}
-            </List>
-        </Box>
+            </nav>
+        </div>
     );
 }
