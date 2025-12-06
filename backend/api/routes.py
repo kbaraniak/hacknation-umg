@@ -9,9 +9,11 @@ from pydantic import BaseModel, Field
 
 from classes.pkd_data_service import PKDDataService
 from classes.pkd_classification import PKDVersion
+from classes.industry_index import IndustryIndexCalculator
 
 # Inicjalizacja serwisu
 service = PKDDataService()
+index_calculator = IndustryIndexCalculator()
 
 router = APIRouter()
 
@@ -55,6 +57,16 @@ class IndustryDataResponse(BaseModel):
 	query_params: dict
 	version: str
 	summary_statistics: dict
+
+
+class IndustryIndexResponse(BaseModel):
+	"""Model odpowiedzi dla indeksu branży"""
+	pkd_codes: List[PKDCodeResponse]
+	scores: dict = Field(..., description="Komponenty oceny (0-25 każdy, razem 0-100)")
+	trend: dict = Field(..., description="Analiza trendu z prognozą")
+	classification: dict = Field(..., description="Klasyfikacja branży i potrzeby kredytowe")
+	version: str
+	query_params: dict
 
 
 # ==================== Endpoints ====================
@@ -259,4 +271,170 @@ async def translate_code(
 		raise
 	except Exception as e:
 		raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/index")
+async def get_industry_index(
+	section: Optional[str] = Query(None, description="Sekcja PKD (A-U)"),
+	division: Optional[str] = Query(None, description="Dział PKD (2-cyfrowy)"),
+	group: Optional[str] = Query(None, description="Grupa PKD"),
+	subclass: Optional[str] = Query(None, description="Podklasa PKD"),
+	version: Optional[str] = Query("2025", description="Wersja PKD (2007 lub 2025)"),
+	forecast_years: int = Query(2, description="Liczba lat do prognozy (1-5)"),
+) -> IndustryIndexResponse:
+	"""
+	Pobierz indeks branży ze wskaźnikami, trendem i prognozą.
+	
+	Zwraca:
+	- **scores**: Komponenty oceny (rozmiar, rentowność, wzrost, ryzyko)
+	- **trend**: Kierunek, wzrost YoY, zmienność, prognoza na 1-5 lat
+	- **classification**: Kategoria (ZDROWA/STABILNA/ZAGROŻONA/KRYZYS), status, potrzeby kredytowe
+	
+	Przykład: /index?section=G&division=46 → Handel hurtowy
+	"""
+	try:
+		# Limit prognozy
+		forecast_years = max(1, min(5, forecast_years))
+		
+		# Konwertuj wersję
+		pkd_version = PKDVersion.VERSION_2025 if version == "2025" else PKDVersion.VERSION_2007
+		
+		# Pobierz dane branży
+		industry_data = service.get_data(
+			section=section,
+			division=division,
+			group=group,
+			subclass=subclass,
+			version=pkd_version
+		)
+		
+		if not industry_data.pkd_codes:
+			raise HTTPException(status_code=404, detail="Brak danych dla wybranej branży")
+		
+		# Konwertuj kody
+		codes_response = [
+			PKDCodeResponse(
+				symbol=code.symbol,
+				name=code.name,
+				level=code.level.value,
+				section=code.section,
+				division=code.division,
+				group=code.group,
+				subclass=code.subclass
+			)
+			for code in industry_data.pkd_codes
+		]
+		
+		# Oblicz indeks dla każdego kodu
+		indices_by_code = {}
+		avg_overall_score = 0
+		
+		for code in industry_data.pkd_codes:
+			symbol = code.symbol
+			financial_history = industry_data.financial_data.get(symbol, {})
+			bankruptcy_history = industry_data.bankruptcy_data.get(symbol, {})
+			
+			if financial_history:
+				index_data = index_calculator.calculate_full_index(
+					financial_history,
+					bankruptcy_history,
+					forecast_years=forecast_years
+				)
+				indices_by_code[symbol] = index_data
+				avg_overall_score += index_data["scores"]["overall"]
+		
+		# Średnia dla branży
+		if indices_by_code:
+			avg_overall_score /= len(indices_by_code)
+		
+		# Agreguj trendy dla branży
+		all_trends = [idx["trend"] for idx in indices_by_code.values()]
+		if all_trends:
+			avg_yoy_growth = sum(t["yoy_growth"] for t in all_trends) / len(all_trends)
+			avg_volatility = sum(t["volatility"] for t in all_trends) / len(all_trends)
+			avg_confidence = sum(t["confidence"] for t in all_trends) / len(all_trends)
+		else:
+			avg_yoy_growth = 0.0
+			avg_volatility = 0.0
+			avg_confidence = 0.0
+		
+		# Agreguj prognozy
+		all_forecasts = {}
+		for idx in indices_by_code.values():
+			for year, value in idx["trend"]["forecast"].items():
+				if year not in all_forecasts:
+					all_forecasts[year] = []
+				all_forecasts[year].append(value)
+		
+		aggregated_forecast = {
+			year: round(sum(vals) / len(vals), 2)
+			for year, vals in all_forecasts.items()
+		}
+		
+		# Kierunek trendu
+		if avg_yoy_growth > 5:
+			trend_direction = "UP"
+		elif avg_yoy_growth < -5:
+			trend_direction = "DOWN"
+		else:
+			trend_direction = "STABLE"
+		
+		# Klasyfikacja branży
+		if avg_overall_score >= 75:
+			category = "ZDROWA"
+		elif avg_overall_score >= 60:
+			category = "STABILNA"
+		elif avg_overall_score >= 40:
+			category = "ZAGROŻONA"
+		else:
+			category = "KRYZYS"
+		
+		if trend_direction == "UP":
+			status = "ROSNĄCA"
+		elif trend_direction == "DOWN":
+			status = "SPADAJĄCA"
+		else:
+			status = "STAGNACJA"
+		
+		# Potrzeby kredytowe dla branży
+		credit_needs_count = {"NISKIE": 0, "ŚREDNIE": 0, "WYSOKIE": 0}
+		for idx in indices_by_code.values():
+			credit_needs_count[idx["classification"]["credit_needs"]] += 1
+		
+		if credit_needs_count["WYSOKIE"] > credit_needs_count["NISKIE"]:
+			branch_credit_needs = "WYSOKIE"
+		elif credit_needs_count["ŚREDNIE"] >= credit_needs_count["NISKIE"] and credit_needs_count["ŚREDNIE"] >= credit_needs_count["WYSOKIE"]:
+			branch_credit_needs = "ŚREDNIE"
+		else:
+			branch_credit_needs = "NISKIE"
+		
+		return IndustryIndexResponse(
+			pkd_codes=codes_response,
+			scores={
+				"overall": round(avg_overall_score, 2),
+				"by_code": indices_by_code,  # Szczegóły dla każdego kodu
+			},
+			trend={
+				"direction": trend_direction,
+				"yoy_growth": round(avg_yoy_growth, 2),
+				"volatility": round(avg_volatility, 2),
+				"confidence": round(avg_confidence, 2),
+				"forecast": aggregated_forecast,
+			},
+			classification={
+				"category": category,
+				"status": status,
+				"credit_needs": branch_credit_needs,
+				"codes_by_credit_needs": credit_needs_count,
+			},
+			version=pkd_version.value,
+			query_params=industry_data.query_params
+		)
+	
+	except ValueError as e:
+		raise HTTPException(status_code=400, detail=str(e))
+	except HTTPException:
+		raise
+	except Exception as e:
+		raise HTTPException(status_code=500, detail=f"Błąd: {str(e)}")
 
