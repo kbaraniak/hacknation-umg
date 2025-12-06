@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 import { getDivisions, getGroups } from "@/app/lib/client/pkdClient";
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
+import { Autocomplete, AutocompleteSection, AutocompleteItem } from "@heroui/react";
 
 type PKDValue = {
   section?: string;
@@ -19,7 +18,7 @@ const SUFFIX_FALLBACK = Array.from({ length: 99 }, (_, i) => String(i + 1)); // 
 const divisionsCache: Record<string, string[]> = {};
 const groupsCache: Record<string, string[]> = {};
 
-export default function PKDInput({ onChange }: { onChange?: (v: PKDValue) => void }) {
+export default function PKDInput({ onChangeAction }: { onChangeAction?: (v: PKDValue) => void }) {
   const [section, setSection] = React.useState("");
   const [division, setDivision] = React.useState("");
   const [suffix, setSuffix] = React.useState("");
@@ -30,8 +29,16 @@ export default function PKDInput({ onChange }: { onChange?: (v: PKDValue) => voi
   const [loadingSuffixes, setLoadingSuffixes] = React.useState(false);
 
   const sectionRef = React.useRef<HTMLInputElement | null>(null);
-  const divisionRef = React.useRef<HTMLInputElement | null>(null);
-  const suffixRef = React.useRef<HTMLInputElement | null>(null);
+  // refs point to the wrapper container around the autocomplete so we can focus the inner input
+  const divisionRef = React.useRef<HTMLDivElement | null>(null);
+  const suffixRef = React.useRef<HTMLDivElement | null>(null);
+
+  const focusFirstInput = (containerRef: React.RefObject<HTMLElement | null>) => {
+    const el = containerRef.current as HTMLElement | null;
+    if (!el) return;
+    const input = el.querySelector('input');
+    if (input) (input as HTMLInputElement).focus();
+  };
 
   const validSection = (s: string) => /^[A-U]$/i.test(s);
   const validDivision = (d: string) => /^\d{2}$/.test(d) && Number(d) >= 1 && Number(d) <= 99;
@@ -150,14 +157,15 @@ export default function PKDInput({ onChange }: { onChange?: (v: PKDValue) => voi
     ].filter(Boolean);
     const pkd = pkdParts.length ? pkdParts.join(".") : undefined;
 
-    onChange?.({
+    onChangeAction?.({
       section: section ? section.toUpperCase() : undefined,
       division: division || undefined,
       suffix: suffix || undefined,
       pkd,
       full: pkd,
     });
-  }, [section, division, suffix, divisionSuggestions, suffixSuggestions, onChange]);
+  }, [section, division, suffix, divisionSuggestions, suffixSuggestions, onChangeAction]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 
   // helpers for suggestion filtering and click fill
   const filterSuggestions = (list: string[], q: string) =>
@@ -177,7 +185,7 @@ export default function PKDInput({ onChange }: { onChange?: (v: PKDValue) => voi
             onChange={(e) => {
               const v = e.target.value.slice(0, 1).toUpperCase();
               setSection(v);
-              if (validSection(v)) setTimeout(() => divisionRef.current?.focus(), 0);
+              if (validSection(v)) setTimeout(() => focusFirstInput(divisionRef), 0);
             }}
             maxLength={1}
             aria-invalid={!!errors.section}
@@ -187,33 +195,26 @@ export default function PKDInput({ onChange }: { onChange?: (v: PKDValue) => voi
         {/* Division (MUI Autocomplete dropdown + input, uses existing MUI component) */}
         <div className="flex flex-col relative">
           <label className="text-sm text-gray-700 mb-1">Dział</label>
-          <div style={{ width: 96 }}>
+          <div style={{ width: 96 }} ref={divisionRef}>
             <Autocomplete
-              ref={divisionRef}
-              options={divisionSuggestions}
-              value={division ? pad2(division) : null}
-              onChange={(_, val) => {
-                const digits = val ? val.replace(/\D/g, "").slice(0, 2) : "";
+              className="w-full"
+              placeholder={loadingDivisions ? "ładowanie..." : divisionSuggestions[0] ?? "np. 02"}
+              value={division ? pad2(division) : undefined}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                if (!validSection(section)) return;
+                const digits = e.target.value.replace(/\D/g, "").slice(0, 2);
                 setDivision(digits);
-                if (digits && digits.length === 2) setTimeout(() => suffixRef.current?.focus(), 0);
+                if (digits && digits.length === 2) setTimeout(() => focusFirstInput(suffixRef), 0);
               }}
               disabled={!validSection(section)}
-              disableClearable
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  placeholder={loadingDivisions ? "ładowanie..." : divisionSuggestions[0] ?? "np. 02"}
-                  size="small"
-                  onChange={(e) => {
-                    if (!validSection(section)) return;
-                    const digits = e.target.value.replace(/\D/g, "").slice(0, 2);
-                    // update input as raw digits (Autocomplete value sync handled in onChange)
-                    setDivision(digits);
-                  }}
-                />
-              )}
-              PopperProps={{ sx: { zIndex: 1300 } }}
-            />
+              isClearable={false}
+            >
+              <AutocompleteSection>
+                {filterSuggestions(divisionSuggestions, division ? pad2(division) : "").map((opt) => (
+                  <AutocompleteItem key={opt}>{opt}</AutocompleteItem>
+                ))}
+              </AutocompleteSection>
+            </Autocomplete>
           </div>
           {/* helper / placeholder BELOW input */}
           <div className="mt-1">
@@ -228,31 +229,25 @@ export default function PKDInput({ onChange }: { onChange?: (v: PKDValue) => voi
         {/* Suffix (MUI Autocomplete dropdown + input) */}
         <div className="flex flex-col relative">
           <label className="text-sm text-gray-700 mb-1">Klasa</label>
-          <div style={{ width: 112 }}>
+          <div style={{ width: 112 }} ref={suffixRef}>
             <Autocomplete
-              ref={suffixRef}
-              options={suffixSuggestions}
-              value={suffix || null}
-              onChange={(_, val) => {
-                const digits = val ? val.replace(/\D/g, "").slice(0, 2) : "";
+              className="w-full"
+              placeholder={loadingSuffixes ? "ładowanie..." : suffixSuggestions[0] ?? "np. 31"}
+              value={suffix || undefined}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                if (!validDivision(division)) return;
+                const digits = e.target.value.replace(/\D/g, "").slice(0, 2);
                 setSuffix(digits);
               }}
               disabled={!validDivision(division)}
-              disableClearable
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  placeholder={loadingSuffixes ? "ładowanie..." : suffixSuggestions[0] ?? "np. 31"}
-                  size="small"
-                  onChange={(e) => {
-                    if (!validDivision(division)) return;
-                    const digits = e.target.value.replace(/\D/g, "").slice(0, 2);
-                    setSuffix(digits);
-                  }}
-                />
-              )}
-              PopperProps={{ sx: { zIndex: 1300 } }}
-            />
+              isClearable={false}
+            >
+              <AutocompleteSection>
+                {filterSuggestions(suffixSuggestions, suffix || "").map((opt) => (
+                  <AutocompleteItem key={opt}>{opt}</AutocompleteItem>
+                ))}
+              </AutocompleteSection>
+            </Autocomplete>
           </div>
           <div className="mt-1">
             {loadingSuffixes ? (
