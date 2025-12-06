@@ -1,16 +1,25 @@
-export type IndexParams = {
-  section?: string;
-  division?: string;
-  group?: string;
-  subclass?: string;
-  version?: string;
-  forecast_years?: number;
-};
+// prefer explicit public base, otherwise build from public ip/port env, else fallback to relative
+const BASE = process.env.NEXT_PUBLIC_API_BASE
+  ?? (process.env.NEXT_PUBLIC_API_IP && process.env.NEXT_PUBLIC_API_PORT
+      ? `http://${process.env.NEXT_PUBLIC_API_IP}:${process.env.NEXT_PUBLIC_API_PORT}`
+      : (typeof window !== "undefined" ? "" : `http://${process.env.API_IP ?? "localhost"}:${process.env.API_PORT ?? "8000"}`));
 
-const BASE = process.env.NEXT_PUBLIC_API_BASE ?? ""; // ustaw w .env.local jeśli chcesz bez proxy
+type CacheEntry<T> = { ts: number; data: T };
+const CACHE_TTL = 1000 * 60 * 60; // 1h
+const CACHE: Record<string, CacheEntry<any>> = {};
+
+// map client paths to local proxy that forwards to backend (uses app/api/proxy/[[...path]]/route.ts)
+function apiPath(path: string) {
+  if (!path) return path;
+  // if user passed full /api/... -> map to /api/proxy/...
+  if (path.startsWith("/api/")) return `/api/proxy/${path.slice(5)}`;
+  if (path.startsWith("api/")) return `/api/proxy/${path.slice(4)}`;
+  return path;
+}
 
 async function request<T = any>(path: string, params?: Record<string, any>): Promise<T> {
-  const url = new URL((BASE || "") + path, BASE ? undefined : window.location.origin);
+  const mapped = apiPath(path);
+  const url = new URL((BASE || "") + mapped, BASE ? undefined : (typeof window !== "undefined" ? window.location.origin : "http://localhost"));
   if (params) {
     Object.entries(params).forEach(([k, v]) => {
       if (v !== undefined && v !== null) url.searchParams.set(k, String(v));
@@ -29,26 +38,74 @@ async function request<T = any>(path: string, params?: Record<string, any>): Pro
   return res.json();
 }
 
+export type IndexParams = {
+  section?: string;
+  division?: string;
+  group?: string;
+  subclass?: string;
+  version?: string;
+  forecast_years?: number;
+};
+
 export async function health() {
   return request("/api/health");
 }
 
-export async function getSections(version?: string) {
-  return request<{ version: string; sections: string[] }>("/api/sections", { version });
+// unified cached fetch helper
+async function cachedFetch<T = any>(cacheKey: string, path: string, params?: Record<string, any>, force = false): Promise<T> {
+  const entry = CACHE[cacheKey];
+  if (!force && entry && (Date.now() - entry.ts) < CACHE_TTL) {
+    return entry.data;
+  }
+
+  const data = await request<T>(path, params);
+  CACHE[cacheKey] = { ts: Date.now(), data };
+  try { if (typeof window !== "undefined") localStorage.setItem(cacheKey, JSON.stringify({ ts: CACHE[cacheKey].ts, data })); } catch {}
+  return data;
 }
 
-export async function getDivisions(section: string, version?: string) {
-  return request<{ section: string; version: string; divisions: string[] }>(
-    "/api/divisions",
-    { section, version }
-  );
+export async function getSections(version?: string, options?: { force?: boolean }) {
+  const key = `pkd_sections_${version ?? "2025"}`;
+  try {
+    if (!options?.force && typeof window !== "undefined") {
+      const raw = localStorage.getItem(key);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if ((Date.now() - parsed.ts) < CACHE_TTL) {
+          return parsed.data;
+        }
+      }
+    }
+  } catch {}
+  return cachedFetch(key, "/api/sections", { version }, !!options?.force);
 }
 
-export async function getGroups(section: string, division: string, version?: string) {
-  return request<{ section: string; division: string; groups: string[] }>(
-    "/api/groups",
-    { section, division, version }
-  );
+export async function getDivisions(section: string, version?: string, options?: { force?: boolean }) {
+  const key = `pkd_divisions_${section}_${version ?? "2025"}`;
+  try {
+    if (!options?.force && typeof window !== "undefined") {
+      const raw = localStorage.getItem(key);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if ((Date.now() - parsed.ts) < CACHE_TTL) return parsed.data;
+      }
+    }
+  } catch {}
+  return cachedFetch(key, "/api/divisions", { section, version }, !!options?.force);
+}
+
+export async function getGroups(section: string, division: string, version?: string, options?: { force?: boolean }) {
+  const key = `pkd_groups_${section}_${division}_${version ?? "2025"}`;
+  try {
+    if (!options?.force && typeof window !== "undefined") {
+      const raw = localStorage.getItem(key);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if ((Date.now() - parsed.ts) < CACHE_TTL) return parsed.data;
+      }
+    }
+  } catch {}
+  return cachedFetch(key, "/api/groups", { section, division, version }, !!options?.force);
 }
 
 export async function getIndustry(params: IndexParams) {
