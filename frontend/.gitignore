@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+#lock files
+frontend/pnpm-lock.yaml
+# IDEs and editors
+/.idea
+.vscode/
