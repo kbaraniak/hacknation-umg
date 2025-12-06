@@ -513,17 +513,29 @@ async def compare_branches(
 		results = []
 		
 		for code_str in code_list:
+			# Usuń kropki z końca (dane mają "46.", API przyjmuje "46")
+			code_clean = code_str.rstrip('.')
+			
 			rep_code = None
-			if code_str in hierarchy.codes:
-				rep_code = hierarchy.codes[code_str]
-			elif code_str in hierarchy.division_index:
-				div_codes = hierarchy.get_by_division(code_str)
+			
+			# 1. Sprawdź czy to litera sekcji (A-U)
+			if len(code_clean) == 1 and code_clean.isalpha():
+				sec_codes = hierarchy.get_by_section(code_clean.upper())
+				rep_code = sec_codes[0] if sec_codes else None
+			# 2. Sprawdź bezpośrednie dopasowanie w codes
+			elif code_clean in hierarchy.codes:
+				rep_code = hierarchy.codes[code_clean]
+			# 3. Sprawdź w indeksie działów
+			elif code_clean in hierarchy.division_index:
+				div_codes = hierarchy.get_by_division(code_clean)
 				rep_code = div_codes[0] if div_codes else None
-			elif code_str in hierarchy.group_index:
-				grp_codes = hierarchy.get_by_group(code_str)
+			# 4. Sprawdź w indeksie grup
+			elif code_clean in hierarchy.group_index:
+				grp_codes = hierarchy.get_by_group(code_clean)
 				rep_code = grp_codes[0] if grp_codes else None
+			# 5. Fallback: próbuj sekcję
 			else:
-				sec_codes = hierarchy.get_by_section(code_str)
+				sec_codes = hierarchy.get_by_section(code_clean.upper())
 				rep_code = sec_codes[0] if sec_codes else None
 			
 			if rep_code is None:
