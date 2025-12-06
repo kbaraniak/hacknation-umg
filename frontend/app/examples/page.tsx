@@ -6,6 +6,8 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import { BarChart } from '@mui/x-charts/BarChart';
+import "@/app/lib/client/storage";
+import { loadFromStorage, saveToStorage } from '@/app/lib/client/storage';
 
 
 const rows: GridRowsProp = [
@@ -21,6 +23,8 @@ const columns: GridColDef[] = [
 
 
 export default function Home() {
+  saveToStorage("filter", { sort_name: "ascending", name: "piek" });
+  console.log("Storage: " + loadFromStorage("filter")?.name);
   return (
     <Container maxWidth="lg">
       <Box
