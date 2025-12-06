@@ -25,12 +25,21 @@ export default function PKDInput({ onChange }: { onChange?: (v: PKDValue) => voi
   const [loadingSuffixes, setLoadingSuffixes] = React.useState(false);
 
   const sectionRef = React.useRef<HTMLInputElement | null>(null);
-  const divisionRef = React.useRef<any>(null);
+  const divisionRef = React.useRef<HTMLDivElement | null>(null);
   const divisionInputRef = React.useRef<HTMLInputElement | null>(null);
-  const suffixRef = React.useRef<any>(null);
+  const suffixRef = React.useRef<HTMLDivElement | null>(null);
   const [divisionOpen, setDivisionOpen] = React.useState(false);
   const [errors, setErrors] = React.useState<Record<string, string>>({});
   const [divisionInput, setDivisionInput] = React.useState("");
+  
+  // Refs to prevent update loops
+  const prevFullRef = React.useRef<string | undefined>(undefined);
+  const onChangeActionRef = React.useRef(onChange);
+  
+  // Update callback ref when onChange prop changes
+  React.useEffect(() => {
+    onChangeActionRef.current = onChange;
+  }, [onChange]);
 
   const validSection = (s: string) => /^[A-U]$/i.test(s);
   const validDivision = (d: string) => /^\d{2}$/.test(d) && Number(d) >= 1 && Number(d) <= 99;
@@ -137,7 +146,7 @@ export default function PKDInput({ onChange }: { onChange?: (v: PKDValue) => voi
     setErrors((e) => ({ ...e, suffix: err ?? "" }));
   };
 
-  // validation + onChange output
+  // validation + onChange output (only emit when PKD actually changes)
   React.useEffect(() => {
     const pkdParts = [
       section ? section.toUpperCase() : undefined,
@@ -145,17 +154,19 @@ export default function PKDInput({ onChange }: { onChange?: (v: PKDValue) => voi
       suffix || undefined,
     ].filter(Boolean);
     const pkd = pkdParts.length ? pkdParts.join(".") : undefined;
-    onChange?.({
-      section: section ? section.toUpperCase() : undefined,
-      division: division || undefined,
-      suffix: suffix || undefined,
-      pkd,
-      full: pkd,
-    });
-  }, [section, division, suffix, onChange]);
-
-  const filterSuggestions = (list: string[], q: string) =>
-    list.filter((v) => v.startsWith(q) || v.includes(q)).slice(0, 10);
+    
+    // Only call onChange if the PKD value actually changed
+    if (prevFullRef.current !== pkd) {
+      prevFullRef.current = pkd;
+      onChangeActionRef.current?.({
+        section: section ? section.toUpperCase() : undefined,
+        division: division || undefined,
+        suffix: suffix || undefined,
+        pkd,
+        full: pkd,
+      });
+    }
+  }, [section, division, suffix]);
 
   return (
     <div className="w-full mt-8">
@@ -308,7 +319,7 @@ export default function PKDInput({ onChange }: { onChange?: (v: PKDValue) => voi
 
       <div className="mt-3 text-sm text-gray-700">
         <div className="text-xs text-gray-500 mt-1">
-          Przykład: wpisz "B", potem "02", potem "31", aby otrzymać "B.02.31". Sugestie są cache'owane lokalnie i okresowo synchronizowane z API.
+          Przykład: wpisz &quot;B&quot;, potem &quot;02&quot;, potem &quot;31&quot;, aby otrzymać &quot;B.02.31&quot;. Sugestie są cache&apos;owane lokalnie i okresowo synchronizowane z API.
         </div>
       </div>
     </div>
