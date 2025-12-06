@@ -4,6 +4,8 @@
 import React from "react";
 import { LineChart } from '@mui/x-charts';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
 type Point = { x: number; y: number };
 
 export default function MultiIndustryChart({
@@ -115,11 +117,11 @@ export default function MultiIndustryChart({
       setLoading(true);
 
       try {
-        // Use the /api/compare endpoint (accepts codes comma separated) per OpenAPI
+        // Use the /api/trends endpoint (accepts codes comma separated) per OpenAPI
         const codesParam = industries.join(',');
         const yearsParam = `${range.from}-${range.to}`;
-        const compareUrl = `/api/compare?codes=${encodeURIComponent(codesParam)}&years=${encodeURIComponent(yearsParam)}`;
-        const res = await fetch(compareUrl);
+        const url = `${API_URL}/api/trends?codes=${encodeURIComponent(codesParam)}&years=${encodeURIComponent(yearsParam)}&metrics=${encodeURIComponent(metricKey)}`;
+        const res = await fetch(url);
         let resultsRaw: any;
         if (res.ok) {
           resultsRaw = await res.json();
@@ -128,7 +130,7 @@ export default function MultiIndustryChart({
           resultsRaw = null;
         }
         // debug log the request and raw response to help diagnose API shapes
-        console.debug('[MultiIndustryChart] compareUrl', compareUrl, 'resultsRaw', resultsRaw);
+        console.debug('[MultiIndustryChart] trendsUrl', url, 'resultsRaw', resultsRaw);
 
          // Normalize results into array of { kod, data }
          let results: Array<{ kod: string; data: Point[] }> = [];
