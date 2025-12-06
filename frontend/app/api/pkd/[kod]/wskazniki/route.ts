@@ -1,8 +1,8 @@
 export async function GET(
   req: Request,
-  { params }: { params: { kod: string } }
+  { params }: { params: Promise<{ kod: string }> }
 ) {
-  const { kod } = params;
+  const { kod } = await params;
 
   const url = `${process.env.API_URL}:${process.env.API_PORT}/api/pkd/${kod}/wskazniki`;
 

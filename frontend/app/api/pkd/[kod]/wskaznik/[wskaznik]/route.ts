@@ -1,8 +1,8 @@
 export async function GET(
    req: Request,
-   { params }: { params: { kod: string; wskaznik: string } }
+   { params }: { params: Promise<{ kod: string; wskaznik: string }> }
 ) {
-   const { kod, wskaznik } = params;
+   const { kod, wskaznik } = await params;
 
    const url = `${process.env.API_URL}:${process.env.API_PORT}/api/pkd/${kod}/wskaznik/${wskaznik}`;
 
@@ -14,9 +14,9 @@ export async function GET(
 
 export async function POST(
    req: Request,
-   { params }: { params: { kod: string; wskaznik: string } }
+   { params }: { params: Promise<{ kod: string; wskaznik: string }> }
 ) {
-   const { kod, wskaznik } = params;
+   const { kod, wskaznik } = await params;
 
    const url = `${process.env.API_URL}:${process.env.API_PORT}/api/pkd/${kod}/wskaznik/${wskaznik}`;
 

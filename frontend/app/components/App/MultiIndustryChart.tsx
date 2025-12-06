@@ -94,7 +94,7 @@ export default function MultiIndustryChart({ codes, years, version = "2025" }: M
   const [series, setSeries] = React.useState<Series[]>([]);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
-  const [debugResults, setDebugResults] = React.useState<unknown>(null);
+  const [debugResults, setDebugResults] = React.useState<Record<string, unknown> | null>(null);
   
   React.useEffect(() => {
     if (!codes || codes.length === 0) {
