@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import { Box, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-import { Home, AccountCircle, Settings, ExitToApp } from '@mui/icons-material';
+import { PieChart, TrendingUp, AttachMoney, AccountBalance, ReportProblem } from '@mui/icons-material';
 import { blue } from '@mui/material/colors';
 import { saveToStorage } from '@/app/lib/client/storage'; // <- dodane
 
@@ -26,11 +26,11 @@ export default function Sidebar({ onSelect }: { onSelect?: (item: NavItem) => vo
     );
 
     const navItems: NavItem[] = [
-        { key: 'size', text: 'Wielkość branży', Icon: Home },
-        { key: 'growth', text: 'Rozwój branży', Icon: AccountCircle },
-        { key: 'profit', text: 'Rentowność branży', Icon: Settings },
-        { key: 'debt', text: 'Zadłużenie branży', Icon: ExitToApp },
-        { key: 'claims', text: 'Szkodowość branży', Icon: ExitToApp },
+        { key: 'size', text: 'Wielkość branży', Icon: PieChart },
+        { key: 'growth', text: 'Rozwój branży', Icon: TrendingUp },
+        { key: 'profit', text: 'Rentowność branży', Icon: AttachMoney },
+        { key: 'debt', text: 'Zadłużenie branży', Icon: AccountBalance },
+        { key: 'claims', text: 'Szkodowość branży', Icon: ReportProblem },
     ];
 
     const renderNavItem = (item: NavItem) => (
@@ -54,7 +54,7 @@ export default function Sidebar({ onSelect }: { onSelect?: (item: NavItem) => vo
     return (
         <Box
             sx={{
-                width: 320,
+                width: 350,
                 height: '100vh',
                 bgcolor: 'grey.900',
                 color: 'white',
