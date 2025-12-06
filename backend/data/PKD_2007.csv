@@ -1,0 +1,1652 @@
+typ,symbol,nazwa
+SEKCJA,A,"ROLNICTWO, LEŚNICTWO, ŁOWIECTWO I RYBACTWO"
+DZIAŁ,01,"UPRAWY ROLNE, CHÓW I HODOWLA ZWIERZĄT, ŁOWIECTWO, WŁĄCZAJĄC DZIAŁALNOŚĆ USŁUGOWĄ"
+GRUPA,01.1,Uprawy rolne inne niż wieloletnie 
+KLASA,01.11,"Uprawa zbóż, roślin strączkowych i roślin oleistych na nasiona, z wyłączeniem ryżu"
+PODKLASA,01.11.Z,"Uprawa zbóż, roślin strączkowych i roślin oleistych na nasiona, z wyłączeniem ryżu"
+KLASA,01.12,Uprawa ryżu
+PODKLASA,01.12.Z,Uprawa ryżu
+KLASA,01.13,"Uprawa warzyw, włączając melony oraz uprawa roślin korzeniowych i roślin bulwiastych"
+PODKLASA,01.13.Z,"Uprawa warzyw, włączając melony oraz uprawa roślin korzeniowych i roślin bulwiastych"
+KLASA,01.14,Uprawa trzciny cukrowej
+PODKLASA,01.14.Z,Uprawa trzciny cukrowej
+KLASA,01.15,Uprawa tytoniu
+PODKLASA,01.15.Z,Uprawa tytoniu
+KLASA,01.16,Uprawa roślin włóknistych
+PODKLASA,01.16.Z,Uprawa roślin włóknistych
+KLASA,01.19,Pozostałe uprawy rolne inne niż wieloletnie
+PODKLASA,01.19.Z,Pozostałe uprawy rolne inne niż wieloletnie
+GRUPA,01.2,Uprawa roślin wieloletnich
+KLASA,01.21,Uprawa winogron
+PODKLASA,01.21.Z,Uprawa winogron
+KLASA,01.22,Uprawa drzew i krzewów owocowych tropikalnych i podzwrotnikowych
+PODKLASA,01.22.Z,Uprawa drzew i krzewów owocowych tropikalnych i podzwrotnikowych
+KLASA,01.23,Uprawa drzew i krzewów owocowych cytrusowych
+PODKLASA,01.23.Z,Uprawa drzew i krzewów owocowych cytrusowych
+KLASA,01.24,Uprawa drzew i krzewów owocowych ziarnkowych i pestkowych
+PODKLASA,01.24.Z,Uprawa drzew i krzewów owocowych ziarnkowych i pestkowych
+KLASA,01.25,Uprawa pozostałych drzew i krzewów owocowych oraz orzechów
+PODKLASA,01.25.Z,Uprawa pozostałych drzew i krzewów owocowych oraz orzechów
+KLASA,01.26,Uprawa drzew oleistych
+PODKLASA,01.26.Z,Uprawa drzew oleistych
+KLASA,01.27,Uprawa roślin wykorzystywanych do produkcji napojów
+PODKLASA,01.27.Z,Uprawa roślin wykorzystywanych do produkcji napojów
+KLASA,01.28,Uprawa roślin przyprawowych i aromatycznych oraz roślin wykorzystywanych do produkcji leków i wyrobów farmaceutycznych
+PODKLASA,01.28.Z,Uprawa roślin przyprawowych i aromatycznych oraz roślin wykorzystywanych do produkcji leków i wyrobów farmaceutycznych
+KLASA,01.29,Uprawa pozostałych roślin wieloletnich
+PODKLASA,01.29.Z,Uprawa pozostałych roślin wieloletnich
+GRUPA,01.3,Rozmnażanie roślin
+KLASA,01.30,Rozmnażanie roślin
+PODKLASA,01.30.Z,Rozmnażanie roślin
+GRUPA,01.4,Chów i hodowla zwierząt
+KLASA,01.41,Chów i hodowla bydła mlecznego
+PODKLASA,01.41.Z,Chów i hodowla bydła mlecznego
+KLASA,01.42,Chów i hodowla pozostałego bydła i bawołów
+PODKLASA,01.42.Z,Chów i hodowla pozostałego bydła i bawołów
+KLASA,01.43,Chów i hodowla koni i pozostałych zwierząt koniowatych
+PODKLASA,01.43.Z,Chów i hodowla koni i pozostałych zwierząt koniowatych
+KLASA,01.44,Chów i hodowla wielbłądów i zwierząt wielbłądowatych
+PODKLASA,01.44.Z,Chów i hodowla wielbłądów i zwierząt wielbłądowatych
+KLASA,01.45,Chów i hodowla owiec i kóz
+PODKLASA,01.45.Z,Chów i hodowla owiec i kóz
+KLASA,01.46,Chów i hodowla świń
+PODKLASA,01.46.Z,Chów i hodowla świń
+KLASA,01.47,Chów i hodowla drobiu
+PODKLASA,01.47.Z,Chów i hodowla drobiu
+KLASA,01.49,Chów i hodowla pozostałych zwierząt
+PODKLASA,01.49.Z,Chów i hodowla pozostałych zwierząt
+GRUPA,01.5,Uprawy rolne połączone z chowem i hodowlą zwierząt (działalność mieszana)
+KLASA,01.50,Uprawy rolne połączone z chowem i hodowlą zwierząt (działalność mieszana)
+PODKLASA,01.50.Z,Uprawy rolne połączone z chowem i hodowlą zwierząt (działalność mieszana)
+GRUPA,01.6,Działalność usługowa wspomagająca rolnictwo i następująca po zbiorach
+KLASA,01.61,Działalność usługowa wspomagająca produkcję roślinną
+PODKLASA,01.61.Z,Działalność usługowa wspomagająca produkcję roślinną
+KLASA,01.62,Działalność usługowa wspomagająca chów i hodowlę zwierząt gospodarskich
+PODKLASA,01.62.Z,Działalność usługowa wspomagająca chów i hodowlę zwierząt gospodarskich
+KLASA,01.63,Działalność usługowa następująca po zbiorach
+PODKLASA,01.63.Z,Działalność usługowa następująca po zbiorach
+KLASA,01.64,Obróbka nasion dla celów rozmnażania roślin
+PODKLASA,01.64.Z,Obróbka nasion dla celów rozmnażania roślin
+GRUPA,01.7,"Łowiectwo i pozyskiwanie zwierząt łownych, włączając działalność usługową"
+KLASA,01.70,"Łowiectwo i pozyskiwanie zwierząt łownych, włączając działalność usługową"
+PODKLASA,01.70.Z,"Łowiectwo i pozyskiwanie zwierząt łownych, włączając działalność usługową"
+DZIAŁ,02,LEŚNICTWO I POZYSKIWANIE DREWNA
+GRUPA,02.1,"Gospodarka leśna i pozostała działalność leśna, z wyłączeniem pozyskiwania produktów leśnych"
+KLASA,02.10,"Gospodarka leśna i pozostała działalność leśna, z wyłączeniem pozyskiwania produktów leśnych"
+PODKLASA,02.10.Z,"Gospodarka leśna i pozostała działalność leśna, z wyłączeniem pozyskiwania produktów leśnych"
+GRUPA,02.2,Pozyskiwanie drewna
+KLASA,02.20,Pozyskiwanie drewna
+PODKLASA,02.20.Z,Pozyskiwanie drewna
+GRUPA,02.3,"Pozyskiwanie dziko rosnących produktów leśnych, z wyłączeniem drewna"
+KLASA,02.30,"Pozyskiwanie dziko rosnących produktów leśnych, z wyłączeniem drewna"
+PODKLASA,02.30.Z,"Pozyskiwanie dziko rosnących produktów leśnych, z wyłączeniem drewna"
+GRUPA,02.4,Działalność usługowa związana z leśnictwem
+KLASA,02.40,Działalność usługowa związana z leśnictwem
+PODKLASA,02.40.Z,Działalność usługowa związana z leśnictwem
+DZIAŁ,03,RYBACTWO
+GRUPA,03.1,Rybołówstwo
+KLASA,03.11,Rybołówstwo w wodach morskich
+PODKLASA,03.11.Z,Rybołówstwo w wodach morskich
+KLASA,03.12,Rybołówstwo w wodach śródlądowych
+PODKLASA,03.12.Z,Rybołówstwo w wodach śródlądowych
+GRUPA,03.2,Chów i hodowla ryb oraz pozostałych organizmów wodnych
+KLASA,03.21,Chów i hodowla ryb oraz pozostałych organizmów wodnych w wodach morskich
+PODKLASA,03.21.Z,Chów i hodowla ryb oraz pozostałych organizmów wodnych w wodach morskich
+KLASA,03.22,Chów i hodowla ryb oraz pozostałych organizmów wodnych w wodach śródlądowych
+PODKLASA,03.22.Z,Chów i hodowla ryb oraz pozostałych organizmów wodnych w wodach śródlądowych
+SEKCJA,B,GÓRNICTWO I WYDOBYWANIE
+DZIAŁ,05,WYDOBYWANIE WĘGLA KAMIENNEGO I WĘGLA BRUNATNEGO (LIGNITU)
+GRUPA,05.1,Wydobywanie węgla kamiennego
+KLASA,05.10,Wydobywanie węgla kamiennego
+PODKLASA,05.10.Z,Wydobywanie węgla kamiennego
+GRUPA,05.2,Wydobywanie węgla brunatnego (lignitu)
+KLASA,05.20,Wydobywanie węgla brunatnego (lignitu)
+PODKLASA,05.20.Z,Wydobywanie węgla brunatnego (lignitu)
+DZIAŁ,06,GÓRNICTWO ROPY NAFTOWEJ I GAZU ZIEMNEGO
+GRUPA,06.1,Górnictwo ropy naftowej
+KLASA,06.10,Górnictwo ropy naftowej
+PODKLASA,06.10.Z,Górnictwo ropy naftowej
+GRUPA,06.2,Górnictwo gazu ziemnego
+KLASA,06.20,Górnictwo gazu ziemnego
+PODKLASA,06.20.Z,Górnictwo gazu ziemnego
+DZIAŁ,07,GÓRNICTWO RUD METALI
+GRUPA,07.1,Górnictwo rud żelaza
+KLASA,07.10,Górnictwo rud żelaza
+PODKLASA,07.10.Z,Górnictwo rud żelaza
+GRUPA,07.2,Górnictwo rud metali nieżelaznych
+KLASA,07.21,Górnictwo rud uranu i toru
+PODKLASA,07.21.Z,Górnictwo rud uranu i toru
+KLASA,07.29,Górnictwo pozostałych rud metali nieżelaznych
+PODKLASA,07.29.Z,Górnictwo pozostałych rud metali nieżelaznych
+DZIAŁ,08,POZOSTAŁE GÓRNICTWO I WYDOBYWANIE
+GRUPA,08.1,"Wydobywanie kamienia, piasku i gliny"
+KLASA,08.11,"Wydobywanie kamieni ozdobnych oraz kamienia dla potrzeb budownictwa, skał wapiennych, gipsu, kredy i łupków"
+PODKLASA,08.11.Z,"Wydobywanie kamieni ozdobnych oraz kamienia dla potrzeb budownictwa, skał wapiennych, gipsu, kredy i łupków"
+KLASA,08.12,Wydobywanie żwiru i piasku; wydobywanie gliny i kaolinu
+PODKLASA,08.12.Z,Wydobywanie żwiru i piasku; wydobywanie gliny i kaolinu
+GRUPA,08.9,"Górnictwo i wydobywanie, gdzie indziej niesklasyfikowane"
+KLASA,08.91,Wydobywanie minerałów dla przemysłu chemicznego oraz do produkcji nawozów
+PODKLASA,08.91.Z,Wydobywanie minerałów dla przemysłu chemicznego oraz do produkcji nawozów
+KLASA,08.92,Wydobywanie torfu
+PODKLASA,08.92.Z,Wydobywanie torfu
+KLASA,08.93,Wydobywanie soli
+PODKLASA,08.93.Z,Wydobywanie soli
+KLASA,08.99,"Pozostałe górnictwo i wydobywanie, gdzie indziej niesklasyfikowane"
+PODKLASA,08.99.Z,"Pozostałe górnictwo i wydobywanie, gdzie indziej niesklasyfikowane"
+DZIAŁ,09,DZIAŁALNOŚĆ USŁUGOWA WSPOMAGAJĄCA GÓRNICTWO I WYDOBYWANIE
+GRUPA,09.1,Działalność usługowa wspomagająca eksploatację złóż ropy naftowej i gazu ziemnego
+KLASA,09.10,Działalność usługowa wspomagająca eksploatację złóż ropy naftowej i gazu ziemnego
+PODKLASA,09.10.Z,Działalność usługowa wspomagająca eksploatację złóż ropy naftowej i gazu ziemnego
+GRUPA,09.9,Działalność usługowa wspomagająca pozostałe górnictwo i wydobywanie
+KLASA,09.90,Działalność usługowa wspomagająca pozostałe górnictwo i wydobywanie
+PODKLASA,09.90.Z,Działalność usługowa wspomagająca pozostałe górnictwo i wydobywanie
+SEKCJA,C,PRZETWÓRSTWO PRZEMYSŁOWE
+DZIAŁ,10,PRODUKCJA ARTYKUŁÓW SPOŻYWCZYCH
+GRUPA,10.1,Przetwarzanie i konserwowanie mięsa oraz produkcja wyrobów z mięsa
+KLASA,10.11,"Przetwarzanie i konserwowanie mięsa, z wyłączeniem mięsa z drobiu"
+PODKLASA,10.11.Z,"Przetwarzanie i konserwowanie mięsa, z wyłączeniem mięsa z drobiu"
+KLASA,10.12,Przetwarzanie i konserwowanie mięsa z drobiu
+PODKLASA,10.12.Z,Przetwarzanie i konserwowanie mięsa z drobiu
+KLASA,10.13,"Produkcja wyrobów z mięsa, włączając wyroby z mięsa drobiowego"
+PODKLASA,10.13.Z,"Produkcja wyrobów z mięsa, włączając wyroby z mięsa drobiowego"
+GRUPA,10.2,"Przetwarzanie i konserwowanie ryb, skorupiaków i mięczaków"
+KLASA,10.20,"Przetwarzanie i konserwowanie ryb, skorupiaków i mięczaków"
+PODKLASA,10.20.Z,"Przetwarzanie i konserwowanie ryb, skorupiaków i mięczaków"
+GRUPA,10.3,Przetwarzanie i konserwowanie owoców i warzyw
+KLASA,10.31,Przetwarzanie i konserwowanie ziemniaków
+PODKLASA,10.31.Z,Przetwarzanie i konserwowanie ziemniaków
+KLASA,10.32,Produkcja soków z owoców i warzyw
+PODKLASA,10.32.Z,Produkcja soków z owoców i warzyw
+KLASA,10.39,Pozostałe przetwarzanie i konserwowanie owoców i warzyw
+PODKLASA,10.39.Z,Pozostałe przetwarzanie i konserwowanie owoców i warzyw
+GRUPA,10.4,Produkcja olejów i tłuszczów pochodzenia roślinnego i zwierzęcego
+KLASA,10.41,Produkcja olejów i pozostałych tłuszczów płynnych
+PODKLASA,10.41.Z,Produkcja olejów i pozostałych tłuszczów płynnych
+KLASA,10.42,Produkcja margaryny i podobnych tłuszczów jadalnych
+PODKLASA,10.42.Z,Produkcja margaryny i podobnych tłuszczów jadalnych
+GRUPA,10.5,Wytwarzanie wyrobów mleczarskich
+KLASA,10.51,Przetwórstwo mleka i wyrób serów
+PODKLASA,10.51.Z,Przetwórstwo mleka i wyrób serów
+KLASA,10.52,Produkcja lodów
+PODKLASA,10.52.Z,Produkcja lodów
+GRUPA,10.6,"Wytwarzanie produktów przemiału zbóż, skrobi i wyrobów skrobiowych"
+KLASA,10.61,Wytwarzanie produktów przemiału zbóż
+PODKLASA,10.61.Z,Wytwarzanie produktów przemiału zbóż
+KLASA,10.62,Wytwarzanie skrobi i wyrobów skrobiowych
+PODKLASA,10.62.Z,Wytwarzanie skrobi i wyrobów skrobiowych
+GRUPA,10.7,Produkcja wyrobów piekarskich i mącznych
+KLASA,10.71,Produkcja pieczywa; produkcja świeżych wyrobów ciastkarskich i ciastek
+PODKLASA,10.71.Z,Produkcja pieczywa; produkcja świeżych wyrobów ciastkarskich i ciastek
+KLASA,10.72,Produkcja sucharów i herbatników; produkcja konserwowanych wyrobów ciastkarskich i ciastek
+PODKLASA,10.72.Z,Produkcja sucharów i herbatników; produkcja konserwowanych wyrobów ciastkarskich i ciastek
+KLASA,10.73,"Produkcja makaronów, klusek, kuskusu i podobnych wyrobów mącznych"
+PODKLASA,10.73.Z,"Produkcja makaronów, klusek, kuskusu i podobnych wyrobów mącznych"
+GRUPA,10.8,Produkcja pozostałych artykułów spożywczych
+KLASA,10.81,Produkcja cukru
+PODKLASA,10.81.Z,Produkcja cukru
+KLASA,10.82,"Produkcja kakao, czekolady i wyrobów cukierniczych"
+PODKLASA,10.82.Z,"Produkcja kakao, czekolady i wyrobów cukierniczych"
+KLASA,10.83,Przetwórstwo herbaty i kawy
+PODKLASA,10.83.Z,Przetwórstwo herbaty i kawy
+KLASA,10.84,Produkcja przypraw
+PODKLASA,10.84.Z,Produkcja przypraw
+KLASA,10.85,Wytwarzanie gotowych posiłków i dań
+PODKLASA,10.85.Z,Wytwarzanie gotowych posiłków i dań
+KLASA,10.86,Produkcja artykułów spożywczych homogenizowanych i żywności dietetycznej
+PODKLASA,10.86.Z,Produkcja artykułów spożywczych homogenizowanych i żywności dietetycznej
+KLASA,10.89,"Produkcja pozostałych artykułów spożywczych, gdzie indziej niesklasyfikowana"
+PODKLASA,10.89.Z,"Produkcja pozostałych artykułów spożywczych, gdzie indziej niesklasyfikowana"
+GRUPA,10.9,Produkcja gotowych paszy i karmy dla zwierząt
+KLASA,10.91,Produkcja gotowej paszy dla zwierząt gospodarskich
+PODKLASA,10.91.Z,Produkcja gotowej paszy dla zwierząt gospodarskich
+KLASA,10.92,Produkcja gotowej karmy dla zwierząt domowych
+PODKLASA,10.92.Z,Produkcja gotowej karmy dla zwierząt domowych
+DZIAŁ,11,PRODUKCJA NAPOJÓW
+GRUPA,11.0,PRODUKCJA NAPOJÓW
+KLASA,11.01,"Destylowanie, rektyfikowanie i mieszanie alkoholi"
+PODKLASA,11.01.Z,"Destylowanie, rektyfikowanie i mieszanie alkoholi"
+KLASA,11.02,Produkcja win gronowych
+PODKLASA,11.02.Z,Produkcja win gronowych
+KLASA,11.03,Produkcja cydru i pozostałych win owocowych
+PODKLASA,11.03.Z,Produkcja cydru i pozostałych win owocowych
+KLASA,11.04,Produkcja pozostałych niedestylowanych napojów fermentowanych
+PODKLASA,11.04.Z,Produkcja pozostałych niedestylowanych napojów fermentowanych
+KLASA,11.05,Produkcja piwa
+PODKLASA,11.05.Z,Produkcja piwa
+KLASA,11.06,Produkcja słodu
+PODKLASA,11.06.Z,Produkcja słodu
+KLASA,11.07,Produkcja napojów bezalkoholowych; produkcja wód mineralnych i pozostałych wód butelkowanych
+PODKLASA,11.07.Z,Produkcja napojów bezalkoholowych; produkcja wód mineralnych i pozostałych wód butelkowanych
+DZIAŁ,12,PRODUKCJA WYROBÓW TYTONIOWYCH
+GRUPA,12.0,PRODUKCJA WYROBÓW TYTONIOWYCH
+KLASA,12.00,PRODUKCJA WYROBÓW TYTONIOWYCH
+PODKLASA,12.00.Z,PRODUKCJA WYROBÓW TYTONIOWYCH
+DZIAŁ,13,PRODUKCJA WYROBÓW TEKSTYLNYCH
+GRUPA,13.1,Przygotowanie i przędzenie włókien tekstylnych
+KLASA,13.10,Przygotowanie i przędzenie włókien tekstylnych
+PODKLASA,13.10.A,Produkcja przędzy bawełnianej
+PODKLASA,13.10.B,Produkcja przędzy wełnianej
+PODKLASA,13.10.C,Produkcja przędzy z włókien chemicznych
+PODKLASA,13.10.D,"Produkcja przędzy z pozostałych włókien tekstylnych, włączając produkcję nici"
+GRUPA,13.2,Produkcja tkanin
+KLASA,13.20,Produkcja tkanin
+PODKLASA,13.20.A,Produkcja tkanin bawełnianych
+PODKLASA,13.20.B,Produkcja tkanin wełnianych
+PODKLASA,13.20.C,Produkcja tkanin z włókien chemicznych
+PODKLASA,13.20.D,Produkcja pozostałych tkanin
+GRUPA,13.3,Wykończanie wyrobów włókienniczych
+KLASA,13.30,Wykończanie wyrobów włókienniczych
+PODKLASA,13.30.Z,Wykończanie wyrobów włókienniczych
+GRUPA,13.9,Produkcja pozostałych wyrobów tekstylnych
+KLASA,13.91,Produkcja dzianin metrażowych
+PODKLASA,13.91.Z,Produkcja dzianin metrażowych
+KLASA,13.92,Produkcja gotowych wyrobów tekstylnych
+PODKLASA,13.92.Z,Produkcja gotowych wyrobów tekstylnych
+KLASA,13.93,Produkcja dywanów i chodników
+PODKLASA,13.93.Z,Produkcja dywanów i chodników
+KLASA,13.94,"Produkcja wyrobów powroźniczych, lin, szpagatów i wyrobów sieciowych"
+PODKLASA,13.94.Z,"Produkcja wyrobów powroźniczych, lin, szpagatów i wyrobów sieciowych"
+KLASA,13.95,"Produkcja włóknin i wyrobów wykonanych z włóknin, z wyłączeniem odzieży"
+PODKLASA,13.95.Z,"Produkcja włóknin i wyrobów wykonanych z włóknin, z wyłączeniem odzieży"
+KLASA,13.96,Produkcja pozostałych technicznych i przemysłowych wyrobów tekstylnych
+PODKLASA,13.96.Z,Produkcja pozostałych technicznych i przemysłowych wyrobów tekstylnych
+KLASA,13.99,"Produkcja pozostałych wyrobów tekstylnych, gdzie indziej niesklasyfikowana"
+PODKLASA,13.99.Z,"Produkcja pozostałych wyrobów tekstylnych, gdzie indziej niesklasyfikowana"
+DZIAŁ,14,PRODUKCJA ODZIEŻY
+GRUPA,14.1,"Produkcja odzieży, z wyłączeniem wyrobów futrzarskich"
+KLASA,14.11,Produkcja odzieży skórzanej
+PODKLASA,14.11.Z,Produkcja odzieży skórzanej
+KLASA,14.12,Produkcja odzieży roboczej
+PODKLASA,14.12.Z,Produkcja odzieży roboczej
+KLASA,14.13,Produkcja pozostałej odzieży wierzchniej
+PODKLASA,14.13.Z,Produkcja pozostałej odzieży wierzchniej
+KLASA,14.14,Produkcja bielizny
+PODKLASA,14.14.Z,Produkcja bielizny
+KLASA,14.19,Produkcja pozostałej odzieży i dodatków do odzieży
+PODKLASA,14.19.Z,Produkcja pozostałej odzieży i dodatków do odzieży
+GRUPA,14.2,Produkcja wyrobów futrzarskich
+KLASA,14.20,Produkcja wyrobów futrzarskich
+PODKLASA,14.20.Z,Produkcja wyrobów futrzarskich
+GRUPA,14.3,Produkcja odzieży dzianej
+KLASA,14.31,Produkcja wyrobów pończoszniczych
+PODKLASA,14.31.Z,Produkcja wyrobów pończoszniczych
+KLASA,14.39,Produkcja pozostałej odzieży dzianej
+PODKLASA,14.39.Z,Produkcja pozostałej odzieży dzianej
+DZIAŁ,15,PRODUKCJA SKÓR I WYROBÓW ZE SKÓR WYPRAWIONYCH
+GRUPA,15.1,"Wyprawa skór, garbowanie; wyprawa i barwienie skór futerkowych; produkcja toreb bagażowych, toreb ręcznych i podobnych wyrobów kaletniczych; produkcja wyrobów rymarskich"
+KLASA,15.11,"Wyprawa skór, garbowanie; wyprawa i barwienie skór futerkowych"
+PODKLASA,15.11.Z,"Wyprawa skór, garbowanie; wyprawa i barwienie skór futerkowych"
+KLASA,15.12,"Produkcja toreb bagażowych, toreb ręcznych i podobnych wyrobów kaletniczych; produkcja wyrobów rymarskich"
+PODKLASA,15.12.Z,"Produkcja toreb bagażowych, toreb ręcznych i podobnych wyrobów kaletniczych; produkcja wyrobów rymarskich"
+GRUPA,15.2,Produkcja obuwia
+KLASA,15.20,Produkcja obuwia
+PODKLASA,15.20.Z,Produkcja obuwia
+DZIAŁ,16,"PRODUKCJA WYROBÓW Z DREWNA ORAZ KORKA, Z WYŁĄCZENIEM MEBLI; PRODUKCJA WYROBÓW ZE SŁOMY I MATERIAŁÓW UŻYWANYCH DO WYPLATANIA"
+GRUPA,16.1,Produkcja wyrobów tartacznych
+KLASA,16.10,Produkcja wyrobów tartacznych
+PODKLASA,16.10.Z,Produkcja wyrobów tartacznych
+GRUPA,16.2,"Produkcja wyrobów z drewna, korka, słomy i materiałów używanych do wyplatania"
+KLASA,16.21,Produkcja arkuszy fornirowych i płyt wykonanych na bazie drewna
+PODKLASA,16.21.Z,Produkcja arkuszy fornirowych i płyt wykonanych na bazie drewna
+KLASA,16.22,Produkcja gotowych parkietów podłogowych
+PODKLASA,16.22.Z,Produkcja gotowych parkietów podłogowych
+KLASA,16.23,Produkcja pozostałych wyrobów stolarskich i ciesielskich dla budownictwa
+PODKLASA,16.23.Z,Produkcja pozostałych wyrobów stolarskich i ciesielskich dla budownictwa
+KLASA,16.24,Produkcja opakowań drewnianych
+PODKLASA,16.24.Z,Produkcja opakowań drewnianych
+KLASA,16.29,"Produkcja pozostałych wyrobów z drewna; produkcja wyrobów z korka, słomy i materiałów używanych do wyplatania"
+PODKLASA,16.29.Z,"Produkcja pozostałych wyrobów z drewna; produkcja wyrobów z korka, słomy i materiałów używanych do wyplatania"
+DZIAŁ,17,PRODUKCJA PAPIERU I WYROBÓW Z PAPIERU
+GRUPA,17.1,"Produkcja masy włóknistej, papieru i tektury"
+KLASA,17.11,Produkcja masy włóknistej
+PODKLASA,17.11.Z,Produkcja masy włóknistej
+KLASA,17.12,Produkcja papieru i tektury
+PODKLASA,17.12.Z,Produkcja papieru i tektury
+GRUPA,17.2,Produkcja wyrobów z papieru i tektury
+KLASA,17.21,Produkcja papieru falistego i tektury falistej oraz opakowań z papieru i tektury
+PODKLASA,17.21.Z,Produkcja papieru falistego i tektury falistej oraz opakowań z papieru i tektury
+KLASA,17.22,"Produkcja artykułów gospodarstwa domowego, toaletowych i sanitarnych"
+PODKLASA,17.22.Z,"Produkcja artykułów gospodarstwa domowego, toaletowych i sanitarnych"
+KLASA,17.23,Produkcja artykułów piśmiennych
+PODKLASA,17.23.Z,Produkcja artykułów piśmiennych
+KLASA,17.24,Produkcja tapet
+PODKLASA,17.24.Z,Produkcja tapet
+KLASA,17.29,Produkcja pozostałych wyrobów z papieru i tektury
+PODKLASA,17.29.Z,Produkcja pozostałych wyrobów z papieru i tektury
+DZIAŁ,18,POLIGRAFIA I REPRODUKCJA ZAPISANYCH NOŚNIKÓW INFORMACJI
+GRUPA,18.1,Drukowanie i działalność usługowa związana z poligrafią
+KLASA,18.11,Drukowanie gazet
+PODKLASA,18.11.Z,Drukowanie gazet
+KLASA,18.12,Pozostałe drukowanie
+PODKLASA,18.12.Z,Pozostałe drukowanie
+KLASA,18.13,Działalność usługowa związana z przygotowywaniem do druku
+PODKLASA,18.13.Z,Działalność usługowa związana z przygotowywaniem do druku
+KLASA,18.14,Introligatorstwo i podobne usługi
+PODKLASA,18.14.Z,Introligatorstwo i podobne usługi
+GRUPA,18.2,Reprodukcja zapisanych nośników informacji
+KLASA,18.20,Reprodukcja zapisanych nośników informacji
+PODKLASA,18.20.Z,Reprodukcja zapisanych nośników informacji
+DZIAŁ,19,WYTWARZANIE I PRZETWARZANIE KOKSU I PRODUKTÓW RAFINACJI ROPY NAFTOWEJ
+GRUPA,19.1,Wytwarzanie i przetwarzanie koksu
+KLASA,19.10,Wytwarzanie i przetwarzanie koksu
+PODKLASA,19.10.Z,Wytwarzanie i przetwarzanie koksu
+GRUPA,19.2,Wytwarzanie i przetwarzanie produktów rafinacji ropy naftowej
+KLASA,19.20,Wytwarzanie i przetwarzanie produktów rafinacji ropy naftowej
+PODKLASA,19.20.Z,Wytwarzanie i przetwarzanie produktów rafinacji ropy naftowej
+DZIAŁ,20,PRODUKCJA CHEMIKALIÓW I WYROBÓW CHEMICZNYCH
+GRUPA,20.1,"Produkcja podstawowych chemikaliów, nawozów i związków azotowych, tworzyw sztucznych i kauczuku syntetycznego w formach podstawowych"
+KLASA,20.11,Produkcja gazów technicznych
+PODKLASA,20.11.Z,Produkcja gazów technicznych
+KLASA,20.12,Produkcja barwników i pigmentów
+PODKLASA,20.12.Z,Produkcja barwników i pigmentów
+KLASA,20.13,Produkcja pozostałych podstawowych chemikaliów nieorganicznych
+PODKLASA,20.13.Z,Produkcja pozostałych podstawowych chemikaliów nieorganicznych
+KLASA,20.14,Produkcja pozostałych podstawowych chemikaliów organicznych
+PODKLASA,20.14.Z,Produkcja pozostałych podstawowych chemikaliów organicznych
+KLASA,20.15,Produkcja nawozów i związków azotowych
+PODKLASA,20.15.Z,Produkcja nawozów i związków azotowych
+KLASA,20.16,Produkcja tworzyw sztucznych w formach podstawowych
+PODKLASA,20.16.Z,Produkcja tworzyw sztucznych w formach podstawowych
+KLASA,20.17,Produkcja kauczuku syntetycznego w formach podstawowych
+PODKLASA,20.17.Z,Produkcja kauczuku syntetycznego w formach podstawowych
+GRUPA,20.2,Produkcja pestycydów i pozostałych środków agrochemicznych
+KLASA,20.20,Produkcja pestycydów i pozostałych środków agrochemicznych
+PODKLASA,20.20.Z,Produkcja pestycydów i pozostałych środków agrochemicznych
+GRUPA,20.3,"Produkcja farb, lakierów i podobnych powłok, farb drukarskich i mas uszczelniających"
+KLASA,20.30,"Produkcja farb, lakierów i podobnych powłok, farb drukarskich i mas uszczelniających"
+PODKLASA,20.30.Z,"Produkcja farb, lakierów i podobnych powłok, farb drukarskich i mas uszczelniających"
+GRUPA,20.4,"Produkcja mydła i detergentów, środków myjących i czyszczących, wyrobów kosmetycznych i toaletowych"
+KLASA,20.41,"Produkcja mydła i detergentów, środków myjących i czyszczących"
+PODKLASA,20.41.Z,"Produkcja mydła i detergentów, środków myjących i czyszczących"
+KLASA,20.42,Produkcja wyrobów kosmetycznych i toaletowych
+PODKLASA,20.42.Z,Produkcja wyrobów kosmetycznych i toaletowych
+GRUPA,20.5,Produkcja pozostałych wyrobów chemicznych
+KLASA,20.51,Produkcja materiałów wybuchowych
+PODKLASA,20.51.Z,Produkcja materiałów wybuchowych
+KLASA,20.52,Produkcja klejów
+PODKLASA,20.52.Z,Produkcja klejów
+KLASA,20.53,Produkcja olejków eterycznych
+PODKLASA,20.53.Z,Produkcja olejków eterycznych
+KLASA,20.59,"Produkcja pozostałych wyrobów chemicznych, gdzie indziej niesklasyfikowana"
+PODKLASA,20.59.Z,"Produkcja pozostałych wyrobów chemicznych, gdzie indziej niesklasyfikowana"
+GRUPA,20.6,Produkcja włókien chemicznych
+KLASA,20.60,Produkcja włókien chemicznych
+PODKLASA,20.60.Z,Produkcja włókien chemicznych
+DZIAŁ,21,PRODUKCJA PODSTAWOWYCH SUBSTANCJI FARMACEUTYCZNYCH ORAZ LEKÓW I POZOSTAŁYCH WYROBÓW FARMACEUTYCZNYCH
+GRUPA,21.1,Produkcja podstawowych substancji farmaceutycznych
+KLASA,21.10,Produkcja podstawowych substancji farmaceutycznych
+PODKLASA,21.10.Z,Produkcja podstawowych substancji farmaceutycznych
+GRUPA,21.2,Produkcja leków i pozostałych wyrobów farmaceutycznych
+KLASA,21.20,Produkcja leków i pozostałych wyrobów farmaceutycznych
+PODKLASA,21.20.Z,Produkcja leków i pozostałych wyrobów farmaceutycznych
+DZIAŁ,22,PRODUKCJA WYROBÓW Z GUMY I TWORZYW SZTUCZNYCH
+GRUPA,22.1,Produkcja wyrobów z gumy
+KLASA,22.11,Produkcja opon i dętek z gumy; bieżnikowanie i regenerowanie opon z gumy
+PODKLASA,22.11.Z,Produkcja opon i dętek z gumy; bieżnikowanie i regenerowanie opon z gumy
+KLASA,22.19,Produkcja pozostałych wyrobów z gumy
+PODKLASA,22.19.Z,Produkcja pozostałych wyrobów z gumy
+GRUPA,22.2,Produkcja wyrobów z tworzyw sztucznych
+KLASA,22.21,"Produkcja płyt, arkuszy, rur i kształtowników z tworzyw sztucznych"
+PODKLASA,22.21.Z,"Produkcja płyt, arkuszy, rur i kształtowników z tworzyw sztucznych"
+KLASA,22.22,Produkcja opakowań z tworzyw sztucznych
+PODKLASA,22.22.Z,Produkcja opakowań z tworzyw sztucznych
+KLASA,22.23,Produkcja wyrobów dla budownictwa z tworzyw sztucznych
+PODKLASA,22.23.Z,Produkcja wyrobów dla budownictwa z tworzyw sztucznych
+KLASA,22.29,Produkcja pozostałych wyrobów z tworzyw sztucznych
+PODKLASA,22.29.Z,Produkcja pozostałych wyrobów z tworzyw sztucznych
+DZIAŁ,23,PRODUKCJA WYROBÓW Z POZOSTAŁYCH MINERALNYCH SUROWCÓW NIEMETALICZNYCH
+GRUPA,23.1,Produkcja szkła i wyrobów ze szkła
+KLASA,23.11,Produkcja szkła płaskiego
+PODKLASA,23.11.Z,Produkcja szkła płaskiego
+KLASA,23.12,Kształtowanie i obróbka szkła płaskiego
+PODKLASA,23.12.Z,Kształtowanie i obróbka szkła płaskiego
+KLASA,23.13,Produkcja szkła gospodarczego
+PODKLASA,23.13.Z,Produkcja szkła gospodarczego
+KLASA,23.14,Produkcja włókien szklanych
+PODKLASA,23.14.Z,Produkcja włókien szklanych
+KLASA,23.19,"Produkcja i obróbka pozostałego szkła, włączając szkło techniczne"
+PODKLASA,23.19.Z,"Produkcja i obróbka pozostałego szkła, włączając szkło techniczne"
+GRUPA,23.2,Produkcja wyrobów ogniotrwałych
+KLASA,23.20,Produkcja wyrobów ogniotrwałych
+PODKLASA,23.20.Z,Produkcja wyrobów ogniotrwałych
+GRUPA,23.3,Produkcja ceramicznych materiałów budowlanych
+KLASA,23.31,Produkcja ceramicznych kafli i płytek
+PODKLASA,23.31.Z,Produkcja ceramicznych kafli i płytek
+KLASA,23.32,"Produkcja cegieł, dachówek i materiałów budowlanych, z wypalanej gliny"
+PODKLASA,23.32.Z,"Produkcja cegieł, dachówek i materiałów budowlanych, z wypalanej gliny"
+GRUPA,23.4,Produkcja pozostałych wyrobów z porcelany i ceramiki
+KLASA,23.41,Produkcja ceramicznych wyrobów stołowych i ozdobnych
+PODKLASA,23.41.Z,Produkcja ceramicznych wyrobów stołowych i ozdobnych
+KLASA,23.42,Produkcja ceramicznych wyrobów sanitarnych
+PODKLASA,23.42.Z,Produkcja ceramicznych wyrobów sanitarnych
+KLASA,23.43,Produkcja ceramicznych izolatorów i osłon izolacyjnych
+PODKLASA,23.43.Z,Produkcja ceramicznych izolatorów i osłon izolacyjnych
+KLASA,23.44,Produkcja pozostałych technicznych wyrobów ceramicznych
+PODKLASA,23.44.Z,Produkcja pozostałych technicznych wyrobów ceramicznych
+KLASA,23.49,Produkcja pozostałych wyrobów ceramicznych
+PODKLASA,23.49.Z,Produkcja pozostałych wyrobów ceramicznych
+GRUPA,23.5,"Produkcja cementu, wapna i gipsu"
+KLASA,23.51,Produkcja cementu
+PODKLASA,23.51.Z,Produkcja cementu
+KLASA,23.52,Produkcja wapna i gipsu
+PODKLASA,23.52.Z,Produkcja wapna i gipsu
+GRUPA,23.6,"Produkcja wyrobów z betonu, cementu i gipsu"
+KLASA,23.61,Produkcja wyrobów budowlanych z betonu
+PODKLASA,23.61.Z,Produkcja wyrobów budowlanych z betonu
+KLASA,23.62,Produkcja wyrobów budowlanych z gipsu
+PODKLASA,23.62.Z,Produkcja wyrobów budowlanych z gipsu
+KLASA,23.63,Produkcja masy betonowej prefabrykowanej
+PODKLASA,23.63.Z,Produkcja masy betonowej prefabrykowanej
+KLASA,23.64,Produkcja zaprawy murarskiej
+PODKLASA,23.64.Z,Produkcja zaprawy murarskiej
+KLASA,23.65,Produkcja cementu wzmocnionego włóknem
+PODKLASA,23.65.Z,Produkcja cementu wzmocnionego włóknem
+KLASA,23.69,"Produkcja pozostałych wyrobów z betonu, gipsu i cementu"
+PODKLASA,23.69.Z,"Produkcja pozostałych wyrobów z betonu, gipsu i cementu"
+GRUPA,23.7,"Cięcie, formowanie i wykańczanie kamienia"
+KLASA,23.70,"Cięcie, formowanie i wykańczanie kamienia"
+PODKLASA,23.70.Z,"Cięcie, formowanie i wykańczanie kamienia"
+GRUPA,23.9,"Produkcja wyrobów ściernych i pozostałych wyrobów z mineralnych surowców niemetalicznych, gdzie indziej niesklasyfikowana"
+KLASA,23.91,Produkcja wyrobów ściernych
+PODKLASA,23.91.Z,Produkcja wyrobów ściernych
+KLASA,23.99,"Produkcja pozostałych wyrobów z mineralnych surowców niemetalicznych, gdzie indziej niesklasyfikowana"
+PODKLASA,23.99.Z,"Produkcja pozostałych wyrobów z mineralnych surowców niemetalicznych, gdzie indziej niesklasyfikowana"
+DZIAŁ,24,PRODUKCJA METALI
+GRUPA,24.1,"Produkcja surówki, żelazostopów, żeliwa i stali oraz wyrobów hutniczych"
+KLASA,24.10,"Produkcja surówki, żelazostopów, żeliwa i stali oraz wyrobów hutniczych"
+PODKLASA,24.10.Z,"Produkcja surówki, żelazostopów, żeliwa i stali oraz wyrobów hutniczych"
+GRUPA,24.2,"Produkcja rur, przewodów, kształtowników zamkniętych i łączników, ze stali"
+KLASA,24.20,"Produkcja rur, przewodów, kształtowników zamkniętych i łączników, ze stali"
+PODKLASA,24.20.Z,"Produkcja rur, przewodów, kształtowników zamkniętych i łączników, ze stali"
+GRUPA,24.3,Produkcja pozostałych wyrobów ze stali poddanej wstępnej obróbce
+KLASA,24.31,Produkcja prętów ciągnionych na zimno
+PODKLASA,24.31.Z,Produkcja prętów ciągnionych na zimno
+KLASA,24.32,Produkcja wyrobów płaskich walcowanych na zimno
+PODKLASA,24.32.Z,Produkcja wyrobów płaskich walcowanych na zimno
+KLASA,24.33,Produkcja wyrobów formowanych na zimno
+PODKLASA,24.33.Z,Produkcja wyrobów formowanych na zimno
+KLASA,24.34,Produkcja drutu
+PODKLASA,24.34.Z,Produkcja drutu
+GRUPA,24.4,Produkcja metali szlachetnych i innych metali nieżelaznych
+KLASA,24.41,Produkcja metali szlachetnych
+PODKLASA,24.41.Z,Produkcja metali szlachetnych
+KLASA,24.42,Produkcja aluminium
+PODKLASA,24.42.A,Produkcja aluminium hutniczego
+PODKLASA,24.42.B,Produkcja wyrobów z aluminium i stopów aluminium
+KLASA,24.43,"Produkcja ołowiu, cynku i cyny"
+PODKLASA,24.43.Z,"Produkcja ołowiu, cynku i cyny"
+KLASA,24.44,Produkcja miedzi
+PODKLASA,24.44.Z,Produkcja miedzi
+KLASA,24.45,Produkcja pozostałych metali nieżelaznych
+PODKLASA,24.45.Z,Produkcja pozostałych metali nieżelaznych
+KLASA,24.46,Wytwarzanie paliw jądrowych
+PODKLASA,24.46.Z,Wytwarzanie paliw jądrowych
+GRUPA,24.5,Odlewnictwo metali
+KLASA,24.51,Odlewnictwo żeliwa
+PODKLASA,24.51.Z,Odlewnictwo żeliwa
+KLASA,24.52,Odlewnictwo staliwa
+PODKLASA,24.52.Z,Odlewnictwo staliwa
+KLASA,24.53,Odlewnictwo metali lekkich
+PODKLASA,24.53.Z,Odlewnictwo metali lekkich
+KLASA,24.54,Odlewnictwo pozostałych metali nieżelaznych
+PODKLASA,24.54.A,Odlewnictwo miedzi i stopów miedzi
+PODKLASA,24.54.B,"Odlewnictwo pozostałych metali nieżelaznych, gdzie indziej niesklasyfikowane"
+DZIAŁ,25,"PRODUKCJA METALOWYCH WYROBÓW GOTOWYCH, Z WYŁĄCZENIEM MASZYN I URZĄDZEŃ"
+GRUPA,25.1,Produkcja metalowych elementów konstrukcyjnych
+KLASA,25.11,Produkcja konstrukcji metalowych i ich części
+PODKLASA,25.11.Z,Produkcja konstrukcji metalowych i ich części
+KLASA,25.12,Produkcja metalowych elementów stolarki budowlanej
+PODKLASA,25.12.Z,Produkcja metalowych elementów stolarki budowlanej
+GRUPA,25.2,"Produkcja zbiorników, cystern i pojemników metalowych"
+KLASA,25.21,Produkcja grzejników i kotłów centralnego ogrzewania
+PODKLASA,25.21.Z,Produkcja grzejników i kotłów centralnego ogrzewania
+KLASA,25.29,"Produkcja pozostałych zbiorników, cystern i pojemników metalowych"
+PODKLASA,25.29.Z,"Produkcja pozostałych zbiorników, cystern i pojemników metalowych"
+GRUPA,25.3,"Produkcja wytwornic pary, z wyłączeniem kotłów do centralnego ogrzewania gorącą wodą"
+KLASA,25.30,"Produkcja wytwornic pary, z wyłączeniem kotłów do centralnego ogrzewania gorącą wodą"
+PODKLASA,25.30.Z,"Produkcja wytwornic pary, z wyłączeniem kotłów do centralnego ogrzewania gorącą wodą"
+GRUPA,25.4,Produkcja broni i amunicji
+KLASA,25.40,Produkcja broni i amunicji
+PODKLASA,25.40.Z,Produkcja broni i amunicji
+GRUPA,25.5,"Kucie, prasowanie, wytłaczanie i walcowanie metali; metalurgia proszków"
+KLASA,25.50,"Kucie, prasowanie, wytłaczanie i walcowanie metali; metalurgia proszków"
+PODKLASA,25.50.Z,"Kucie, prasowanie, wytłaczanie i walcowanie metali; metalurgia proszków"
+GRUPA,25.6,Obróbka metali i nakładanie powłok na metale; obróbka mechaniczna elementów metalowych
+KLASA,25.61,Obróbka metali i nakładanie powłok na metale
+PODKLASA,25.61.Z,Obróbka metali i nakładanie powłok na metale
+KLASA,25.62,Obróbka mechaniczna elementów metalowych
+PODKLASA,25.62.Z,Obróbka mechaniczna elementów metalowych
+GRUPA,25.7,"Produkcja wyrobów nożowniczych, sztućców, narzędzi i wyrobów metalowych ogólnego przeznaczenia"
+KLASA,25.71,Produkcja wyrobów nożowniczych i sztućców
+PODKLASA,25.71.Z,Produkcja wyrobów nożowniczych i sztućców
+KLASA,25.72,Produkcja zamków i zawiasów
+PODKLASA,25.72.Z,Produkcja zamków i zawiasów
+KLASA,25.73,Produkcja narzędzi
+PODKLASA,25.73.Z,Produkcja narzędzi
+GRUPA,25.9,Produkcja pozostałych gotowych wyrobów metalowych
+KLASA,25.91,Produkcja pojemników metalowych
+PODKLASA,25.91.Z,Produkcja pojemników metalowych
+KLASA,25.92,Produkcja opakowań z metali 
+PODKLASA,25.92.Z,Produkcja opakowań z metali 
+KLASA,25.93,"Produkcja wyrobów z drutu, łańcuchów i sprężyn"
+PODKLASA,25.93.Z,"Produkcja wyrobów z drutu, łańcuchów i sprężyn"
+KLASA,25.94,Produkcja złączy i śrub
+PODKLASA,25.94.Z,Produkcja złączy i śrub
+KLASA,25.99,"Produkcja pozostałych gotowych wyrobów metalowych, gdzie indziej niesklasyfikowana"
+PODKLASA,25.99.Z,"Produkcja pozostałych gotowych wyrobów metalowych, gdzie indziej niesklasyfikowana"
+DZIAŁ,26,"PRODUKCJA KOMPUTERÓW, WYROBÓW ELEKTRONICZNYCH I OPTYCZNYCH"
+GRUPA,26.1,Produkcja elektronicznych elementów i obwodów drukowanych
+KLASA,26.11,Produkcja elementów elektronicznych
+PODKLASA,26.11.Z,Produkcja elementów elektronicznych
+KLASA,26.12,Produkcja elektronicznych obwodów drukowanych
+PODKLASA,26.12.Z,Produkcja elektronicznych obwodów drukowanych
+GRUPA,26.2,Produkcja komputerów i urządzeń peryferyjnych
+KLASA,26.20,Produkcja komputerów i urządzeń peryferyjnych
+PODKLASA,26.20.Z,Produkcja komputerów i urządzeń peryferyjnych
+GRUPA,26.3,Produkcja sprzętu (tele)komunikacyjnego
+KLASA,26.30,Produkcja sprzętu (tele)komunikacyjnego
+PODKLASA,26.30.Z,Produkcja sprzętu (tele)komunikacyjnego
+GRUPA,26.4,Produkcja elektronicznego sprzętu powszechnego użytku
+KLASA,26.40,Produkcja elektronicznego sprzętu powszechnego użytku
+PODKLASA,26.40.Z,Produkcja elektronicznego sprzętu powszechnego użytku
+GRUPA,26.5,"Produkcja instrumentów i przyrządów pomiarowych, kontrolnych i nawigacyjnych; produkcja zegarków i zegarów"
+KLASA,26.51,"Produkcja instrumentów i przyrządów pomiarowych, kontrolnych i nawigacyjnych"
+PODKLASA,26.51.Z,"Produkcja instrumentów i przyrządów pomiarowych, kontrolnych i nawigacyjnych"
+KLASA,26.52,Produkcja zegarków i zegarów
+PODKLASA,26.52.Z,Produkcja zegarków i zegarów
+GRUPA,26.6,"Produkcja urządzeń napromieniowujących, sprzętu elektromedycznego i elektroterapeutycznego"
+KLASA,26.60,"Produkcja urządzeń napromieniowujących, sprzętu elektromedycznego i elektroterapeutycznego"
+PODKLASA,26.60.Z,"Produkcja urządzeń napromieniowujących, sprzętu elektromedycznego i elektroterapeutycznego"
+GRUPA,26.7,Produkcja instrumentów optycznych i sprzętu fotograficznego
+KLASA,26.70,Produkcja instrumentów optycznych i sprzętu fotograficznego
+PODKLASA,26.70.Z,Produkcja instrumentów optycznych i sprzętu fotograficznego
+GRUPA,26.8,Produkcja magnetycznych i optycznych niezapisanych nośników informacji
+KLASA,26.80,Produkcja magnetycznych i optycznych niezapisanych nośników informacji
+PODKLASA,26.80.Z,Produkcja magnetycznych i optycznych niezapisanych nośników informacji
+DZIAŁ,27,PRODUKCJA URZĄDZEŃ ELEKTRYCZNYCH
+GRUPA,27.1,"Produkcja elektrycznych silników, prądnic, transformatorów, aparatury rozdzielczej i sterowniczej energii elektrycznej"
+KLASA,27.11,"Produkcja elektrycznych silników, prądnic i transformatorów"
+PODKLASA,27.11.Z,"Produkcja elektrycznych silników, prądnic i transformatorów"
+KLASA,27.12,Produkcja aparatury rozdzielczej i sterowniczej energii elektrycznej
+PODKLASA,27.12.Z,Produkcja aparatury rozdzielczej i sterowniczej energii elektrycznej
+GRUPA,27.2,Produkcja baterii i akumulatorów
+KLASA,27.20,Produkcja baterii i akumulatorów
+PODKLASA,27.20.Z,Produkcja baterii i akumulatorów
+GRUPA,27.3,Produkcja izolowanych przewodów i kabli oraz sprzętu instalacyjnego
+KLASA,27.31,Produkcja kabli światłowodowych
+PODKLASA,27.31.Z,Produkcja kabli światłowodowych
+KLASA,27.32,Produkcja pozostałych elektronicznych i elektrycznych przewodów i kabli
+PODKLASA,27.32.Z,Produkcja pozostałych elektronicznych i elektrycznych przewodów i kabli
+KLASA,27.33,Produkcja sprzętu instalacyjnego
+PODKLASA,27.33.Z,Produkcja sprzętu instalacyjnego
+GRUPA,27.4,Produkcja elektrycznego sprzętu oświetleniowego
+KLASA,27.40,Produkcja elektrycznego sprzętu oświetleniowego
+PODKLASA,27.40.Z,Produkcja elektrycznego sprzętu oświetleniowego
+GRUPA,27.5,Produkcja sprzętu gospodarstwa domowego
+KLASA,27.51,Produkcja elektrycznego sprzętu gospodarstwa domowego
+PODKLASA,27.51.Z,Produkcja elektrycznego sprzętu gospodarstwa domowego
+KLASA,27.52,Produkcja nieelektrycznego sprzętu gospodarstwa domowego
+PODKLASA,27.52.Z,Produkcja nieelektrycznego sprzętu gospodarstwa domowego
+GRUPA,27.9,Produkcja pozostałego sprzętu elektrycznego
+KLASA,27.90,Produkcja pozostałego sprzętu elektrycznego
+PODKLASA,27.90.Z,Produkcja pozostałego sprzętu elektrycznego
+DZIAŁ,28,"PRODUKCJA MASZYN I URZĄDZEŃ, GDZIE INDZIEJ NIESKLASYFIKOWANA"
+GRUPA,28.1,Produkcja maszyn ogólnego przeznaczenia
+KLASA,28.11,"Produkcja silników i turbin, z wyłączeniem silników lotniczych, samochodowych i motocyklowych"
+PODKLASA,28.11.Z,"Produkcja silników i turbin, z wyłączeniem silników lotniczych, samochodowych i motocyklowych"
+KLASA,28.12,Produkcja sprzętu i wyposażenia do napędu hydraulicznego i pneumatycznego
+PODKLASA,28.12.Z,Produkcja sprzętu i wyposażenia do napędu hydraulicznego i pneumatycznego
+KLASA,28.13,Produkcja pozostałych pomp i sprężarek
+PODKLASA,28.13.Z,Produkcja pozostałych pomp i sprężarek
+KLASA,28.14,Produkcja pozostałych kurków i zaworów
+PODKLASA,28.14.Z,Produkcja pozostałych kurków i zaworów
+KLASA,28.15,"Produkcja łożysk, kół zębatych, przekładni zębatych i elementów napędowych"
+PODKLASA,28.15.Z,"Produkcja łożysk, kół zębatych, przekładni zębatych i elementów napędowych"
+GRUPA,28.2,Produkcja pozostałych maszyn ogólnego przeznaczenia
+KLASA,28.21,"Produkcja pieców, palenisk i palników piecowych"
+PODKLASA,28.21.Z,"Produkcja pieców, palenisk i palników piecowych"
+KLASA,28.22,Produkcja urządzeń dźwigowych i chwytaków
+PODKLASA,28.22.Z,Produkcja urządzeń dźwigowych i chwytaków
+KLASA,28.23,"Produkcja maszyn i sprzętu biurowego, z wyłączeniem komputerów i urządzeń peryferyjnych"
+PODKLASA,28.23.Z,"Produkcja maszyn i sprzętu biurowego, z wyłączeniem komputerów i urządzeń peryferyjnych"
+KLASA,28.24,Produkcja narzędzi ręcznych mechanicznych
+PODKLASA,28.24.Z,Produkcja narzędzi ręcznych mechanicznych
+KLASA,28.25,Produkcja przemysłowych urządzeń chłodniczych i wentylacyjnych
+PODKLASA,28.25.Z,Produkcja przemysłowych urządzeń chłodniczych i wentylacyjnych
+KLASA,28.29,"Produkcja pozostałych maszyn ogólnego przeznaczenia, gdzie indziej niesklasyfikowana"
+PODKLASA,28.29.Z,"Produkcja pozostałych maszyn ogólnego przeznaczenia, gdzie indziej niesklasyfikowana"
+GRUPA,28.3,Produkcja maszyn dla rolnictwa i leśnictwa
+KLASA,28.30,Produkcja maszyn dla rolnictwa i leśnictwa
+PODKLASA,28.30.Z,Produkcja maszyn dla rolnictwa i leśnictwa
+GRUPA,28.4,Produkcja maszyn i narzędzi mechanicznych
+KLASA,28.41,Produkcja maszyn do obróbki metalu
+PODKLASA,28.41.Z,Produkcja maszyn do obróbki metalu
+KLASA,28.49,Produkcja pozostałych narzędzi mechanicznych
+PODKLASA,28.49.Z,Produkcja pozostałych narzędzi mechanicznych
+GRUPA,28.9,Produkcja pozostałych maszyn specjalnego przeznaczenia
+KLASA,28.91,Produkcja maszyn dla metalurgii
+PODKLASA,28.91.Z,Produkcja maszyn dla metalurgii
+KLASA,28.92,Produkcja maszyn dla górnictwa i do wydobywania oraz budownictwa
+PODKLASA,28.92.Z,Produkcja maszyn dla górnictwa i do wydobywania oraz budownictwa
+KLASA,28.93,"Produkcja maszyn stosowanych w przetwórstwie żywności, tytoniu i produkcji napojów"
+PODKLASA,28.93.Z,"Produkcja maszyn stosowanych w przetwórstwie żywności, tytoniu i produkcji napojów"
+KLASA,28.94,"Produkcja maszyn dla przemysłu tekstylnego, odzieżowego i skórzanego"
+PODKLASA,28.94.Z,"Produkcja maszyn dla przemysłu tekstylnego, odzieżowego i skórzanego"
+KLASA,28.95,Produkcja maszyn dla przemysłu papierniczego
+PODKLASA,28.95.Z,Produkcja maszyn dla przemysłu papierniczego
+KLASA,28.96,Produkcja maszyn do obróbki gumy lub tworzyw sztucznych oraz wytwarzania wyrobów z tych materiałów
+PODKLASA,28.96.Z,Produkcja maszyn do obróbki gumy lub tworzyw sztucznych oraz wytwarzania wyrobów z tych materiałów
+KLASA,28.99,"Produkcja pozostałych maszyn specjalnego przeznaczenia, gdzie indziej niesklasyfikowana"
+PODKLASA,28.99.Z,"Produkcja pozostałych maszyn specjalnego przeznaczenia, gdzie indziej niesklasyfikowana"
+DZIAŁ,29,"PRODUKCJA POJAZDÓW SAMOCHODOWYCH, PRZYCZEP I NACZEP, Z WYŁĄCZENIEM MOTOCYKLI"
+GRUPA,29.1,"Produkcja pojazdów samochodowych, z wyłączeniem motocykli"
+KLASA,29.10,"Produkcja pojazdów samochodowych, z wyłączeniem motocykli"
+PODKLASA,29.10.A,Produkcja silników do pojazdów samochodowych (z wyłączeniem motocykli) oraz do ciągników rolniczych
+PODKLASA,29.10.B,Produkcja samochodów osobowych
+PODKLASA,29.10.C,Produkcja autobusów
+PODKLASA,29.10.D,Produkcja pojazdów samochodowych przeznaczonych do przewozu towarów
+PODKLASA,29.10.E,"Produkcja pozostałych pojazdów samochodowych, z wyłączeniem motocykli"
+GRUPA,29.2,Produkcja nadwozi do pojazdów silnikowych; produkcja przyczep i naczep
+KLASA,29.20,Produkcja nadwozi do pojazdów silnikowych; produkcja przyczep i naczep
+PODKLASA,29.20.Z,Produkcja nadwozi do pojazdów silnikowych; produkcja przyczep i naczep
+GRUPA,29.3,Produkcja części i akcesoriów do pojazdów silnikowych
+KLASA,29.31,Produkcja wyposażenia elektrycznego i elektronicznego do pojazdów silnikowych
+PODKLASA,29.31.Z,Produkcja wyposażenia elektrycznego i elektronicznego do pojazdów silnikowych
+KLASA,29.32,"Produkcja pozostałych części i akcesoriów do pojazdów silnikowych, z wyłączeniem motocykli"
+PODKLASA,29.32.Z,"Produkcja pozostałych części i akcesoriów do pojazdów silnikowych, z wyłączeniem motocykli"
+DZIAŁ,30,PRODUKCJA POZOSTAŁEGO SPRZĘTU TRANSPORTOWEGO
+GRUPA,30.1,Produkcja statków i łodzi
+KLASA,30.11,Produkcja statków i konstrukcji pływających
+PODKLASA,30.11.Z,Produkcja statków i konstrukcji pływających
+KLASA,30.12,Produkcja łodzi wycieczkowych i sportowych
+PODKLASA,30.12.Z,Produkcja łodzi wycieczkowych i sportowych
+GRUPA,30.2,Produkcja lokomotyw kolejowych oraz taboru szynowego
+KLASA,30.20,Produkcja lokomotyw kolejowych oraz taboru szynowego
+PODKLASA,30.20.Z,Produkcja lokomotyw kolejowych oraz taboru szynowego
+GRUPA,30.3,"Produkcja statków powietrznych, statków kosmicznych i podobnych maszyn"
+KLASA,30.30,"Produkcja statków powietrznych, statków kosmicznych i podobnych maszyn"
+PODKLASA,30.30.Z,"Produkcja statków powietrznych, statków kosmicznych i podobnych maszyn"
+GRUPA,30.4,Produkcja wojskowych pojazdów bojowych
+KLASA,30.40,Produkcja wojskowych pojazdów bojowych
+PODKLASA,30.40.Z,Produkcja wojskowych pojazdów bojowych
+GRUPA,30.9,"Produkcja sprzętu transportowego, gdzie indziej niesklasyfikowana"
+KLASA,30.91,Produkcja motocykli
+PODKLASA,30.91.Z,Produkcja motocykli
+KLASA,30.92,Produkcja rowerów i wózków inwalidzkich
+PODKLASA,30.92.Z,Produkcja rowerów i wózków inwalidzkich
+KLASA,30.99,"Produkcja pozostałego sprzętu transportowego, gdzie indziej niesklasyfikowana"
+PODKLASA,30.99.Z,"Produkcja pozostałego sprzętu transportowego, gdzie indziej niesklasyfikowana"
+DZIAŁ,31,PRODUKCJA MEBLI
+GRUPA,31.0,PRODUKCJA MEBLI
+KLASA,31.01,Produkcja mebli biurowych i sklepowych
+PODKLASA,31.01.Z,Produkcja mebli biurowych i sklepowych
+KLASA,31.02,Produkcja mebli kuchennych
+PODKLASA,31.02.Z,Produkcja mebli kuchennych
+KLASA,31.03,Produkcja materaców
+PODKLASA,31.03.Z,Produkcja materaców
+KLASA,31.09,Produkcja pozostałych mebli
+PODKLASA,31.09.Z,Produkcja pozostałych mebli
+DZIAŁ,32,POZOSTAŁA PRODUKCJA WYROBÓW
+GRUPA,32.1,"Produkcja wyrobów jubilerskich, biżuterii i podobnych wyrobów"
+KLASA,32.11,Produkcja monet
+PODKLASA,32.11.Z,Produkcja monet
+KLASA,32.12,Produkcja wyrobów jubilerskich i podobnych
+PODKLASA,32.12.Z,Produkcja wyrobów jubilerskich i podobnych
+KLASA,32.13,Produkcja sztucznej biżuterii i wyrobów podobnych
+PODKLASA,32.13.Z,Produkcja sztucznej biżuterii i wyrobów podobnych
+GRUPA,32.2,Produkcja instrumentów muzycznych
+KLASA,32.20,Produkcja instrumentów muzycznych
+PODKLASA,32.20.Z,Produkcja instrumentów muzycznych
+GRUPA,32.3,Produkcja sprzętu sportowego
+KLASA,32.30,Produkcja sprzętu sportowego
+PODKLASA,32.30.Z,Produkcja sprzętu sportowego
+GRUPA,32.4,Produkcja gier i zabawek
+KLASA,32.40,Produkcja gier i zabawek
+PODKLASA,32.40.Z,Produkcja gier i zabawek
+GRUPA,32.5,"Produkcja urządzeń, instrumentów oraz wyrobów medycznych, włączając dentystyczne"
+KLASA,32.50,"Produkcja urządzeń, instrumentów oraz wyrobów medycznych, włączając dentystyczne"
+PODKLASA,32.50.Z,"Produkcja urządzeń, instrumentów oraz wyrobów medycznych, włączając dentystyczne"
+GRUPA,32.9,"Produkcja wyrobów, gdzie indziej niesklasyfikowana"
+KLASA,32.91,"Produkcja mioteł, szczotek i pędzli"
+PODKLASA,32.91.Z,"Produkcja mioteł, szczotek i pędzli"
+KLASA,32.99,"Produkcja pozostałych wyrobów, gdzie indziej niesklasyfikowana"
+PODKLASA,32.99.Z,"Produkcja pozostałych wyrobów, gdzie indziej niesklasyfikowana"
+DZIAŁ,33,"NAPRAWA, KONSERWACJA I INSTALOWANIE MASZYN I URZĄDZEŃ"
+GRUPA,33.1,"Naprawa i konserwacja metalowych wyrobów gotowych, maszyn i urządzeń"
+KLASA,33.11,Naprawa i konserwacja metalowych wyrobów gotowych
+PODKLASA,33.11.Z,Naprawa i konserwacja metalowych wyrobów gotowych
+KLASA,33.12,Naprawa i konserwacja maszyn
+PODKLASA,33.12.Z,Naprawa i konserwacja maszyn
+KLASA,33.13,Naprawa i konserwacja urządzeń elektronicznych i optycznych
+PODKLASA,33.13.Z,Naprawa i konserwacja urządzeń elektronicznych i optycznych
+KLASA,33.14,Naprawa i konserwacja urządzeń elektrycznych
+PODKLASA,33.14.Z,Naprawa i konserwacja urządzeń elektrycznych
+KLASA,33.15,Naprawa i konserwacja statków i łodzi
+PODKLASA,33.15.Z,Naprawa i konserwacja statków i łodzi
+KLASA,33.16,Naprawa i konserwacja statków powietrznych i statków kosmicznych
+PODKLASA,33.16.Z,Naprawa i konserwacja statków powietrznych i statków kosmicznych
+KLASA,33.17,Naprawa i konserwacja pozostałego sprzętu transportowego
+PODKLASA,33.17.Z,Naprawa i konserwacja pozostałego sprzętu transportowego
+KLASA,33.19,Naprawa i konserwacja pozostałego sprzętu i wyposażenia
+PODKLASA,33.19.Z,Naprawa i konserwacja pozostałego sprzętu i wyposażenia
+GRUPA,33.2,"Instalowanie maszyn przemysłowych, sprzętu i wyposażenia"
+KLASA,33.20,"Instalowanie maszyn przemysłowych, sprzętu i wyposażenia"
+PODKLASA,33.20.Z,"Instalowanie maszyn przemysłowych, sprzętu i wyposażenia"
+SEKCJA,D,"WYTWARZANIE I ZAOPATRYWANIE W ENERGIĘ ELEKTRYCZNĄ, GAZ, PARĘ WODNĄ, GORĄCĄ WODĘ I POWIETRZE DO UKŁADÓW KLIMATYZACYJNYCH"
+DZIAŁ,35,"WYTWARZANIE I ZAOPATRYWANIE W ENERGIĘ ELEKTRYCZNĄ, GAZ, PARĘ WODNĄ, GORĄCĄ WODĘ I POWIETRZE DO UKŁADÓW KLIMATYZACYJNYCH"
+GRUPA,35.1,"Wytwarzanie, przesyłanie, dystrybucja i handel energią elektryczną"
+KLASA,35.11,Wytwarzanie energii elektrycznej
+PODKLASA,35.11.Z,Wytwarzanie energii elektrycznej
+KLASA,35.12,Przesyłanie energii elektrycznej
+PODKLASA,35.12.Z,Przesyłanie energii elektrycznej
+KLASA,35.13,Dystrybucja energii elektrycznej
+PODKLASA,35.13.Z,Dystrybucja energii elektrycznej
+KLASA,35.14,Handel energią elektryczną
+PODKLASA,35.14.Z,Handel energią elektryczną
+GRUPA,35.2,Wytwarzanie paliw gazowych; dystrybucja i handel paliwami gazowymi w systemie sieciowym
+KLASA,35.21,Wytwarzanie paliw gazowych
+PODKLASA,35.21.Z,Wytwarzanie paliw gazowych
+KLASA,35.22,Dystrybucja paliw gazowych w systemie sieciowym
+PODKLASA,35.22.Z,Dystrybucja paliw gazowych w systemie sieciowym
+KLASA,35.23,Handel paliwami gazowymi w systemie sieciowym
+PODKLASA,35.23.Z,Handel paliwami gazowymi w systemie sieciowym
+GRUPA,35.3,"Wytwarzanie i zaopatrywanie w parę wodną, gorącą wodę i powietrze do układów klimatyzacyjnych"
+KLASA,35.30,"Wytwarzanie i zaopatrywanie w parę wodną, gorącą wodę i powietrze do układów klimatyzacyjnych"
+PODKLASA,35.30.Z,"Wytwarzanie i zaopatrywanie w parę wodną, gorącą wodę i powietrze do układów klimatyzacyjnych"
+SEKCJA,E,DOSTAWA WODY; GOSPODAROWANIE ŚCIEKAMI I ODPADAMI ORAZ DZIAŁALNOŚĆ ZWIĄZANA Z REKULTYWACJĄ
+DZIAŁ,36,"POBÓR, UZDATNIANIE I DOSTARCZANIE WODY"
+GRUPA,36.0,"POBÓR, UZDATNIANIE I DOSTARCZANIE WODY"
+KLASA,36.00,"POBÓR, UZDATNIANIE I DOSTARCZANIE WODY"
+PODKLASA,36.00.Z,"POBÓR, UZDATNIANIE I DOSTARCZANIE WODY"
+DZIAŁ,37,ODPROWADZANIE I OCZYSZCZANIE ŚCIEKÓW
+GRUPA,37.0,ODPROWADZANIE I OCZYSZCZANIE ŚCIEKÓW
+KLASA,37.00,ODPROWADZANIE I OCZYSZCZANIE ŚCIEKÓW
+PODKLASA,37.00.Z,ODPROWADZANIE I OCZYSZCZANIE ŚCIEKÓW
+DZIAŁ,38,"DZIAŁALNOŚĆ ZWIĄZANA ZE ZBIERANIEM, PRZETWARZANIEM I UNIESZKODLIWIANIEM ODPADÓW; ODZYSK SUROWCÓW"
+GRUPA,38.1,Zbieranie odpadów
+KLASA,38.11,Zbieranie odpadów innych niż niebezpieczne
+PODKLASA,38.11.Z,Zbieranie odpadów innych niż niebezpieczne
+KLASA,38.12,Zbieranie odpadów niebezpiecznych
+PODKLASA,38.12.Z,Zbieranie odpadów niebezpiecznych
+GRUPA,38.2,Przetwarzanie i unieszkodliwianie odpadów
+KLASA,38.21,Obróbka i usuwanie odpadów innych niż niebezpieczne
+PODKLASA,38.21.Z,Obróbka i usuwanie odpadów innych niż niebezpieczne
+KLASA,38.22,Przetwarzanie i unieszkodliwianie odpadów niebezpiecznych
+PODKLASA,38.22.Z,Przetwarzanie i unieszkodliwianie odpadów niebezpiecznych
+GRUPA,38.3,Odzysk surowców
+KLASA,38.31,Demontaż wyrobów zużytych
+PODKLASA,38.31.Z,Demontaż wyrobów zużytych
+KLASA,38.32,Odzysk surowców z materiałów segregowanych
+PODKLASA,38.32.Z,Odzysk surowców z materiałów segregowanych
+DZIAŁ,39,DZIAŁALNOŚĆ ZWIĄZANA Z REKULTYWACJĄ I POZOSTAŁA DZIAŁALNOŚĆ USŁUGOWA ZWIĄZANA Z GOSPODARKĄ ODPADAMI
+GRUPA,39.0,DZIAŁALNOŚĆ ZWIĄZANA Z REKULTYWACJĄ I POZOSTAŁA DZIAŁALNOŚĆ USŁUGOWA ZWIĄZANA Z GOSPODARKĄ ODPADAMI
+KLASA,39.00,DZIAŁALNOŚĆ ZWIĄZANA Z REKULTYWACJĄ I POZOSTAŁA DZIAŁALNOŚĆ USŁUGOWA ZWIĄZANA Z GOSPODARKĄ ODPADAMI
+PODKLASA,39.00.Z,DZIAŁALNOŚĆ ZWIĄZANA Z REKULTYWACJĄ I POZOSTAŁA DZIAŁALNOŚĆ USŁUGOWA ZWIĄZANA Z GOSPODARKĄ ODPADAMI
+SEKCJA,F,BUDOWNICTWO
+DZIAŁ,41,ROBOTY BUDOWLANE ZWIĄZANE ZE WZNOSZENIEM BUDYNKÓW
+GRUPA,41.1,Realizacja projektów budowlanych związanych ze wznoszeniem budynków
+KLASA,41.10,Realizacja projektów budowlanych związanych ze wznoszeniem budynków
+PODKLASA,41.10.Z,Realizacja projektów budowlanych związanych ze wznoszeniem budynków
+GRUPA,41.2,Roboty budowlane związane ze wznoszeniem budynków mieszkalnych i niemieszkalnych
+KLASA,41.20,Roboty budowlane związane ze wznoszeniem budynków mieszkalnych i niemieszkalnych
+PODKLASA,41.20.Z,Roboty budowlane związane ze wznoszeniem budynków mieszkalnych i niemieszkalnych
+DZIAŁ,42,ROBOTY ZWIĄZANE Z BUDOWĄ OBIEKTÓW INŻYNIERII LĄDOWEJ I WODNEJ
+GRUPA,42.1,Roboty związane z budową dróg kołowych i szynowych
+KLASA,42.11,Roboty związane z budową dróg i autostrad
+PODKLASA,42.11.Z,Roboty związane z budową dróg i autostrad
+KLASA,42.12,Roboty związane z budową dróg szynowych i kolei podziemnej
+PODKLASA,42.12.Z,Roboty związane z budową dróg szynowych i kolei podziemnej
+KLASA,42.13,Roboty związane z budową mostów i tuneli
+PODKLASA,42.13.Z,Roboty związane z budową mostów i tuneli
+GRUPA,42.2,"Roboty związane z budową rurociągów, linii telekomunikacyjnych i elektroenergetycznych"
+KLASA,42.21,Roboty związane z budową rurociągów przesyłowych i sieci rozdzielczych
+PODKLASA,42.21.Z,Roboty związane z budową rurociągów przesyłowych i sieci rozdzielczych
+KLASA,42.22,Roboty związane z budową linii telekomunikacyjnych i elektroenergetycznych
+PODKLASA,42.22.Z,Roboty związane z budową linii telekomunikacyjnych i elektroenergetycznych
+GRUPA,42.9,Roboty związane z budową pozostałych obiektów inżynierii lądowej i wodnej
+KLASA,42.91,Roboty związane z budową obiektów inżynierii wodnej
+PODKLASA,42.91.Z,Roboty związane z budową obiektów inżynierii wodnej
+KLASA,42.99,"Roboty związane z budową pozostałych obiektów inżynierii lądowej i wodnej, gdzie indziej niesklasyfikowane"
+PODKLASA,42.99.Z,"Roboty związane z budową pozostałych obiektów inżynierii lądowej i wodnej, gdzie indziej niesklasyfikowane"
+DZIAŁ,43,ROBOTY BUDOWLANE SPECJALISTYCZNE
+GRUPA,43.1,Rozbiórka i przygotowanie terenu pod budowę
+KLASA,43.11,Rozbiórka i burzenie obiektów budowlanych
+PODKLASA,43.11.Z,Rozbiórka i burzenie obiektów budowlanych
+KLASA,43.12,Przygotowanie terenu pod budowę
+PODKLASA,43.12.Z,Przygotowanie terenu pod budowę
+KLASA,43.13,Wykonywanie wykopów i wierceń geologiczno-inżynierskich
+PODKLASA,43.13.Z,Wykonywanie wykopów i wierceń geologiczno-inżynierskich
+GRUPA,43.2,"Wykonywanie instalacji elektrycznych, wodno-kanalizacyjnych i pozostałych instalacji budowlanych"
+KLASA,43.21,Wykonywanie instalacji elektrycznych
+PODKLASA,43.21.Z,Wykonywanie instalacji elektrycznych
+KLASA,43.22,"Wykonywanie instalacji wodno-kanalizacyjnych, cieplnych, gazowych i klimatyzacyjnych"
+PODKLASA,43.22.Z,"Wykonywanie instalacji wodno-kanalizacyjnych, cieplnych, gazowych i klimatyzacyjnych"
+KLASA,43.29,Wykonywanie pozostałych instalacji budowlanych
+PODKLASA,43.29.Z,Wykonywanie pozostałych instalacji budowlanych
+GRUPA,43.3,Wykonywanie robót budowlanych wykończeniowych
+KLASA,43.31,Tynkowanie
+PODKLASA,43.31.Z,Tynkowanie
+KLASA,43.32,Zakładanie stolarki budowlanej
+PODKLASA,43.32.Z,Zakładanie stolarki budowlanej
+KLASA,43.33,Posadzkarstwo; tapetowanie i oblicowywanie ścian
+PODKLASA,43.33.Z,Posadzkarstwo; tapetowanie i oblicowywanie ścian
+KLASA,43.34,Malowanie i szklenie
+PODKLASA,43.34.Z,Malowanie i szklenie
+KLASA,43.39,Wykonywanie pozostałych robót budowlanych wykończeniowych
+PODKLASA,43.39.Z,Wykonywanie pozostałych robót budowlanych wykończeniowych
+GRUPA,43.9,Pozostałe specjalistyczne roboty budowlane
+KLASA,43.91,Wykonywanie konstrukcji i pokryć dachowych
+PODKLASA,43.91.Z,Wykonywanie konstrukcji i pokryć dachowych
+KLASA,43.99,"Pozostałe specjalistyczne roboty budowlane, gdzie indziej niesklasyfikowane"
+PODKLASA,43.99.Z,"Pozostałe specjalistyczne roboty budowlane, gdzie indziej niesklasyfikowane"
+SEKCJA,G,"HANDEL HURTOWY I DETALICZNY; NAPRAWA POJAZDÓW SAMOCHODOWYCH, WŁĄCZAJĄC MOTOCYKLE"
+DZIAŁ,45,HANDEL HURTOWY I DETALICZNY POJAZDAMI SAMOCHODOWYMI; NAPRAWA POJAZDÓW SAMOCHODOWYCH
+GRUPA,45.1,"Sprzedaż hurtowa i detaliczna pojazdów samochodowych, z wyłączeniem motocykli"
+KLASA,45.11,Sprzedaż hurtowa i detaliczna samochodów osobowych i furgonetek
+PODKLASA,45.11.Z,Sprzedaż hurtowa i detaliczna samochodów osobowych i furgonetek
+KLASA,45.19,"Sprzedaż hurtowa i detaliczna pozostałych pojazdów samochodowych, z wyłączeniem motocykli"
+PODKLASA,45.19.Z,"Sprzedaż hurtowa i detaliczna pozostałych pojazdów samochodowych, z wyłączeniem motocykli"
+GRUPA,45.2,"Konserwacja i naprawa pojazdów samochodowych, z wyłączeniem motocykli"
+KLASA,45.20,"Konserwacja i naprawa pojazdów samochodowych, z wyłączeniem motocykli"
+PODKLASA,45.20.Z,"Konserwacja i naprawa pojazdów samochodowych, z wyłączeniem motocykli"
+GRUPA,45.3,"Sprzedaż hurtowa i detaliczna części i akcesoriów do pojazdów samochodowych, z wyłączeniem motocykli"
+KLASA,45.31,"Sprzedaż hurtowa części i akcesoriów do pojazdów samochodowych, z wyłączeniem motocykli"
+PODKLASA,45.31.Z,"Sprzedaż hurtowa części i akcesoriów do pojazdów samochodowych, z wyłączeniem motocykli"
+KLASA,45.32,"Sprzedaż detaliczna części i akcesoriów do pojazdów samochodowych, z wyłączeniem motocykli"
+PODKLASA,45.32.Z,"Sprzedaż detaliczna części i akcesoriów do pojazdów samochodowych, z wyłączeniem motocykli"
+GRUPA,45.4,"Sprzedaż hurtowa i detaliczna motocykli, ich naprawa i konserwacja oraz sprzedaż hurtowa i detaliczna części i akcesoriów do nich"
+KLASA,45.40,"Sprzedaż hurtowa i detaliczna motocykli, ich naprawa i konserwacja oraz sprzedaż hurtowa i detaliczna części i akcesoriów do nich"
+PODKLASA,45.40.Z,"Sprzedaż hurtowa i detaliczna motocykli, ich naprawa i konserwacja oraz sprzedaż hurtowa i detaliczna części i akcesoriów do nich"
+DZIAŁ,46,"HANDEL HURTOWY, Z WYŁĄCZENIEM HANDLU POJAZDAMI SAMOCHODOWYMI"
+GRUPA,46.1,Sprzedaż hurtowa realizowana na zlecenie
+KLASA,46.11,"Działalność agentów zajmujących się sprzedażą płodów rolnych, żywych zwierząt, surowców dla przemysłu tekstylnego i półproduktów"
+PODKLASA,46.11.Z,"Działalność agentów zajmujących się sprzedażą płodów rolnych, żywych zwierząt, surowców dla przemysłu tekstylnego i półproduktów"
+KLASA,46.12,"Działalność agentów zajmujących się sprzedażą paliw, rud, metali i chemikaliów przemysłowych"
+PODKLASA,46.12.Z,"Działalność agentów zajmujących się sprzedażą paliw, rud, metali i chemikaliów przemysłowych"
+KLASA,46.13,Działalność agentów zajmujących się sprzedażą drewna i materiałów budowlanych
+PODKLASA,46.13.Z,Działalność agentów zajmujących się sprzedażą drewna i materiałów budowlanych
+KLASA,46.14,"Działalność agentów zajmujących się sprzedażą maszyn, urządzeń przemysłowych, statków i samolotów"
+PODKLASA,46.14.Z,"Działalność agentów zajmujących się sprzedażą maszyn, urządzeń przemysłowych, statków i samolotów"
+KLASA,46.15,"Działalność agentów zajmujących się sprzedażą mebli, artykułów gospodarstwa domowego i drobnych wyrobów metalowych"
+PODKLASA,46.15.Z,"Działalność agentów zajmujących się sprzedażą mebli, artykułów gospodarstwa domowego i drobnych wyrobów metalowych"
+KLASA,46.16,"Działalność agentów zajmujących się sprzedażą wyrobów tekstylnych, odzieży, wyrobów futrzarskich, obuwia i artykułów skórzanych"
+PODKLASA,46.16.Z,"Działalność agentów zajmujących się sprzedażą wyrobów tekstylnych, odzieży, wyrobów futrzarskich, obuwia i artykułów skórzanych"
+KLASA,46.17,"Działalność agentów zajmujących się sprzedażą żywności, napojów i wyrobów tytoniowych"
+PODKLASA,46.17.Z,"Działalność agentów zajmujących się sprzedażą żywności, napojów i wyrobów tytoniowych"
+KLASA,46.18,Działalność agentów specjalizujących się w sprzedaży pozostałych określonych towarów
+PODKLASA,46.18.Z,Działalność agentów specjalizujących się w sprzedaży pozostałych określonych towarów
+KLASA,46.19,Działalność agentów zajmujących się sprzedażą towarów różnego rodzaju
+PODKLASA,46.19.Z,Działalność agentów zajmujących się sprzedażą towarów różnego rodzaju
+GRUPA,46.2,Sprzedaż hurtowa płodów rolnych i żywych zwierząt
+KLASA,46.21,"Sprzedaż hurtowa zboża, nieprzetworzonego tytoniu, nasion i pasz dla zwierząt"
+PODKLASA,46.21.Z,"Sprzedaż hurtowa zboża, nieprzetworzonego tytoniu, nasion i pasz dla zwierząt"
+KLASA,46.22,Sprzedaż hurtowa kwiatów i roślin
+PODKLASA,46.22.Z,Sprzedaż hurtowa kwiatów i roślin
+KLASA,46.23,Sprzedaż hurtowa żywych zwierząt
+PODKLASA,46.23.Z,Sprzedaż hurtowa żywych zwierząt
+KLASA,46.24,Sprzedaż hurtowa skór
+PODKLASA,46.24.Z,Sprzedaż hurtowa skór
+GRUPA,46.3,"Sprzedaż hurtowa żywności, napojów i wyrobów tytoniowych"
+KLASA,46.31,Sprzedaż hurtowa owoców i warzyw
+PODKLASA,46.31.Z,Sprzedaż hurtowa owoców i warzyw
+KLASA,46.32,Sprzedaż hurtowa mięsa i wyrobów z mięsa
+PODKLASA,46.32.Z,Sprzedaż hurtowa mięsa i wyrobów z mięsa
+KLASA,46.33,"Sprzedaż hurtowa mleka, wyrobów mleczarskich, jaj, olejów i tłuszczów jadalnych"
+PODKLASA,46.33.Z,"Sprzedaż hurtowa mleka, wyrobów mleczarskich, jaj, olejów i tłuszczów jadalnych"
+KLASA,46.34,Sprzedaż hurtowa napojów alkoholowych i bezalkoholowych
+PODKLASA,46.34.A,Sprzedaż hurtowa napojów alkoholowych
+PODKLASA,46.34.B,Sprzedaż hurtowa napojów bezalkoholowych
+KLASA,46.35,Sprzedaż hurtowa wyrobów tytoniowych
+PODKLASA,46.35.Z,Sprzedaż hurtowa wyrobów tytoniowych
+KLASA,46.36,"Sprzedaż hurtowa cukru, czekolady, wyrobów cukierniczych i piekarskich"
+PODKLASA,46.36.Z,"Sprzedaż hurtowa cukru, czekolady, wyrobów cukierniczych i piekarskich"
+KLASA,46.37,"Sprzedaż hurtowa herbaty, kawy, kakao i przypraw"
+PODKLASA,46.37.Z,"Sprzedaż hurtowa herbaty, kawy, kakao i przypraw"
+KLASA,46.38,"Sprzedaż hurtowa pozostałej żywności, włączając ryby, skorupiaki i mięczaki"
+PODKLASA,46.38.Z,"Sprzedaż hurtowa pozostałej żywności, włączając ryby, skorupiaki i mięczaki"
+KLASA,46.39,"Sprzedaż hurtowa niewyspecjalizowana żywności, napojów i wyrobów tytoniowych"
+PODKLASA,46.39.Z,"Sprzedaż hurtowa niewyspecjalizowana żywności, napojów i wyrobów tytoniowych"
+GRUPA,46.4,Sprzedaż hurtowa artykułów użytku domowego
+KLASA,46.41,Sprzedaż hurtowa wyrobów tekstylnych
+PODKLASA,46.41.Z,Sprzedaż hurtowa wyrobów tekstylnych
+KLASA,46.42,Sprzedaż hurtowa odzieży i obuwia
+PODKLASA,46.42.Z,Sprzedaż hurtowa odzieży i obuwia
+KLASA,46.43,Sprzedaż hurtowa elektrycznych artykułów użytku domowego
+PODKLASA,46.43.Z,Sprzedaż hurtowa elektrycznych artykułów użytku domowego
+KLASA,46.44,"Sprzedaż hurtowa wyrobów porcelanowych, ceramicznych i szklanych oraz środków czyszczących"
+PODKLASA,46.44.Z,"Sprzedaż hurtowa wyrobów porcelanowych, ceramicznych i szklanych oraz środków czyszczących"
+KLASA,46.45,Sprzedaż hurtowa perfum i kosmetyków
+PODKLASA,46.45.Z,Sprzedaż hurtowa perfum i kosmetyków
+KLASA,46.46,Sprzedaż hurtowa wyrobów farmaceutycznych i medycznych
+PODKLASA,46.46.Z,Sprzedaż hurtowa wyrobów farmaceutycznych i medycznych
+KLASA,46.47,"Sprzedaż hurtowa mebli, dywanów i sprzętu oświetleniowego"
+PODKLASA,46.47.Z,"Sprzedaż hurtowa mebli, dywanów i sprzętu oświetleniowego"
+KLASA,46.48,"Sprzedaż hurtowa zegarków, zegarów i biżuterii"
+PODKLASA,46.48.Z,"Sprzedaż hurtowa zegarków, zegarów i biżuterii"
+KLASA,46.49,Sprzedaż hurtowa pozostałych artykułów użytku domowego
+PODKLASA,46.49.Z,Sprzedaż hurtowa pozostałych artykułów użytku domowego
+GRUPA,46.5,Sprzedaż hurtowa narzędzi technologii informacyjnej i komunikacyjnej
+KLASA,46.51,"Sprzedaż hurtowa komputerów, urządzeń peryferyjnych i oprogramowania"
+PODKLASA,46.51.Z,"Sprzedaż hurtowa komputerów, urządzeń peryferyjnych i oprogramowania"
+KLASA,46.52,Sprzedaż hurtowa sprzętu elektronicznego i telekomunikacyjnego oraz części do niego
+PODKLASA,46.52.Z,Sprzedaż hurtowa sprzętu elektronicznego i telekomunikacyjnego oraz części do niego
+GRUPA,46.6,"Sprzedaż hurtowa maszyn, urządzeń i dodatkowego wyposażenia"
+KLASA,46.61,Sprzedaż hurtowa maszyn i urządzeń rolniczych oraz dodatkowego wyposażenia
+PODKLASA,46.61.Z,Sprzedaż hurtowa maszyn i urządzeń rolniczych oraz dodatkowego wyposażenia
+KLASA,46.62,Sprzedaż hurtowa obrabiarek
+PODKLASA,46.62.Z,Sprzedaż hurtowa obrabiarek
+KLASA,46.63,"Sprzedaż hurtowa maszyn wykorzystywanych w górnictwie, budownictwie oraz inżynierii lądowej i wodnej"
+PODKLASA,46.63.Z,"Sprzedaż hurtowa maszyn wykorzystywanych w górnictwie, budownictwie oraz inżynierii lądowej i wodnej"
+KLASA,46.64,Sprzedaż hurtowa maszyn dla przemysłu tekstylnego oraz maszyn do szycia i maszyn dziewiarskich
+PODKLASA,46.64.Z,Sprzedaż hurtowa maszyn dla przemysłu tekstylnego oraz maszyn do szycia i maszyn dziewiarskich
+KLASA,46.65,Sprzedaż hurtowa mebli biurowych
+PODKLASA,46.65.Z,Sprzedaż hurtowa mebli biurowych
+KLASA,46.66,Sprzedaż hurtowa pozostałych maszyn i urządzeń biurowych
+PODKLASA,46.66.Z,Sprzedaż hurtowa pozostałych maszyn i urządzeń biurowych
+KLASA,46.69,Sprzedaż hurtowa pozostałych maszyn i urządzeń
+PODKLASA,46.69.Z,Sprzedaż hurtowa pozostałych maszyn i urządzeń
+GRUPA,46.7,Pozostała wyspecjalizowana sprzedaż hurtowa
+KLASA,46.71,Sprzedaż hurtowa paliw i produktów pochodnych
+PODKLASA,46.71.Z,Sprzedaż hurtowa paliw i produktów pochodnych
+KLASA,46.72,Sprzedaż hurtowa metali i rud metali
+PODKLASA,46.72.Z,Sprzedaż hurtowa metali i rud metali
+KLASA,46.73,"Sprzedaż hurtowa drewna, materiałów budowlanych i wyposażenia sanitarnego"
+PODKLASA,46.73.Z,"Sprzedaż hurtowa drewna, materiałów budowlanych i wyposażenia sanitarnego"
+KLASA,46.74,Sprzedaż hurtowa wyrobów metalowych oraz sprzętu i dodatkowego wyposażenia hydraulicznego i grzejnego
+PODKLASA,46.74.Z,Sprzedaż hurtowa wyrobów metalowych oraz sprzętu i dodatkowego wyposażenia hydraulicznego i grzejnego
+KLASA,46.75,Sprzedaż hurtowa wyrobów chemicznych
+PODKLASA,46.75.Z,Sprzedaż hurtowa wyrobów chemicznych
+KLASA,46.76,Sprzedaż hurtowa pozostałych półproduktów
+PODKLASA,46.76.Z,Sprzedaż hurtowa pozostałych półproduktów
+KLASA,46.77,Sprzedaż hurtowa odpadów i złomu
+PODKLASA,46.77.Z,Sprzedaż hurtowa odpadów i złomu
+GRUPA,46.9,Sprzedaż hurtowa niewyspecjalizowana
+KLASA,46.90,Sprzedaż hurtowa niewyspecjalizowana
+PODKLASA,46.90.Z,Sprzedaż hurtowa niewyspecjalizowana
+DZIAŁ,47,"HANDEL DETALICZNY, Z WYŁĄCZENIEM HANDLU DETALICZNEGO POJAZDAMI SAMOCHODOWYMI"
+GRUPA,47.1,Sprzedaż detaliczna prowadzona w niewyspecjalizowanych sklepach
+KLASA,47.11,"Sprzedaż detaliczna prowadzona w niewyspecjalizowanych sklepach z przewagą żywności, napojów i wyrobów tytoniowych"
+PODKLASA,47.11.Z,"Sprzedaż detaliczna prowadzona w niewyspecjalizowanych sklepach z przewagą żywności, napojów i wyrobów tytoniowych"
+KLASA,47.19,Pozostała sprzedaż detaliczna prowadzona w niewyspecjalizowanych sklepach
+PODKLASA,47.19.Z,Pozostała sprzedaż detaliczna prowadzona w niewyspecjalizowanych sklepach
+GRUPA,47.2,"Sprzedaż detaliczna żywności, napojów i wyrobów tytoniowych prowadzona w wyspecjalizowanych sklepach"
+KLASA,47.21,Sprzedaż detaliczna owoców i warzyw prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.21.Z,Sprzedaż detaliczna owoców i warzyw prowadzona w wyspecjalizowanych sklepach
+KLASA,47.22,Sprzedaż detaliczna mięsa i wyrobów z mięsa prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.22.Z,Sprzedaż detaliczna mięsa i wyrobów z mięsa prowadzona w wyspecjalizowanych sklepach
+KLASA,47.23,"Sprzedaż detaliczna ryb, skorupiaków i mięczaków prowadzona w wyspecjalizowanych sklepach"
+PODKLASA,47.23.Z,"Sprzedaż detaliczna ryb, skorupiaków i mięczaków prowadzona w wyspecjalizowanych sklepach"
+KLASA,47.24,"Sprzedaż detaliczna pieczywa, ciast, wyrobów ciastkarskich i cukierniczych prowadzona w wyspecjalizowanych sklepach"
+PODKLASA,47.24.Z,"Sprzedaż detaliczna pieczywa, ciast, wyrobów ciastkarskich i cukierniczych prowadzona w wyspecjalizowanych sklepach"
+KLASA,47.25,Sprzedaż detaliczna napojów alkoholowych i bezalkoholowych prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.25.Z,Sprzedaż detaliczna napojów alkoholowych i bezalkoholowych prowadzona w wyspecjalizowanych sklepach
+KLASA,47.26,Sprzedaż detaliczna wyrobów tytoniowych prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.26.Z,Sprzedaż detaliczna wyrobów tytoniowych prowadzona w wyspecjalizowanych sklepach
+KLASA,47.29,Sprzedaż detaliczna pozostałej żywności prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.29.Z,Sprzedaż detaliczna pozostałej żywności prowadzona w wyspecjalizowanych sklepach
+GRUPA,47.3,Sprzedaż detaliczna paliw do pojazdów silnikowych na stacjach paliw
+KLASA,47.30,Sprzedaż detaliczna paliw do pojazdów silnikowych na stacjach paliw
+PODKLASA,47.30.Z,Sprzedaż detaliczna paliw do pojazdów silnikowych na stacjach paliw
+GRUPA,47.4,Sprzedaż detaliczna narzędzi technologii informacyjnej i komunikacyjnej prowadzona w wyspecjalizowanych sklepach
+KLASA,47.41,"Sprzedaż detaliczna komputerów, urządzeń peryferyjnych i oprogramowania prowadzona w wyspecjalizowanych sklepach"
+PODKLASA,47.41.Z,"Sprzedaż detaliczna komputerów, urządzeń peryferyjnych i oprogramowania prowadzona w wyspecjalizowanych sklepach"
+KLASA,47.42,Sprzedaż detaliczna sprzętu telekomunikacyjnego prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.42.Z,Sprzedaż detaliczna sprzętu telekomunikacyjnego prowadzona w wyspecjalizowanych sklepach
+KLASA,47.43,Sprzedaż detaliczna sprzętu audiowizualnego prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.43.Z,Sprzedaż detaliczna sprzętu audiowizualnego prowadzona w wyspecjalizowanych sklepach
+GRUPA,47.5,Sprzedaż detaliczna artykułów użytku domowego prowadzona w wyspecjalizowanych sklepach
+KLASA,47.51,Sprzedaż detaliczna wyrobów tekstylnych prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.51.Z,Sprzedaż detaliczna wyrobów tekstylnych prowadzona w wyspecjalizowanych sklepach
+KLASA,47.52,"Sprzedaż detaliczna drobnych wyrobów metalowych, farb i szkła prowadzona w wyspecjalizowanych sklepach"
+PODKLASA,47.52.Z,"Sprzedaż detaliczna drobnych wyrobów metalowych, farb i szkła prowadzona w wyspecjalizowanych sklepach"
+KLASA,47.53,"Sprzedaż detaliczna dywanów, chodników i innych pokryć podłogowych oraz pokryć ściennych prowadzona w wyspecjalizowanych sklepach"
+PODKLASA,47.53.Z,"Sprzedaż detaliczna dywanów, chodników i innych pokryć podłogowych oraz pokryć ściennych prowadzona w wyspecjalizowanych sklepach"
+KLASA,47.54,Sprzedaż detaliczna elektrycznego sprzętu gospodarstwa domowego prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.54.Z,Sprzedaż detaliczna elektrycznego sprzętu gospodarstwa domowego prowadzona w wyspecjalizowanych sklepach
+KLASA,47.59,"Sprzedaż detaliczna mebli, sprzętu oświetleniowego i pozostałych artykułów użytku domowego prowadzona w wyspecjalizowanych sklepach"
+PODKLASA,47.59.Z,"Sprzedaż detaliczna mebli, sprzętu oświetleniowego i pozostałych artykułów użytku domowego prowadzona w wyspecjalizowanych sklepach"
+GRUPA,47.6,Sprzedaż detaliczna wyrobów związanych z kulturą i rekreacją prowadzona w wyspecjalizowanych sklepach
+KLASA,47.61,Sprzedaż detaliczna książek prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.61.Z,Sprzedaż detaliczna książek prowadzona w wyspecjalizowanych sklepach
+KLASA,47.62,Sprzedaż detaliczna gazet i artykułów piśmiennych prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.62.Z,Sprzedaż detaliczna gazet i artykułów piśmiennych prowadzona w wyspecjalizowanych sklepach
+KLASA,47.63,Sprzedaż detaliczna nagrań dźwiękowych i audiowizualnych prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.63.Z,Sprzedaż detaliczna nagrań dźwiękowych i audiowizualnych prowadzona w wyspecjalizowanych sklepach
+KLASA,47.64,Sprzedaż detaliczna sprzętu sportowego prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.64.Z,Sprzedaż detaliczna sprzętu sportowego prowadzona w wyspecjalizowanych sklepach
+KLASA,47.65,Sprzedaż detaliczna gier i zabawek prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.65.Z,Sprzedaż detaliczna gier i zabawek prowadzona w wyspecjalizowanych sklepach
+GRUPA,47.7,Sprzedaż detaliczna pozostałych wyrobów prowadzona w wyspecjalizowanych sklepach
+KLASA,47.71,Sprzedaż detaliczna odzieży prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.71.Z,Sprzedaż detaliczna odzieży prowadzona w wyspecjalizowanych sklepach
+KLASA,47.72,Sprzedaż detaliczna obuwia i wyrobów skórzanych prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.72.Z,Sprzedaż detaliczna obuwia i wyrobów skórzanych prowadzona w wyspecjalizowanych sklepach
+KLASA,47.73,Sprzedaż detaliczna wyrobów farmaceutycznych prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.73.Z,Sprzedaż detaliczna wyrobów farmaceutycznych prowadzona w wyspecjalizowanych sklepach
+KLASA,47.74,"Sprzedaż detaliczna wyrobów medycznych, włączając ortopedyczne, prowadzona w wyspecjalizowanych sklepach"
+PODKLASA,47.74.Z,"Sprzedaż detaliczna wyrobów medycznych, włączając ortopedyczne, prowadzona w wyspecjalizowanych sklepach"
+KLASA,47.75,Sprzedaż detaliczna kosmetyków i artykułów toaletowych prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.75.Z,Sprzedaż detaliczna kosmetyków i artykułów toaletowych prowadzona w wyspecjalizowanych sklepach
+KLASA,47.76,"Sprzedaż detaliczna kwiatów, roślin, nasion, nawozów, żywych zwierząt domowych, karmy dla zwierząt domowych prowadzona w wyspecjalizowanych sklepach"
+PODKLASA,47.76.Z,"Sprzedaż detaliczna kwiatów, roślin, nasion, nawozów, żywych zwierząt domowych, karmy dla zwierząt domowych prowadzona w wyspecjalizowanych sklepach"
+KLASA,47.77,"Sprzedaż detaliczna zegarków, zegarów i biżuterii prowadzona w wyspecjalizowanych sklepach"
+PODKLASA,47.77.Z,"Sprzedaż detaliczna zegarków, zegarów i biżuterii prowadzona w wyspecjalizowanych sklepach"
+KLASA,47.78,Sprzedaż detaliczna pozostałych nowych wyrobów prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.78.Z,Sprzedaż detaliczna pozostałych nowych wyrobów prowadzona w wyspecjalizowanych sklepach
+KLASA,47.79,Sprzedaż detaliczna artykułów używanych prowadzona w wyspecjalizowanych sklepach
+PODKLASA,47.79.Z,Sprzedaż detaliczna artykułów używanych prowadzona w wyspecjalizowanych sklepach
+GRUPA,47.8,Sprzedaż detaliczna prowadzona na straganach i targowiskach
+KLASA,47.81,"Sprzedaż detaliczna żywności, napojów i wyrobów tytoniowych prowadzona na straganach i targowiskach"
+PODKLASA,47.81.Z,"Sprzedaż detaliczna żywności, napojów i wyrobów tytoniowych prowadzona na straganach i targowiskach"
+KLASA,47.82,"Sprzedaż detaliczna wyrobów tekstylnych, odzieży i obuwia prowadzona na straganach i targowiskach"
+PODKLASA,47.82.Z,"Sprzedaż detaliczna wyrobów tekstylnych, odzieży i obuwia prowadzona na straganach i targowiskach"
+KLASA,47.89,Sprzedaż detaliczna pozostałych wyrobów prowadzona na straganach i targowiskach
+PODKLASA,47.89.Z,Sprzedaż detaliczna pozostałych wyrobów prowadzona na straganach i targowiskach
+GRUPA,47.9,"Sprzedaż detaliczna prowadzona poza siecią sklepową, straganami i targowiskami"
+KLASA,47.91,Sprzedaż detaliczna prowadzona przez domy sprzedaży wysyłkowej lub Internet
+PODKLASA,47.91.Z,Sprzedaż detaliczna prowadzona przez domy sprzedaży wysyłkowej lub Internet
+KLASA,47.99,"Pozostała sprzedaż detaliczna prowadzona poza siecią sklepową, straganami i targowiskami"
+PODKLASA,47.99.Z,"Pozostała sprzedaż detaliczna prowadzona poza siecią sklepową, straganami i targowiskami"
+SEKCJA,H,TRANSPORT I GOSPODARKA MAGAZYNOWA
+DZIAŁ,49,TRANSPORT LĄDOWY ORAZ TRANSPORT RUROCIĄGOWY
+GRUPA,49.1,Transport kolejowy pasażerski międzymiastowy
+KLASA,49.10,Transport kolejowy pasażerski międzymiastowy
+PODKLASA,49.10.Z,Transport kolejowy pasażerski międzymiastowy
+GRUPA,49.2,Transport kolejowy towarów
+KLASA,49.20,Transport kolejowy towarów
+PODKLASA,49.20.Z,Transport kolejowy towarów
+GRUPA,49.3,Pozostały transport lądowy pasażerski
+KLASA,49.31,"Transport lądowy pasażerski, miejski i podmiejski"
+PODKLASA,49.31.Z,"Transport lądowy pasażerski, miejski i podmiejski"
+KLASA,49.32,Działalność taksówek osobowych
+PODKLASA,49.32.Z,Działalność taksówek osobowych
+KLASA,49.39,"Pozostały transport lądowy pasażerski, gdzie indziej niesklasyfikowany"
+PODKLASA,49.39.Z,"Pozostały transport lądowy pasażerski, gdzie indziej niesklasyfikowany"
+GRUPA,49.4,Transport drogowy towarów oraz działalność usługowa związana z przeprowadzkami
+KLASA,49.41,Transport drogowy towarów
+PODKLASA,49.41.Z,Transport drogowy towarów
+KLASA,49.42,Działalność usługowa związana z przeprowadzkami
+PODKLASA,49.42.Z,Działalność usługowa związana z przeprowadzkami
+GRUPA,49.5,Transport rurociągowy
+KLASA,49.50,Transport rurociągowy
+PODKLASA,49.50.A,Transport rurociągami paliw gazowych
+PODKLASA,49.50.B,Transport rurociągowy pozostałych towarów
+DZIAŁ,50,TRANSPORT WODNY
+GRUPA,50.1,Transport morski i przybrzeżny pasażerski
+KLASA,50.10,Transport morski i przybrzeżny pasażerski
+PODKLASA,50.10.Z,Transport morski i przybrzeżny pasażerski
+GRUPA,50.2,Transport morski i przybrzeżny towarów
+KLASA,50.20,Transport morski i przybrzeżny towarów
+PODKLASA,50.20.Z,Transport morski i przybrzeżny towarów
+GRUPA,50.3,Transport wodny śródlądowy pasażerski 
+KLASA,50.30,Transport wodny śródlądowy pasażerski 
+PODKLASA,50.30.Z,Transport wodny śródlądowy pasażerski 
+GRUPA,50.4,Transport wodny śródlądowy towarów
+KLASA,50.40,Transport wodny śródlądowy towarów
+PODKLASA,50.40.Z,Transport wodny śródlądowy towarów
+DZIAŁ,51,TRANSPORT LOTNICZY
+GRUPA,51.1,Transport lotniczy pasażerski
+KLASA,51.10,Transport lotniczy pasażerski
+PODKLASA,51.10.Z,Transport lotniczy pasażerski
+GRUPA,51.2,Transport lotniczy towarów i transport kosmiczny
+KLASA,51.21,Transport lotniczy towarów
+PODKLASA,51.21.Z,Transport lotniczy towarów
+KLASA,51.22,Transport kosmiczny
+PODKLASA,51.22.Z,Transport kosmiczny
+DZIAŁ,52,MAGAZYNOWANIE I DZIAŁALNOŚĆ USŁUGOWA WSPOMAGAJĄCA TRANSPORT
+GRUPA,52.1,Magazynowanie i przechowywanie towarów
+KLASA,52.10,Magazynowanie i przechowywanie towarów
+PODKLASA,52.10.A,Magazynowanie i przechowywanie paliw gazowych
+PODKLASA,52.10.B,Magazynowanie i przechowywanie pozostałych towarów
+GRUPA,52.2,Działalność usługowa wspomagająca transport
+KLASA,52.21,Działalność usługowa wspomagająca transport lądowy
+PODKLASA,52.21.Z,Działalność usługowa wspomagająca transport lądowy
+KLASA,52.22,Działalność usługowa wspomagająca transport wodny
+PODKLASA,52.22.A,Działalność usługowa wspomagająca transport morski
+PODKLASA,52.22.B,Działalność usługowa wspomagająca transport śródlądowy
+KLASA,52.23,Działalność usługowa wspomagająca transport lotniczy
+PODKLASA,52.23.Z,Działalność usługowa wspomagająca transport lotniczy
+KLASA,52.24,Przeładunek towarów
+PODKLASA,52.24.A,Przeładunek towarów w portach morskich
+PODKLASA,52.24.B,Przeładunek towarów w portach śródlądowych
+PODKLASA,52.24.C,Przeładunek towarów w pozostałych punktach przeładunkowych
+KLASA,52.29,Pozostała działalność usługowa wspomagająca transport
+PODKLASA,52.29.A,Działalność morskich agencji transportowych
+PODKLASA,52.29.B,Działalność śródlądowych agencji transportowych
+PODKLASA,52.29.C,Działalność pozostałych agencji transportowych
+DZIAŁ,53,DZIAŁALNOŚĆ POCZTOWA I KURIERSKA
+GRUPA,53.1,Działalność pocztowa objęta obowiązkiem świadczenia usług powszechnych (operatora publicznego)
+KLASA,53.10,Działalność pocztowa objęta obowiązkiem świadczenia usług powszechnych (operatora publicznego)
+PODKLASA,53.10.Z,Działalność pocztowa objęta obowiązkiem świadczenia usług powszechnych (operatora publicznego)
+GRUPA,53.2,Pozostała działalność pocztowa i kurierska
+KLASA,53.20,Pozostała działalność pocztowa i kurierska
+PODKLASA,53.20.Z,Pozostała działalność pocztowa i kurierska
+SEKCJA,I,DZIAŁALNOŚĆ ZWIĄZANA Z ZAKWATEROWANIEM I USŁUGAMI GASTRONOMICZNYMI
+DZIAŁ,55,ZAKWATEROWANIE
+GRUPA,55.1,Hotele i podobne obiekty zakwaterowania
+KLASA,55.10,Hotele i podobne obiekty zakwaterowania
+PODKLASA,55.10.Z,Hotele i podobne obiekty zakwaterowania
+GRUPA,55.2,Obiekty noclegowe turystyczne i miejsca krótkotrwałego zakwaterowania
+KLASA,55.20,Obiekty noclegowe turystyczne i miejsca krótkotrwałego zakwaterowania
+PODKLASA,55.20.Z,Obiekty noclegowe turystyczne i miejsca krótkotrwałego zakwaterowania
+GRUPA,55.3,Pola kempingowe (włączając pola dla pojazdów kempingowych) i pola namiotowe
+KLASA,55.30,Pola kempingowe (włączając pola dla pojazdów kempingowych) i pola namiotowe
+PODKLASA,55.30.Z,Pola kempingowe (włączając pola dla pojazdów kempingowych) i pola namiotowe
+GRUPA,55.9,Pozostałe zakwaterowanie
+KLASA,55.90,Pozostałe zakwaterowanie
+PODKLASA,55.90.Z,Pozostałe zakwaterowanie
+DZIAŁ,56,DZIAŁALNOŚĆ USŁUGOWA ZWIĄZANA Z WYŻYWIENIEM
+GRUPA,56.1,Restauracje i pozostałe placówki gastronomiczne
+KLASA,56.10,Restauracje i pozostałe placówki gastronomiczne
+PODKLASA,56.10.A,Restauracje i inne stałe placówki gastronomiczne
+PODKLASA,56.10.B,Ruchome placówki gastronomiczne
+GRUPA,56.2,Przygotowywanie żywności dla odbiorców zewnętrznych (katering) i pozostała gastronomiczna działalność usługowa
+KLASA,56.21,Przygotowywanie i dostarczanie żywności dla odbiorców zewnętrznych (katering)
+PODKLASA,56.21.Z,Przygotowywanie i dostarczanie żywności dla odbiorców zewnętrznych (katering)
+KLASA,56.29,Pozostała usługowa działalność gastronomiczna
+PODKLASA,56.29.Z,Pozostała usługowa działalność gastronomiczna
+GRUPA,56.3,Przygotowywanie i podawanie napojów
+KLASA,56.30,Przygotowywanie i podawanie napojów
+PODKLASA,56.30.Z,Przygotowywanie i podawanie napojów
+SEKCJA,J,INFORMACJA I KOMUNIKACJA
+DZIAŁ,58,DZIAŁALNOŚĆ WYDAWNICZA
+GRUPA,58.1,"Wydawanie książek i periodyków oraz pozostała działalność wydawnicza, z wyłączeniem w zakresie oprogramowania"
+KLASA,58.11,Wydawanie książek
+PODKLASA,58.11.Z,Wydawanie książek
+KLASA,58.12,"Wydawanie wykazów oraz list (np. adresowych, telefonicznych)"
+PODKLASA,58.12.Z,"Wydawanie wykazów oraz list (np. adresowych, telefonicznych)"
+KLASA,58.13,Wydawanie gazet
+PODKLASA,58.13.Z,Wydawanie gazet
+KLASA,58.14,Wydawanie czasopism i pozostałych periodyków
+PODKLASA,58.14.Z,Wydawanie czasopism i pozostałych periodyków
+KLASA,58.19,Pozostała działalność wydawnicza
+PODKLASA,58.19.Z,Pozostała działalność wydawnicza
+GRUPA,58.2,Działalność wydawnicza w zakresie oprogramowania
+KLASA,58.21,Działalność wydawnicza w zakresie gier komputerowych
+PODKLASA,58.21.Z,Działalność wydawnicza w zakresie gier komputerowych
+KLASA,58.29,Działalność wydawnicza w zakresie pozostałego oprogramowania
+PODKLASA,58.29.Z,Działalność wydawnicza w zakresie pozostałego oprogramowania
+DZIAŁ,59,"DZIAŁALNOŚĆ ZWIĄZANA Z PRODUKCJĄ FILMÓW, NAGRAŃ WIDEO, PROGRAMÓW TELEWIZYJNYCH, NAGRAŃ DŹWIĘKOWYCH I MUZYCZNYCH"
+GRUPA,59.1,"Działalność związana z filmami, nagraniami wideo i programami telewizyjnymi"
+KLASA,59.11,"Działalność związana z produkcją filmów, nagrań wideo i programów telewizyjnych"
+PODKLASA,59.11.Z,"Działalność związana z produkcją filmów, nagrań wideo i programów telewizyjnych"
+KLASA,59.12,"Działalność postprodukcyjna związana z filmami, nagraniami wideo i programami telewizyjnymi"
+PODKLASA,59.12.Z,"Działalność postprodukcyjna związana z filmami, nagraniami wideo i programami telewizyjnymi"
+KLASA,59.13,"Działalność związana z dystrybucją filmów, nagrań wideo i programów telewizyjnych"
+PODKLASA,59.13.Z,"Działalność związana z dystrybucją filmów, nagrań wideo i programów telewizyjnych"
+KLASA,59.14,Działalność związana z projekcją filmów
+PODKLASA,59.14.Z,Działalność związana z projekcją filmów
+GRUPA,59.2,Działalność w zakresie nagrań dźwiękowych i muzycznych
+KLASA,59.20,Działalność w zakresie nagrań dźwiękowych i muzycznych
+PODKLASA,59.20.Z,Działalność w zakresie nagrań dźwiękowych i muzycznych
+DZIAŁ,60,NADAWANIE PROGRAMÓW OGÓLNODOSTĘPNYCH I ABONAMENTOWYCH
+GRUPA,60.1,Nadawanie programów radiofonicznych
+KLASA,60.10,Nadawanie programów radiofonicznych
+PODKLASA,60.10.Z,Nadawanie programów radiofonicznych
+GRUPA,60.2,Nadawanie programów telewizyjnych ogólnodostępnych i abonamentowych
+KLASA,60.20,Nadawanie programów telewizyjnych ogólnodostępnych i abonamentowych
+PODKLASA,60.20.Z,Nadawanie programów telewizyjnych ogólnodostępnych i abonamentowych
+DZIAŁ,61,TELEKOMUNIKACJA
+GRUPA,61.1,Działalność w zakresie telekomunikacji przewodowej
+KLASA,61.10,Działalność w zakresie telekomunikacji przewodowej
+PODKLASA,61.10.Z,Działalność w zakresie telekomunikacji przewodowej
+GRUPA,61.2,"Działalność w zakresie telekomunikacji bezprzewodowej, z wyłączeniem telekomunikacji satelitarnej"
+KLASA,61.20,"Działalność w zakresie telekomunikacji bezprzewodowej, z wyłączeniem telekomunikacji satelitarnej"
+PODKLASA,61.20.Z,"Działalność w zakresie telekomunikacji bezprzewodowej, z wyłączeniem telekomunikacji satelitarnej"
+GRUPA,61.3,Działalność w zakresie telekomunikacji satelitarnej
+KLASA,61.30,Działalność w zakresie telekomunikacji satelitarnej
+PODKLASA,61.30.Z,Działalność w zakresie telekomunikacji satelitarnej
+GRUPA,61.9,Działalność w zakresie pozostałej telekomunikacji
+KLASA,61.90,Działalność w zakresie pozostałej telekomunikacji
+PODKLASA,61.90.Z,Działalność w zakresie pozostałej telekomunikacji
+DZIAŁ,62,DZIAŁALNOŚĆ ZWIĄZANA Z OPROGRAMOWANIEM I DORADZTWEM W ZAKRESIE INFORMATYKI ORAZ DZIAŁALNOŚĆ POWIĄZANA
+GRUPA,62.0,DZIAŁALNOŚĆ ZWIĄZANA Z OPROGRAMOWANIEM I DORADZTWEM W ZAKRESIE INFORMATYKI ORAZ DZIAŁALNOŚĆ POWIĄZANA
+KLASA,62.01,Działalność związana z oprogramowaniem
+PODKLASA,62.01.Z,Działalność związana z oprogramowaniem
+KLASA,62.02,Działalność związana z doradztwem w zakresie informatyki
+PODKLASA,62.02.Z,Działalność związana z doradztwem w zakresie informatyki
+KLASA,62.03,Działalność związana z zarządzaniem urządzeniami informatycznymi
+PODKLASA,62.03.Z,Działalność związana z zarządzaniem urządzeniami informatycznymi
+KLASA,62.09,Pozostała działalność usługowa w zakresie technologii informatycznych i komputerowych
+PODKLASA,62.09.Z,Pozostała działalność usługowa w zakresie technologii informatycznych i komputerowych
+DZIAŁ,63,DZIAŁALNOŚĆ USŁUGOWA W ZAKRESIE INFORMACJI
+GRUPA,63.1,Przetwarzanie danych; zarządzanie stronami internetowymi (hosting) i podobna działalność; działalność portali internetowych
+KLASA,63.11,Przetwarzanie danych; zarządzanie stronami internetowymi (hosting) i podobna działalność
+PODKLASA,63.11.Z,Przetwarzanie danych; zarządzanie stronami internetowymi (hosting) i podobna działalność
+KLASA,63.12,Działalność portali internetowych
+PODKLASA,63.12.Z,Działalność portali internetowych
+GRUPA,63.9,Pozostała działalność usługowa w zakresie informacji
+KLASA,63.91,Działalność agencji informacyjnych
+PODKLASA,63.91.Z,Działalność agencji informacyjnych
+KLASA,63.99,"Pozostała działalność usługowa w zakresie informacji, gdzie indziej niesklasyfikowana"
+PODKLASA,63.99.Z,"Pozostała działalność usługowa w zakresie informacji, gdzie indziej niesklasyfikowana"
+SEKCJA,K,DZIAŁALNOŚĆ FINANSOWA I UBEZPIECZENIOWA
+DZIAŁ,64,"FINANSOWA DZIAŁALNOŚĆ USŁUGOWA, Z WYŁĄCZENIEM UBEZPIECZEŃ I FUNDUSZÓW EMERYTALNYCH"
+GRUPA,64.1,Pośrednictwo pieniężne
+KLASA,64.11,Działalność banku centralnego
+PODKLASA,64.11.Z,Działalność banku centralnego
+KLASA,64.19,Pozostałe pośrednictwo pieniężne
+PODKLASA,64.19.Z,Pozostałe pośrednictwo pieniężne
+GRUPA,64.2,Działalność holdingów finansowych
+KLASA,64.20,Działalność holdingów finansowych
+PODKLASA,64.20.Z,Działalność holdingów finansowych
+GRUPA,64.3,"Działalność trustów, funduszów i podobnych instytucji finansowych"
+KLASA,64.30,"Działalność trustów, funduszów i podobnych instytucji finansowych"
+PODKLASA,64.30.Z,"Działalność trustów, funduszów i podobnych instytucji finansowych"
+GRUPA,64.9,"Pozostała finansowa działalność usługowa, z wyłączeniem ubezpieczeń i funduszów emerytalnych"
+KLASA,64.91,Leasing finansowy
+PODKLASA,64.91.Z,Leasing finansowy
+KLASA,64.92,Pozostałe formy udzielania kredytów
+PODKLASA,64.92.Z,Pozostałe formy udzielania kredytów
+KLASA,64.99,"Pozostała finansowa działalność usługowa, gdzie indziej niesklasyfikowana, z wyłączeniem ubezpieczeń i funduszów emerytalnych"
+PODKLASA,64.99.Z,"Pozostała finansowa działalność usługowa, gdzie indziej niesklasyfikowana, z wyłączeniem ubezpieczeń i funduszów emerytalnych"
+DZIAŁ,65,"UBEZPIECZENIA, REASEKURACJA ORAZ FUNDUSZE EMERYTALNE, Z WYŁĄCZENIEM OBOWIĄZKOWEGO UBEZPIECZENIA SPOŁECZNEGO"
+GRUPA,65.1,Ubezpieczenia
+KLASA,65.11,Ubezpieczenia na życie
+PODKLASA,65.11.Z,Ubezpieczenia na życie
+KLASA,65.12,Pozostałe ubezpieczenia osobowe oraz ubezpieczenia majątkowe
+PODKLASA,65.12.Z,Pozostałe ubezpieczenia osobowe oraz ubezpieczenia majątkowe
+GRUPA,65.2,Reasekuracja
+KLASA,65.20,Reasekuracja
+PODKLASA,65.20.Z,Reasekuracja
+GRUPA,65.3,Fundusze emerytalne
+KLASA,65.30,Fundusze emerytalne
+PODKLASA,65.30.Z,Fundusze emerytalne
+DZIAŁ,66,DZIAŁALNOŚĆ WSPOMAGAJĄCA USŁUGI FINANSOWE ORAZ UBEZPIECZENIA I FUNDUSZE EMERYTALNE
+GRUPA,66.1,"Działalność wspomagająca usługi finansowe, z wyłączeniem ubezpieczeń i funduszów emerytalnych"
+KLASA,66.11,Zarządzanie rynkami finansowymi
+PODKLASA,66.11.Z,Zarządzanie rynkami finansowymi
+KLASA,66.12,Działalność maklerska związana z rynkiem papierów wartościowych i towarów giełdowych
+PODKLASA,66.12.Z,Działalność maklerska związana z rynkiem papierów wartościowych i towarów giełdowych
+KLASA,66.19,"Pozostała działalność wspomagająca usługi finansowe, z wyłączeniem ubezpieczeń i funduszów emerytalnych"
+PODKLASA,66.19.Z,"Pozostała działalność wspomagająca usługi finansowe, z wyłączeniem ubezpieczeń i funduszów emerytalnych"
+GRUPA,66.2,Działalność wspomagająca ubezpieczenia i fundusze emerytalne
+KLASA,66.21,Działalność związana z oceną ryzyka i szacowaniem poniesionych strat
+PODKLASA,66.21.Z,Działalność związana z oceną ryzyka i szacowaniem poniesionych strat
+KLASA,66.22,Działalność agentów i brokerów ubezpieczeniowych
+PODKLASA,66.22.Z,Działalność agentów i brokerów ubezpieczeniowych
+KLASA,66.29,Pozostała działalność wspomagająca ubezpieczenia i fundusze emerytalne
+PODKLASA,66.29.Z,Pozostała działalność wspomagająca ubezpieczenia i fundusze emerytalne
+GRUPA,66.3,Działalność związana z zarządzaniem funduszami
+KLASA,66.30,Działalność związana z zarządzaniem funduszami
+PODKLASA,66.30.Z,Działalność związana z zarządzaniem funduszami
+SEKCJA,L,DZIAŁALNOŚĆ ZWIĄZANA Z OBSŁUGĄ RYNKU NIERUCHOMOŚCI
+DZIAŁ,68,DZIAŁALNOŚĆ ZWIĄZANA Z OBSŁUGĄ RYNKU NIERUCHOMOŚCI
+GRUPA,68.1,Kupno i sprzedaż nieruchomości na własny rachunek
+KLASA,68.10,Kupno i sprzedaż nieruchomości na własny rachunek
+PODKLASA,68.10.Z,Kupno i sprzedaż nieruchomości na własny rachunek
+GRUPA,68.2,Wynajem i zarządzanie nieruchomościami własnymi lub dzierżawionymi
+KLASA,68.20,Wynajem i zarządzanie nieruchomościami własnymi lub dzierżawionymi
+PODKLASA,68.20.Z,Wynajem i zarządzanie nieruchomościami własnymi lub dzierżawionymi
+GRUPA,68.3,Działalność związana z obsługą rynku nieruchomości wykonywana na zlecenie
+KLASA,68.31,Pośrednictwo w obrocie nieruchomościami
+PODKLASA,68.31.Z,Pośrednictwo w obrocie nieruchomościami
+KLASA,68.32,Zarządzanie nieruchomościami wykonywane na zlecenie
+PODKLASA,68.32.Z,Zarządzanie nieruchomościami wykonywane na zlecenie
+SEKCJA,M,"DZIAŁALNOŚĆ PROFESJONALNA, NAUKOWA I TECHNICZNA"
+DZIAŁ,69,"DZIAŁALNOŚĆ PRAWNICZA, RACHUNKOWO-KSIĘGOWA I DORADZTWO PODATKOWE"
+GRUPA,69.1,Działalność prawnicza
+KLASA,69.10,Działalność prawnicza
+PODKLASA,69.10.Z,Działalność prawnicza
+GRUPA,69.2,Działalność rachunkowo-księgowa; doradztwo podatkowe
+KLASA,69.20,Działalność rachunkowo-księgowa; doradztwo podatkowe
+PODKLASA,69.20.Z,Działalność rachunkowo-księgowa; doradztwo podatkowe
+DZIAŁ,70,DZIAŁALNOŚĆ FIRM CENTRALNYCH (HEAD OFFICES); DORADZTWO ZWIĄZANE Z ZARZĄDZANIEM
+GRUPA,70.1,"Działalność firm centralnych (head offices) i holdingów, z wyłączeniem holdingów finansowych"
+KLASA,70.10,"Działalność firm centralnych (head offices) i holdingów, z wyłączeniem holdingów finansowych"
+PODKLASA,70.10.Z,"Działalność firm centralnych (head offices) i holdingów, z wyłączeniem holdingów finansowych"
+GRUPA,70.2,Doradztwo związane z zarządzaniem
+KLASA,70.21,Stosunki międzyludzkie (public relations) i komunikacja
+PODKLASA,70.21.Z,Stosunki międzyludzkie (public relations) i komunikacja
+KLASA,70.22,Pozostałe doradztwo w zakresie prowadzenia działalności gospodarczej i zarządzania
+PODKLASA,70.22.Z,Pozostałe doradztwo w zakresie prowadzenia działalności gospodarczej i zarządzania
+DZIAŁ,71,DZIAŁALNOŚĆ W ZAKRESIE ARCHITEKTURY I INŻYNIERII; BADANIA I ANALIZY TECHNICZNE
+GRUPA,71.1,Działalność w zakresie architektury i inżynierii oraz związane z nią doradztwo techniczne
+KLASA,71.11,Działalność w zakresie architektury
+PODKLASA,71.11.Z,Działalność w zakresie architektury
+KLASA,71.12,Działalność w zakresie inżynierii i związane z nią doradztwo techniczne
+PODKLASA,71.12.Z,Działalność w zakresie inżynierii i związane z nią doradztwo techniczne
+GRUPA,71.2,Badania i analizy techniczne
+KLASA,71.20,Badania i analizy techniczne
+PODKLASA,71.20.A,Badania i analizy związane z jakością żywności
+PODKLASA,71.20.B,Pozostałe badania i analizy techniczne
+DZIAŁ,72,BADANIA NAUKOWE I PRACE ROZWOJOWE
+GRUPA,72.1,Badania naukowe i prace rozwojowe w dziedzinie nauk przyrodniczych i technicznych
+KLASA,72.11,Badania naukowe i prace rozwojowe w dziedzinie biotechnologii
+PODKLASA,72.11.Z,Badania naukowe i prace rozwojowe w dziedzinie biotechnologii
+KLASA,72.19,Badania naukowe i prace rozwojowe w dziedzinie pozostałych nauk przyrodniczych i technicznych
+PODKLASA,72.19.Z,Badania naukowe i prace rozwojowe w dziedzinie pozostałych nauk przyrodniczych i technicznych
+GRUPA,72.2,Badania naukowe i prace rozwojowe w dziedzinie nauk społecznych i humanistycznych
+KLASA,72.20,Badania naukowe i prace rozwojowe w dziedzinie nauk społecznych i humanistycznych
+PODKLASA,72.20.Z,Badania naukowe i prace rozwojowe w dziedzinie nauk społecznych i humanistycznych
+DZIAŁ,73,"REKLAMA, BADANIE RYNKU I OPINII PUBLICZNEJ"
+GRUPA,73.1,Reklama
+KLASA,73.11,Działalność agencji reklamowych
+PODKLASA,73.11.Z,Działalność agencji reklamowych
+KLASA,73.12,Działalność związana z reprezentowaniem mediów
+PODKLASA,73.12.A,Pośrednictwo w sprzedaży czasu i miejsca na cele reklamowe w radio i telewizji
+PODKLASA,73.12.B,Pośrednictwo w sprzedaży miejsca na cele reklamowe w mediach drukowanych
+PODKLASA,73.12.C,Pośrednictwo w sprzedaży miejsca na cele reklamowe w mediach elektronicznych (Internet)
+PODKLASA,73.12.D,Pośrednictwo w sprzedaży miejsca na cele reklamowe w pozostałych mediach
+GRUPA,73.2,Badanie rynku i opinii publicznej
+KLASA,73.20,Badanie rynku i opinii publicznej
+PODKLASA,73.20.Z,Badanie rynku i opinii publicznej
+DZIAŁ,74,"POZOSTAŁA DZIAŁALNOŚĆ PROFESJONALNA, NAUKOWA I TECHNICZNA"
+GRUPA,74.1,Działalność w zakresie specjalistycznego projektowania
+KLASA,74.10,Działalność w zakresie specjalistycznego projektowania
+PODKLASA,74.10.Z,Działalność w zakresie specjalistycznego projektowania
+GRUPA,74.2,Działalność fotograficzna
+KLASA,74.20,Działalność fotograficzna
+PODKLASA,74.20.Z,Działalność fotograficzna
+GRUPA,74.3,Działalność związana z tłumaczeniami
+KLASA,74.30,Działalność związana z tłumaczeniami
+PODKLASA,74.30.Z,Działalność związana z tłumaczeniami
+GRUPA,74.9,"Pozostała działalność profesjonalna, naukowa i techniczna, gdzie indziej niesklasyfikowana"
+KLASA,74.90,"Pozostała działalność profesjonalna, naukowa i techniczna, gdzie indziej niesklasyfikowana"
+PODKLASA,74.90.Z,"Pozostała działalność profesjonalna, naukowa i techniczna, gdzie indziej niesklasyfikowana"
+DZIAŁ,75,DZIAŁALNOŚĆ WETERYNARYJNA
+GRUPA,75.0,DZIAŁALNOŚĆ WETERYNARYJNA
+KLASA,75.00,DZIAŁALNOŚĆ WETERYNARYJNA
+PODKLASA,75.00.Z,DZIAŁALNOŚĆ WETERYNARYJNA
+SEKCJA,N,DZIAŁALNOŚĆ W ZAKRESIE USŁUG ADMINISTROWANIA I DZIAŁALNOŚĆ WSPIERAJĄCA
+DZIAŁ,77,WYNAJEM I DZIERŻAWA
+GRUPA,77.1,"Wynajem i dzierżawa pojazdów samochodowych, z wyłączeniem motocykli"
+KLASA,77.11,Wynajem i dzierżawa samochodów osobowych i furgonetek
+PODKLASA,77.11.Z,Wynajem i dzierżawa samochodów osobowych i furgonetek
+KLASA,77.12,"Wynajem i dzierżawa pozostałych pojazdów samochodowych, z wyłączeniem motocykli"
+PODKLASA,77.12.Z,"Wynajem i dzierżawa pozostałych pojazdów samochodowych, z wyłączeniem motocykli"
+GRUPA,77.2,Wypożyczanie i dzierżawa artykułów użytku osobistego i domowego
+KLASA,77.21,Wypożyczanie i dzierżawa sprzętu rekreacyjnego i sportowego
+PODKLASA,77.21.Z,Wypożyczanie i dzierżawa sprzętu rekreacyjnego i sportowego
+KLASA,77.22,"Wypożyczanie kaset wideo, płyt CD, DVD itp."
+PODKLASA,77.22.Z,"Wypożyczanie kaset wideo, płyt CD, DVD itp."
+KLASA,77.29,Wypożyczanie i dzierżawa pozostałych artykułów użytku osobistego i domowego
+PODKLASA,77.29.Z,Wypożyczanie i dzierżawa pozostałych artykułów użytku osobistego i domowego
+GRUPA,77.3,"Wynajem i dzierżawa pozostałych maszyn, urządzeń oraz dóbr materialnych"
+KLASA,77.31,Wynajem i dzierżawa maszyn i urządzeń rolniczych
+PODKLASA,77.31.Z,Wynajem i dzierżawa maszyn i urządzeń rolniczych
+KLASA,77.32,Wynajem i dzierżawa maszyn i urządzeń budowlanych
+PODKLASA,77.32.Z,Wynajem i dzierżawa maszyn i urządzeń budowlanych
+KLASA,77.33,"Wynajem i dzierżawa maszyn i urządzeń biurowych, włączając komputery"
+PODKLASA,77.33.Z,"Wynajem i dzierżawa maszyn i urządzeń biurowych, włączając komputery"
+KLASA,77.34,Wynajem i dzierżawa środków transportu wodnego
+PODKLASA,77.34.Z,Wynajem i dzierżawa środków transportu wodnego
+KLASA,77.35,Wynajem i dzierżawa środków transportu lotniczego
+PODKLASA,77.35.Z,Wynajem i dzierżawa środków transportu lotniczego
+KLASA,77.39,"Wynajem i dzierżawa pozostałych maszyn, urządzeń oraz dóbr materialnych, gdzie indziej niesklasyfikowane"
+PODKLASA,77.39.Z,"Wynajem i dzierżawa pozostałych maszyn, urządzeń oraz dóbr materialnych, gdzie indziej niesklasyfikowane"
+GRUPA,77.4,"Dzierżawa własności intelektualnej i podobnych produktów, z wyłączeniem prac chronionych prawem autorskim"
+KLASA,77.40,"Dzierżawa własności intelektualnej i podobnych produktów, z wyłączeniem prac chronionych prawem autorskim"
+PODKLASA,77.40.Z,"Dzierżawa własności intelektualnej i podobnych produktów, z wyłączeniem prac chronionych prawem autorskim"
+DZIAŁ,78,DZIAŁALNOŚĆ ZWIĄZANA Z ZATRUDNIENIEM
+GRUPA,78.1,Działalność związana z wyszukiwaniem miejsc pracy i pozyskiwaniem pracowników
+KLASA,78.10,Działalność związana z wyszukiwaniem miejsc pracy i pozyskiwaniem pracowników
+PODKLASA,78.10.Z,Działalność związana z wyszukiwaniem miejsc pracy i pozyskiwaniem pracowników
+GRUPA,78.2,Działalność agencji pracy tymczasowej
+KLASA,78.20,Działalność agencji pracy tymczasowej
+PODKLASA,78.20.Z,Działalność agencji pracy tymczasowej
+GRUPA,78.3,Pozostała działalność związana z udostępnianiem pracowników
+KLASA,78.30,Pozostała działalność związana z udostępnianiem pracowników
+PODKLASA,78.30.Z,Pozostała działalność związana z udostępnianiem pracowników
+DZIAŁ,79,"DZIAŁALNOŚĆ ORGANIZATORÓW TURYSTYKI, POŚREDNIKÓW I AGENTÓW TURYSTYCZNYCH ORAZ POZOSTAŁA DZIAŁALNOŚĆ USŁUGOWA W ZAKRESIE REZERWACJI I DZIAŁALNOŚCI Z NIĄ ZWIĄZANE"
+GRUPA,79.1,Działalność agentów i pośredników turystycznych oraz organizatorów turystyki
+KLASA,79.11,Działalność agentów i pośredników turystycznych
+PODKLASA,79.11.A,Działalność agentów turystycznych
+PODKLASA,79.11.B,Działalność pośredników turystycznych
+KLASA,79.12,Działalność organizatorów turystyki
+PODKLASA,79.12.Z,Działalność organizatorów turystyki
+GRUPA,79.9,Pozostała działalność usługowa w zakresie rezerwacji i działalności z nią związane
+KLASA,79.90,Pozostała działalność usługowa w zakresie rezerwacji i działalności z nią związane
+PODKLASA,79.90.A,Działalność pilotów wycieczek i przewodników turystycznych
+PODKLASA,79.90.B,Działalność w zakresie informacji turystycznej
+PODKLASA,79.90.C,"Pozostała działalność usługowa w zakresie rezerwacji, gdzie indziej niesklasyfikowana"
+DZIAŁ,80,DZIAŁALNOŚĆ DETEKTYWISTYCZNA I OCHRONIARSKA
+GRUPA,80.1,"Działalność ochroniarska, z wyłączeniem obsługi systemów bezpieczeństwa"
+KLASA,80.10,"Działalność ochroniarska, z wyłączeniem obsługi systemów bezpieczeństwa"
+PODKLASA,80.10.Z,"Działalność ochroniarska, z wyłączeniem obsługi systemów bezpieczeństwa"
+GRUPA,80.2,Działalność ochroniarska w zakresie obsługi systemów bezpieczeństwa
+KLASA,80.20,Działalność ochroniarska w zakresie obsługi systemów bezpieczeństwa
+PODKLASA,80.20.Z,Działalność ochroniarska w zakresie obsługi systemów bezpieczeństwa
+GRUPA,80.3,Działalność detektywistyczna
+KLASA,80.30,Działalność detektywistyczna
+PODKLASA,80.30.Z,Działalność detektywistyczna
+DZIAŁ,81,DZIAŁALNOŚĆ USŁUGOWA ZWIĄZANA Z UTRZYMANIEM PORZĄDKU W BUDYNKACH I ZAGOSPODAROWANIEM TERENÓW ZIELENI
+GRUPA,81.1,Działalność pomocnicza związana z utrzymaniem porządku w budynkach
+KLASA,81.10,Działalność pomocnicza związana z utrzymaniem porządku w budynkach
+PODKLASA,81.10.Z,Działalność pomocnicza związana z utrzymaniem porządku w budynkach
+GRUPA,81.2,Sprzątanie obiektów
+KLASA,81.21,Niespecjalistyczne sprzątanie budynków i obiektów przemysłowych
+PODKLASA,81.21.Z,Niespecjalistyczne sprzątanie budynków i obiektów przemysłowych
+KLASA,81.22,Specjalistyczne sprzątanie budynków i obiektów przemysłowych
+PODKLASA,81.22.Z,Specjalistyczne sprzątanie budynków i obiektów przemysłowych
+KLASA,81.29,Pozostałe sprzątanie
+PODKLASA,81.29.Z,Pozostałe sprzątanie
+GRUPA,81.3,Działalność usługowa związana z zagospodarowaniem terenów zieleni
+KLASA,81.30,Działalność usługowa związana z zagospodarowaniem terenów zieleni
+PODKLASA,81.30.Z,Działalność usługowa związana z zagospodarowaniem terenów zieleni
+DZIAŁ,82,DZIAŁALNOŚĆ ZWIĄZANA Z ADMINISTRACYJNĄ OBSŁUGĄ BIURA I POZOSTAŁA DZIAŁALNOŚĆ WSPOMAGAJĄCA PROWADZENIE DZIAŁALNOŚCI GOSPODARCZEJ
+GRUPA,82.1,"Działalność związana z administracyjną obsługą biura, włączając działalność wspomagającą"
+KLASA,82.11,Działalność usługowa związana z administracyjną obsługą biura
+PODKLASA,82.11.Z,Działalność usługowa związana z administracyjną obsługą biura
+KLASA,82.19,"Wykonywanie fotokopii, przygotowywanie dokumentów i pozostała specjalistyczna działalność wspomagająca prowadzenie biura"
+PODKLASA,82.19.Z,"Wykonywanie fotokopii, przygotowywanie dokumentów i pozostała specjalistyczna działalność wspomagająca prowadzenie biura"
+GRUPA,82.2,Działalność centrów telefonicznych (call center)
+KLASA,82.20,Działalność centrów telefonicznych (call center)
+PODKLASA,82.20.Z,Działalność centrów telefonicznych (call center)
+GRUPA,82.3,"Działalność związana z organizacją targów, wystaw i kongresów"
+KLASA,82.30,"Działalność związana z organizacją targów, wystaw i kongresów"
+PODKLASA,82.30.Z,"Działalność związana z organizacją targów, wystaw i kongresów"
+GRUPA,82.9,"Działalność komercyjna, gdzie indziej niesklasyfikowana"
+KLASA,82.91,Działalność świadczona przez agencje inkasa i biura kredytowe
+PODKLASA,82.91.Z,Działalność świadczona przez agencje inkasa i biura kredytowe
+KLASA,82.92,Działalność związana z pakowaniem
+PODKLASA,82.92.Z,Działalność związana z pakowaniem
+KLASA,82.99,"Pozostała działalność wspomagająca prowadzenie działalności gospodarczej, gdzie indziej niesklasyfikowana"
+PODKLASA,82.99.Z,"Pozostała działalność wspomagająca prowadzenie działalności gospodarczej, gdzie indziej niesklasyfikowana"
+SEKCJA,O,ADMINISTRACJA PUBLICZNA I OBRONA NARODOWA; OBOWIĄZKOWE ZABEZPIECZENIA SPOŁECZNE
+DZIAŁ,84,ADMINISTRACJA PUBLICZNA I OBRONA NARODOWA; OBOWIĄZKOWE ZABEZPIECZENIA SPOŁECZNE
+GRUPA,84.1,Administracja publiczna oraz polityka gospodarcza i społeczna
+KLASA,84.11,Kierowanie podstawowymi rodzajami działalności publicznej
+PODKLASA,84.11.Z,Kierowanie podstawowymi rodzajami działalności publicznej
+KLASA,84.12,"Kierowanie w zakresie działalności związanej z ochroną zdrowia, edukacją, kulturą oraz pozostałymi usługami społecznymi, z wyłączeniem zabezpieczeń społecznych"
+PODKLASA,84.12.Z,"Kierowanie w zakresie działalności związanej z ochroną zdrowia, edukacją, kulturą oraz pozostałymi usługami społecznymi, z wyłączeniem zabezpieczeń społecznych"
+KLASA,84.13,Kierowanie w zakresie efektywności gospodarowania
+PODKLASA,84.13.Z,Kierowanie w zakresie efektywności gospodarowania
+GRUPA,84.2,Usługi na rzecz całego społeczeństwa
+KLASA,84.21,Sprawy zagraniczne
+PODKLASA,84.21.Z,Sprawy zagraniczne
+KLASA,84.22,Obrona narodowa
+PODKLASA,84.22.Z,Obrona narodowa
+KLASA,84.23,Wymiar sprawiedliwości
+PODKLASA,84.23.Z,Wymiar sprawiedliwości
+KLASA,84.24,"Bezpieczeństwo państwa, porządek i bezpieczeństwo publiczne"
+PODKLASA,84.24.Z,"Bezpieczeństwo państwa, porządek i bezpieczeństwo publiczne"
+KLASA,84.25,Ochrona przeciwpożarowa
+PODKLASA,84.25.Z,Ochrona przeciwpożarowa
+GRUPA,84.3,Obowiązkowe zabezpieczenia społeczne
+KLASA,84.30,Obowiązkowe zabezpieczenia społeczne
+PODKLASA,84.30.Z,Obowiązkowe zabezpieczenia społeczne
+SEKCJA,P,EDUKACJA
+DZIAŁ,85,EDUKACJA
+GRUPA,85.1,Placówki wychowania przedszkolnego
+KLASA,85.10,Placówki wychowania przedszkolnego
+PODKLASA,85.10.Z,Placówki wychowania przedszkolnego
+GRUPA,85.2,Szkoły podstawowe
+KLASA,85.20,Szkoły podstawowe
+PODKLASA,85.20.Z,Szkoły podstawowe
+GRUPA,85.3,"Gimnazja, szkoły ponadgimnazjalne i szkoły ponadpodstawowe, z wyłączeniem szkół policealnych"
+KLASA,85.31,Gimnazja i licea ogólnokształcące
+PODKLASA,85.31.A,Gimnazja
+PODKLASA,85.31.B,Licea ogólnokształcące
+KLASA,85.32,"Szkoły prowadzące kształcenie zawodowe, z wyłączeniem szkół policealnych"
+PODKLASA,85.32.A,Technika
+PODKLASA,85.32.B,Branżowe szkoły I stopnia
+PODKLASA,85.32.C,Szkoły specjalne przysposabiające do pracy
+PODKLASA,85.32.D,Branżowe szkoły II stopnia
+GRUPA,85.4,Szkoły policealne oraz wyższe
+KLASA,85.41,"Szkoły policealne, kolegia pracowników służb społecznych i placówki doskonalenia nauczycieli"
+PODKLASA,85.41.A,Szkoły policealne
+PODKLASA,85.41.B,Kolegia pracowników służb społecznych
+PODKLASA,85.41.C,Placówki doskonalenia nauczycieli
+KLASA,85.42,Szkoły wyższe
+PODKLASA,85.42.Z,Szkoły wyższe
+GRUPA,85.5,Pozaszkolne formy edukacji
+KLASA,85.51,Pozaszkolne formy edukacji sportowej oraz zajęć sportowych i rekreacyjnych
+PODKLASA,85.51.Z,Pozaszkolne formy edukacji sportowej oraz zajęć sportowych i rekreacyjnych
+KLASA,85.52,Pozaszkolne formy edukacji artystycznej
+PODKLASA,85.52.Z,Pozaszkolne formy edukacji artystycznej
+KLASA,85.53,Pozaszkolne formy edukacji z zakresu nauki jazdy i pilotażu
+PODKLASA,85.53.Z,Pozaszkolne formy edukacji z zakresu nauki jazdy i pilotażu
+KLASA,85.59,"Pozaszkolne formy edukacji, gdzie indziej niesklasyfikowane"
+PODKLASA,85.59.A,Nauka języków obcych
+PODKLASA,85.59.B,"Pozostałe pozaszkolne formy edukacji, gdzie indziej niesklasyfikowane"
+GRUPA,85.6,Działalność wspomagająca edukację
+KLASA,85.60,Działalność wspomagająca edukację
+PODKLASA,85.60.Z,Działalność wspomagająca edukację
+SEKCJA,Q,OPIEKA ZDROWOTNA I POMOC SPOŁECZNA
+DZIAŁ,86,OPIEKA ZDROWOTNA
+GRUPA,86.1,Działalność szpitali
+KLASA,86.10,Działalność szpitali
+PODKLASA,86.10.Z,Działalność szpitali
+GRUPA,86.2,Praktyka lekarska
+KLASA,86.21,Praktyka lekarska ogólna
+PODKLASA,86.21.Z,Praktyka lekarska ogólna
+KLASA,86.22,Praktyka lekarska specjalistyczna
+PODKLASA,86.22.Z,Praktyka lekarska specjalistyczna
+KLASA,86.23,Praktyka lekarska dentystyczna
+PODKLASA,86.23.Z,Praktyka lekarska dentystyczna
+GRUPA,86.9,Pozostała działalność w zakresie opieki zdrowotnej
+KLASA,86.90,Pozostała działalność w zakresie opieki zdrowotnej
+PODKLASA,86.90.A,Działalność fizjoterapeutyczna
+PODKLASA,86.90.B,Działalność pogotowia ratunkowego
+PODKLASA,86.90.C,Praktyka pielęgniarek i położnych
+PODKLASA,86.90.D,Działalność paramedyczna
+PODKLASA,86.90.E,"Pozostała działalność w zakresie opieki zdrowotnej, gdzie indziej niesklasyfikowana"
+DZIAŁ,87,POMOC SPOŁECZNA Z ZAKWATEROWANIEM
+GRUPA,87.1,Pomoc społeczna z zakwaterowaniem zapewniająca opiekę pielęgniarską
+KLASA,87.10,Pomoc społeczna z zakwaterowaniem zapewniająca opiekę pielęgniarską
+PODKLASA,87.10.Z,Pomoc społeczna z zakwaterowaniem zapewniająca opiekę pielęgniarską
+GRUPA,87.2,Pomoc społeczna z zakwaterowaniem dla osób z zaburzeniami psychicznymi
+KLASA,87.20,Pomoc społeczna z zakwaterowaniem dla osób z zaburzeniami psychicznymi
+PODKLASA,87.20.Z,Pomoc społeczna z zakwaterowaniem dla osób z zaburzeniami psychicznymi
+GRUPA,87.3,Pomoc społeczna z zakwaterowaniem dla osób w podeszłym wieku i osób niepełnosprawnych
+KLASA,87.30,Pomoc społeczna z zakwaterowaniem dla osób w podeszłym wieku i osób niepełnosprawnych
+PODKLASA,87.30.Z,Pomoc społeczna z zakwaterowaniem dla osób w podeszłym wieku i osób niepełnosprawnych
+GRUPA,87.9,Pozostała pomoc społeczna z zakwaterowaniem
+KLASA,87.90,Pozostała pomoc społeczna z zakwaterowaniem
+PODKLASA,87.90.Z,Pozostała pomoc społeczna z zakwaterowaniem
+DZIAŁ,88,POMOC SPOŁECZNA BEZ ZAKWATEROWANIA
+GRUPA,88.1,Pomoc społeczna bez zakwaterowania dla osób w podeszłym wieku i osób niepełnosprawnych
+KLASA,88.10,Pomoc społeczna bez zakwaterowania dla osób w podeszłym wieku i osób niepełnosprawnych
+PODKLASA,88.10.Z,Pomoc społeczna bez zakwaterowania dla osób w podeszłym wieku i osób niepełnosprawnych
+GRUPA,88.9,Pozostała pomoc społeczna bez zakwaterowania
+KLASA,88.91,Opieka dzienna nad dziećmi
+PODKLASA,88.91.Z,Opieka dzienna nad dziećmi
+KLASA,88.99,"Pozostała pomoc społeczna bez zakwaterowania, gdzie indziej niesklasyfikowana"
+PODKLASA,88.99.Z,"Pozostała pomoc społeczna bez zakwaterowania, gdzie indziej niesklasyfikowana"
+SEKCJA,R,"DZIAŁALNOŚĆ ZWIĄZANA Z KULTURĄ, ROZRYWKĄ I REKREACJĄ"
+DZIAŁ,90,DZIAŁALNOŚĆ TWÓRCZA ZWIĄZANA Z KULTURĄ I ROZRYWKĄ
+GRUPA,90.0,DZIAŁALNOŚĆ TWÓRCZA ZWIĄZANA Z KULTURĄ I ROZRYWKĄ
+KLASA,90.01,Działalność związana z wystawianiem przedstawień artystycznych
+PODKLASA,90.01.Z,Działalność związana z wystawianiem przedstawień artystycznych
+KLASA,90.02,Działalność wspomagająca wystawianie przedstawień artystycznych
+PODKLASA,90.02.Z,Działalność wspomagająca wystawianie przedstawień artystycznych
+KLASA,90.03,Artystyczna i literacka działalność twórcza
+PODKLASA,90.03.Z,Artystyczna i literacka działalność twórcza
+KLASA,90.04,Działalność obiektów kulturalnych
+PODKLASA,90.04.Z,Działalność obiektów kulturalnych
+DZIAŁ,91,"DZIAŁALNOŚĆ BIBLIOTEK, ARCHIWÓW, MUZEÓW ORAZ POZOSTAŁA DZIAŁALNOŚĆ ZWIĄZANA Z KULTURĄ"
+GRUPA,91.0,"DZIAŁALNOŚĆ BIBLIOTEK, ARCHIWÓW, MUZEÓW ORAZ POZOSTAŁA DZIAŁALNOŚĆ ZWIĄZANA Z KULTURĄ"
+KLASA,91.01,Działalność bibliotek i archiwów
+PODKLASA,91.01.A,Działalność bibliotek
+PODKLASA,91.01.B,Działalność archiwów
+KLASA,91.02,Działalność muzeów
+PODKLASA,91.02.Z,Działalność muzeów
+KLASA,91.03,Działalność historycznych miejsc i budynków oraz podobnych atrakcji turystycznych
+PODKLASA,91.03.Z,Działalność historycznych miejsc i budynków oraz podobnych atrakcji turystycznych
+KLASA,91.04,Działalność ogrodów botanicznych i zoologicznych oraz obszarów i obiektów ochrony przyrody
+PODKLASA,91.04.Z,Działalność ogrodów botanicznych i zoologicznych oraz obszarów i obiektów ochrony przyrody
+DZIAŁ,92,DZIAŁALNOŚĆ ZWIĄZANA Z GRAMI LOSOWYMI I ZAKŁADAMI WZAJEMNYMI
+GRUPA,92.0,DZIAŁALNOŚĆ ZWIĄZANA Z GRAMI LOSOWYMI I ZAKŁADAMI WZAJEMNYMI
+KLASA,92.00,DZIAŁALNOŚĆ ZWIĄZANA Z GRAMI LOSOWYMI I ZAKŁADAMI WZAJEMNYMI
+PODKLASA,92.00.Z,DZIAŁALNOŚĆ ZWIĄZANA Z GRAMI LOSOWYMI I ZAKŁADAMI WZAJEMNYMI
+DZIAŁ,93,"DZIAŁALNOŚĆ SPORTOWA, ROZRYWKOWA I REKREACYJNA"
+GRUPA,93.1,Działalność związana ze sportem
+KLASA,93.11,Działalność obiektów sportowych
+PODKLASA,93.11.Z,Działalność obiektów sportowych
+KLASA,93.12,Działalność klubów sportowych
+PODKLASA,93.12.Z,Działalność klubów sportowych
+KLASA,93.13,Działalność obiektów służących poprawie kondycji fizycznej
+PODKLASA,93.13.Z,Działalność obiektów służących poprawie kondycji fizycznej
+KLASA,93.19,Pozostała działalność związana ze sportem
+PODKLASA,93.19.Z,Pozostała działalność związana ze sportem
+GRUPA,93.2,Działalność rozrywkowa i rekreacyjna
+KLASA,93.21,Działalność wesołych miasteczek i parków rozrywki
+PODKLASA,93.21.Z,Działalność wesołych miasteczek i parków rozrywki
+KLASA,93.29,Pozostała działalność rozrywkowa i rekreacyjna
+PODKLASA,93.29.Z,Pozostała działalność rozrywkowa i rekreacyjna
+SEKCJA,S,POZOSTAŁA DZIAŁALNOŚĆ USŁUGOWA
+DZIAŁ,94,DZIAŁALNOŚĆ ORGANIZACJI CZŁONKOWSKICH
+GRUPA,94.1,"Działalność organizacji komercyjnych, pracodawców oraz organizacji profesjonalnych"
+KLASA,94.11,Działalność organizacji komercyjnych i pracodawców
+PODKLASA,94.11.Z,Działalność organizacji komercyjnych i pracodawców
+KLASA,94.12,Działalność organizacji profesjonalnych
+PODKLASA,94.12.Z,Działalność organizacji profesjonalnych
+GRUPA,94.2,Działalność związków zawodowych
+KLASA,94.20,Działalność związków zawodowych
+PODKLASA,94.20.Z,Działalność związków zawodowych
+GRUPA,94.9,Działalność pozostałych organizacji członkowskich
+KLASA,94.91,Działalność organizacji religijnych
+PODKLASA,94.91.Z,Działalność organizacji religijnych
+KLASA,94.92,Działalność organizacji politycznych
+PODKLASA,94.92.Z,Działalność organizacji politycznych
+KLASA,94.99,"Działalność pozostałych organizacji członkowskich, gdzie indziej niesklasyfikowana"
+PODKLASA,94.99.Z,"Działalność pozostałych organizacji członkowskich, gdzie indziej niesklasyfikowana"
+DZIAŁ,95,NAPRAWA I KONSERWACJA KOMPUTERÓW I ARTYKUŁÓW UŻYTKU OSOBISTEGO I DOMOWEGO
+GRUPA,95.1,Naprawa i konserwacja komputerów i sprzętu komunikacyjnego
+KLASA,95.11,Naprawa i konserwacja komputerów i urządzeń peryferyjnych
+PODKLASA,95.11.Z,Naprawa i konserwacja komputerów i urządzeń peryferyjnych
+KLASA,95.12,Naprawa i konserwacja sprzętu (tele)komunikacyjnego
+PODKLASA,95.12.Z,Naprawa i konserwacja sprzętu (tele)komunikacyjnego
+GRUPA,95.2,Naprawa i konserwacja artykułów użytku osobistego i domowego
+KLASA,95.21,Naprawa i konserwacja elektronicznego sprzętu powszechnego użytku
+PODKLASA,95.21.Z,Naprawa i konserwacja elektronicznego sprzętu powszechnego użytku
+KLASA,95.22,Naprawa i konserwacja urządzeń gospodarstwa domowego oraz sprzętu użytku domowego i ogrodniczego
+PODKLASA,95.22.Z,Naprawa i konserwacja urządzeń gospodarstwa domowego oraz sprzętu użytku domowego i ogrodniczego
+KLASA,95.23,Naprawa obuwia i wyrobów skórzanych
+PODKLASA,95.23.Z,Naprawa obuwia i wyrobów skórzanych
+KLASA,95.24,Naprawa i konserwacja mebli i wyposażenia domowego
+PODKLASA,95.24.Z,Naprawa i konserwacja mebli i wyposażenia domowego
+KLASA,95.25,"Naprawa zegarów, zegarków oraz biżuterii"
+PODKLASA,95.25.Z,"Naprawa zegarów, zegarków oraz biżuterii"
+KLASA,95.29,Naprawa pozostałych artykułów użytku osobistego i domowego
+PODKLASA,95.29.Z,Naprawa pozostałych artykułów użytku osobistego i domowego
+DZIAŁ,96,POZOSTAŁA INDYWIDUALNA DZIAŁALNOŚĆ USŁUGOWA
+GRUPA,96.0,POZOSTAŁA INDYWIDUALNA DZIAŁALNOŚĆ USŁUGOWA
+KLASA,96.01,Pranie i czyszczenie wyrobów włókienniczych i futrzarskich
+PODKLASA,96.01.Z,Pranie i czyszczenie wyrobów włókienniczych i futrzarskich
+KLASA,96.02,Fryzjerstwo i pozostałe zabiegi kosmetyczne
+PODKLASA,96.02.Z,Fryzjerstwo i pozostałe zabiegi kosmetyczne
+KLASA,96.03,Pogrzeby i działalność pokrewna
+PODKLASA,96.03.Z,Pogrzeby i działalność pokrewna
+KLASA,96.04,Działalność usługowa związana z poprawą kondycji fizycznej
+PODKLASA,96.04.Z,Działalność usługowa związana z poprawą kondycji fizycznej
+KLASA,96.09,"Pozostała działalność usługowa, gdzie indziej niesklasyfikowana"
+PODKLASA,96.09.Z,"Pozostała działalność usługowa, gdzie indziej niesklasyfikowana"
+SEKCJA,T,GOSPODARSTWA DOMOWE ZATRUDNIAJĄCE PRACOWNIKÓW; GOSPODARSTWA DOMOWE PRODUKUJĄCE WYROBY I ŚWIADCZĄCE USŁUGI NA WŁASNE POTRZEBY
+DZIAŁ,97,GOSPODARSTWA DOMOWE ZATRUDNIAJĄCE PRACOWNIKÓW
+GRUPA,97.0,GOSPODARSTWA DOMOWE ZATRUDNIAJĄCE PRACOWNIKÓW
+KLASA,97.00,GOSPODARSTWA DOMOWE ZATRUDNIAJĄCE PRACOWNIKÓW
+PODKLASA,97.00.Z,GOSPODARSTWA DOMOWE ZATRUDNIAJĄCE PRACOWNIKÓW
+DZIAŁ,98,GOSPODARSTWA DOMOWE PRODUKUJĄCE WYROBY I ŚWIADCZĄCE USŁUGI NA WŁASNE POTRZEBY
+GRUPA,98.1,Gospodarstwa domowe produkujące wyroby na własne potrzeby
+KLASA,98.10,Gospodarstwa domowe produkujące wyroby na własne potrzeby
+PODKLASA,98.10.Z,Gospodarstwa domowe produkujące wyroby na własne potrzeby
+GRUPA,98.2,Gospodarstwa domowe świadczące usługi na własne potrzeby
+KLASA,98.20,Gospodarstwa domowe świadczące usługi na własne potrzeby
+PODKLASA,98.20.Z,Gospodarstwa domowe świadczące usługi na własne potrzeby
+SEKCJA,U,ORGANIZACJE I ZESPOŁY EKSTERYTORIALNE
+DZIAŁ,99,ORGANIZACJE I ZESPOŁY EKSTERYTORIALNE
+GRUPA,99.0,ORGANIZACJE I ZESPOŁY EKSTERYTORIALNE
+KLASA,99.00,ORGANIZACJE I ZESPOŁY EKSTERYTORIALNE
+PODKLASA,99.00.Z,ORGANIZACJE I ZESPOŁY EKSTERYTORIALNE
