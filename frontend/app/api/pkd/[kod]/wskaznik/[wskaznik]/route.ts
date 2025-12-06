@@ -1,14 +1,34 @@
 export async function GET(
-  request: Request,
-  { params }: { params: { kod: string; wskaznik: string } }
+   req: Request,
+   { params }: { params: { kod: string; wskaznik: string } }
 ) {
-  return Response.json(params);
+   const { kod, wskaznik } = params;
+
+   const url = `${process.env.API_URL}:${process.env.API_PORT}/api/pkd/${kod}/wskaznik/${wskaznik}`;
+
+   const response = await fetch(url);
+   const data = await response.json();
+
+   return Response.json(data);
 }
 
 export async function POST(
-  request: Request,
-  { params }: { params: { kod: string; wskaznik: string } }
+   req: Request,
+   { params }: { params: { kod: string; wskaznik: string } }
 ) {
-  const body = await request.json();
-  return Response.json({ ...params, body });
+   const { kod, wskaznik } = params;
+
+   const url = `${process.env.API_URL}:${process.env.API_PORT}/api/pkd/${kod}/wskaznik/${wskaznik}`;
+
+   const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+         'Content-Type': 'application/json',
+      },
+      body: await req.text(),
+   });
+
+   const data = await response.json();
+
+   return Response.json(data);
 }

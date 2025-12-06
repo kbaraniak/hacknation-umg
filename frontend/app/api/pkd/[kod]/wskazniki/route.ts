@@ -1,6 +1,13 @@
 export async function GET(
-  request: Request,
+  req: Request,
   { params }: { params: { kod: string } }
 ) {
-  return Response.json({ kod: params.kod, wskazniki: [] });
+  const { kod } = params;
+
+  const url = `${process.env.API_URL}:${process.env.API_PORT}/api/pkd/${kod}/wskazniki`;
+
+  const response = await fetch(url);
+  const data = await response.json();
+
+  return Response.json(data);
 }
