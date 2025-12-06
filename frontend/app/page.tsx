@@ -19,6 +19,7 @@ export default function Home() {
         <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
           UMG Gdynia
         </Typography>
+        <Link href="/examples">Demo</Link>
       </Box>
     </Container>
   );
