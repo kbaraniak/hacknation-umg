@@ -10,5 +10,6 @@ mkShell {
     python313Packages.fastapi
     python313Packages.pytest
     python313Packages.statsmodels
+    python313Packages.httpx
   ];
 }

@@ -1,2 +1,6 @@
-fastapi>=0.95.0
-uvicorn[standard]>=0.22.0
+uvicorn
+pandas
+fastapi
+pytest
+statsmodels
+httpx

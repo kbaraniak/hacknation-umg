@@ -186,12 +186,15 @@ class PKDDataLoader:
         try:
             df = pd.read_csv(file_path)
             
+            # Śledzimy aktualną sekcję i dział, bo w CSV sekcja jest podana raz, a kolejne wiersze dziedziczą ją kontekstowo
+            current_section = None
+            current_division = None
+            
             for _, row in df.iterrows():
                 typ = str(row['typ']).strip()
                 symbol = str(row['symbol']).strip()
                 nazwa = str(row['nazwa']).strip()
                 
-                # Ustal level na podstawie typu
                 level_map = {
                     'SEKCJA': PKDLevel.SECTION,
                     'DZIAŁ': PKDLevel.DIVISION,
@@ -199,11 +202,22 @@ class PKDDataLoader:
                     'KLASA': PKDLevel.GROUP,  # Klasa to też grupa
                     'PODKLASA': PKDLevel.SUBCLASS,
                 }
-                
                 level = level_map.get(typ, PKDLevel.SUBCLASS)
                 
-                # Parsuj poziomy hierarchii z symbolu
                 section, division, group, subclass = self._parse_symbol(symbol)
+                
+                if level == PKDLevel.SECTION:
+                    current_section = section
+                    current_division = None
+                elif level == PKDLevel.DIVISION:
+                    current_division = division
+                    if section is None:
+                        section = current_section
+                else:  # GROUP lub SUBCLASS
+                    if section is None:
+                        section = current_section
+                    if division is None:
+                        division = current_division
                 
                 code = PKDCode(
                     symbol=symbol,
