@@ -767,8 +767,8 @@ async def get_trends(
 					growth = 0
 				growth_series[str(cur_y)] = growth
 			
-			sections_data[sec] = {
-				"name": (hierarchy.get_by_symbol(sec).name if hierarchy.get_by_symbol(sec) else f"Sekcja {sec}"),
+			sections_data[code_str] = {
+				"name": rep_code.name,
 				"time_series": {
 					"revenue": {str(y): agg_financial[y].revenue or 0 for y in years_sorted},
 					"net_income": {str(y): agg_financial[y].net_income or 0 for y in years_sorted},
@@ -784,23 +784,23 @@ async def get_trends(
 			}
 		
 		if not sections_data:
-			raise HTTPException(status_code=404, detail="Brak danych dla wybranych sekcji")
+			raise HTTPException(status_code=404, detail="Brak danych dla wybranych kodów PKD")
 		
 		datasets = []
-		for sec, data in sections_data.items():
+		for code, data in sections_data.items():
 			if "revenue" in metrics_list:
 				datasets.append({
-					"label": f"Sekcja {sec} - Przychody",
+					"label": f"{data['name']} - Przychody",
 					"data": [data["time_series"]["revenue"].get(l, 0) for l in labels]
 				})
 			if "growth" in metrics_list:
 				datasets.append({
-					"label": f"Sekcja {sec} - YoY %",
+					"label": f"{data['name']} - YoY %",
 					"data": [data["growth"].get(l, 0) for l in labels]
 				})
 			if "bankruptcies" in metrics_list:
 				datasets.append({
-					"label": f"Sekcja {sec} - Upadłości",
+					"label": f"{data['name']} - Upadłości",
 					"data": [data["time_series"]["bankruptcies"].get(l, 0) for l in labels]
 				})
 		
