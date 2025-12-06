@@ -109,9 +109,15 @@ export default function MultiIndustryChart({ codes, years, version = "2025" }: M
       setDebugResults(null);
       
       try {
-        const codesParam = codes.join(",");
-        const yearsParam = years ? `${years.from}-${years.to}` : "";
-        const compareUrl = `/api/compare?codes=${encodeURIComponent(codesParam)}${yearsParam ? `&years=${encodeURIComponent(yearsParam)}` : ""}&version=${encodeURIComponent(version)}`;
+        // Build URL with URLSearchParams for better readability and encoding
+        const params = new URLSearchParams({
+          codes: codes.join(","),
+          version: version,
+        });
+        if (years) {
+          params.set("years", `${years.from}-${years.to}`);
+        }
+        const compareUrl = `/api/compare?${params.toString()}`;
         
         console.debug("[MultiIndustryChart] compareUrl", compareUrl);
         
