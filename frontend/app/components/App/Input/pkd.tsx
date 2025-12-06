@@ -262,10 +262,6 @@ export default function PKDInput({ onChange }: { onChange?: (v: PKDValue) => voi
               )}
             />
           </div>
-          <div className="mt-1 text-xs text-gray-800">
-            {!division && !loadingDivisions && divisionSuggestions[0] ? <>Podpowiedź: <span className="font-medium text-gray-900">{divisionSuggestions[0]}</span></> : null}
-            {errors.division ? <div className="text-xs text-red-600 mt-1">{errors.division}</div> : null}
-          </div>
         </div>
 
         {/* Suffix (MUI Autocomplete) */}
@@ -298,10 +294,6 @@ export default function PKDInput({ onChange }: { onChange?: (v: PKDValue) => voi
                 />
               )}
             />
-          </div>
-          <div className="mt-1 text-xs text-gray-800">
-            {!suffix && !loadingSuffixes && suffixSuggestions[0] ? <>Podpowiedź: <span className="font-medium text-gray-900">{suffixSuggestions[0]}</span></> : null}
-            {errors.suffix ? <div className="text-xs text-red-600 mt-1">{errors.suffix}</div> : null}
           </div>
         </div>
       </div>
