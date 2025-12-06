@@ -3,6 +3,7 @@ import React from 'react';
 import { Box, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { Home, AccountCircle, Settings, ExitToApp } from '@mui/icons-material';
 import { blue } from '@mui/material/colors';
+import { saveToStorage } from '@/app/lib/client/storage'; // <- dodane
 
 type NavItem = { key: string; text: string; Icon: React.ElementType };
 
@@ -35,7 +36,10 @@ export default function Sidebar({ onSelect }: { onSelect?: (item: NavItem) => vo
     const renderNavItem = (item: NavItem) => (
         <ListItemButton
             key={item.key}
-            onClick={() => onSelect?.(item)}
+            onClick={() => {
+                saveToStorage('selected_nav', item.key); // zapis do localStorage jako identyfikator (np. "size")
+                onSelect?.(item);
+            }}
             sx={{ '&:hover': { bgcolor: 'grey.700', borderRadius: 1 } }}
         >
             <ListItemIcon>
