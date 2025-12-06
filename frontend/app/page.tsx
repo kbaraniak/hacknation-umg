@@ -1,26 +1,20 @@
+"use client";
 import * as React from 'react';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
+import Header from '@/app/components/Header/header';
+import Main from '@/app/components/App/main';
+import Sidebar from '@/app/components/Menu/sidebar';
 
 export default function Home() {
+  const [selected, setSelected] = React.useState<string | null>(null);
+
   return (
-    <Container maxWidth="lg">
-      <Box
-        sx={{
-          my: 4,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
-          UMG Gdynia
-        </Typography>
-        <Link href="/examples">Demo</Link>
-      </Box>
-    </Container>
+    <>
+      <Header />
+      <div className="flex flex-row">
+        <Sidebar onSelect={(item) => setSelected(item.text)} />
+        <Main selected={selected} />
+      </div>
+    </>
   );
 }
