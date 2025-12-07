@@ -26,25 +26,29 @@ type IndustryData = {
 };
 
 const columns: GridColDef<IndustryData>[] = [
-    { field: 'pkd_code', headerName: 'Kod PKD', width: 130 },
-    {
-        field: 'name',
-        headerName: 'Nazwa',
-        width: 300,
-        editable: false,
-    },
     {
         field: 'section',
         headerName: 'Sekcja',
         width: 100,
         editable: false,
     },
+    {   
+        field: 'pkd_code', 
+        headerName: 'Kod PKD', 
+        width: 130 
+    },
     {
-        field: 'level',
-        headerName: 'Poziom',
-        width: 120,
+        field: 'name',
+        headerName: 'Nazwa',
+        width: 300,
         editable: false,
     },
+    // {
+    //     field: 'level',
+    //     headerName: 'Poziom',
+    //     width: 120,
+    //     editable: false,
+    // },
     {
         field: 'units',
         headerName: 'Liczba jednostek',
@@ -88,6 +92,12 @@ export default function Size() {
             try {
                 const dataPromises = selectedPKDs.map(async (pkd) => {
                     try {
+                        // Walidacja - wymagamy section i division
+                        if (!pkd.section || !pkd.division) {
+                            console.warn('Pominięto PKD bez section lub division:', pkd);
+                            return [];
+                        }
+
                         const response = await getIndustry({
                             section: pkd.section,
                             division: pkd.division,
@@ -99,7 +109,12 @@ export default function Size() {
                         const pkdCodes = response.pkd_codes || [];
                         const financialData = response.financial_data || {};
                         
-                        return pkdCodes.map((code: any, index: number) => {
+                        // Filtruj tylko subklasy (podklasy)
+                        const subclassesOnly = pkdCodes.filter((code: any) => 
+                            code.level === 'subclass' || code.level === 'SUBCLASS'
+                        );
+                        
+                        return subclassesOnly.map((code: any, index: number) => {
                             // Get latest year's financial data
                             const years = Object.keys(financialData).sort().reverse();
                             const latestYear = years[0];
@@ -147,7 +162,7 @@ export default function Size() {
     return (
         <div className="rounded-md">
             <h1 className="text-2xl font-bold mb-4">Wielkość Branży</h1>
-            <p className="mb-4">Wybierz kody PKD w głównym menu, aby wyświetlić dane branżowe.</p>
+            <p className="mb-4">Wybierz kody PKD w głównym menu, aby wyświetlić dane branżowe (pokazywane tylko podklasy).</p>
 
             {/* Data Grid */}
             {selectedPKDs.length > 0 && (
@@ -163,6 +178,7 @@ export default function Size() {
                                 },
                             },
                         }}
+                        className="rounded-md"
                         pageSizeOptions={[5, 10, 25, 50]}
                         checkboxSelection
                         disableRowSelectionOnClick

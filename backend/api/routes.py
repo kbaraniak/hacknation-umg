@@ -123,17 +123,31 @@ async def get_industry_data(
 	Pobierz dane dla wybranej branży.
     
 	Obsługuje hierarchię PKD:
-	- section: Sekcja (A-U)
-	- division: Dział (2-cyfrowy, wymaga section)
-	- group: Grupa (wymaga division)  
-	- subclass: Podklasa (wymaga group)
+	- section + division: Dział (wymagane, użyj /sections i /divisions do pobrania listy)
+	- group: Grupa (opcjonalne, wymaga division)  
+	- subclass: Podklasa (opcjonalne, wymaga group)
     
 	Przykłady:
-	- /industry?section=A → wszystkie kody w sekcji A
 	- /industry?section=G&division=46 → wszystkie kody w dziale 46
 	- /industry?section=G&division=46&group=11 → grupa 46.11
+	- /industry?section=G&division=46&group=11&subclass=A → kod 46.11.A
+	
+	Uwaga: Aby pobrać dane tylko dla sekcji, użyj endpointu /sections
 	"""
 	try:
+		# Walidacja - wymagamy przynajmniej section + division
+		if section is None:
+			raise HTTPException(
+				status_code=400,
+				detail="Parametr 'section' jest wymagany. Użyj /sections aby pobrać listę sekcji."
+			)
+		
+		if division is None:
+			raise HTTPException(
+				status_code=400,
+				detail="Parametr 'division' jest wymagany. Użyj /divisions?section={section} aby pobrać listę działów."
+			)
+		
 		# Konwertuj wersję
 		pkd_version = PKDVersion.VERSION_2025 if version == "2025" else PKDVersion.VERSION_2007
         
@@ -319,6 +333,10 @@ async def get_industry_index(
 	"""
 	Pobierz indeks branży ze wskaźnikami, trendem i prognozą.
 	
+	Wymagane parametry:
+	- **section**: Sekcja PKD (A-U)
+	- **division**: Dział PKD (2-cyfrowy)
+	
 	Zwraca:
 	- **scores**: Komponenty oceny (rozmiar, rentowność, wzrost, ryzyko)
 	- **trend**: Kierunek, wzrost YoY, zmienność, prognoza na 1-5 lat
@@ -327,6 +345,19 @@ async def get_industry_index(
 	Przykład: /index?section=G&division=46 → Handel hurtowy
 	"""
 	try:
+		# Walidacja - wymagamy przynajmniej section + division
+		if section is None:
+			raise HTTPException(
+				status_code=400,
+				detail="Parametr 'section' jest wymagany."
+			)
+		
+		if division is None:
+			raise HTTPException(
+				status_code=400,
+				detail="Parametr 'division' jest wymagany."
+			)
+		
 		# Limit prognozy
 		forecast_years = max(1, min(5, forecast_years))
 		

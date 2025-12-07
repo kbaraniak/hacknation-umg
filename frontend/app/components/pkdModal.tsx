@@ -29,19 +29,46 @@ export default function PKDModal({ onPKDsChange }: PKDModalProps) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [pkdList, setPkdList] = React.useState<PKDItem[]>([]);
     const [currentPKD, setCurrentPKD] = React.useState<PKDItem | null>(null);
+    const [errorMessage, setErrorMessage] = React.useState<string>("");
 
     const handleAddPKD = () => {
-        if (currentPKD?.pkd) {
-            // Sprawdź czy PKD już nie istnieje na liście
-            const exists = pkdList.some(item => item.pkd === currentPKD.pkd);
-            if (!exists) {
-                const newList = [...pkdList, currentPKD];
-                setPkdList(newList);
-                // Notify parent component
-                onPKDsChange?.(newList);
-                // Reset current selection after adding
-                setCurrentPKD(null);
-            }
+        // Reset error
+        setErrorMessage("");
+        
+        // Walidacja - wymagamy section i division
+        if (!currentPKD?.section || !currentPKD?.division) {
+            setErrorMessage('Wybierz przynajmniej Sekcję i Dział przed dodaniem PKD');
+            return;
+        }
+        
+        // Stwórz identyfikator PKD (nawet jeśli suffix/group nie jest wybrany)
+        const pkdIdentifier = currentPKD.suffix 
+            ? `${currentPKD.section}.${currentPKD.division}.${currentPKD.suffix}`
+            : `${currentPKD.section}.${currentPKD.division}`;
+        
+        // Sprawdź czy PKD już nie istnieje na liście
+        const exists = pkdList.some(item => {
+            const existingIdentifier = item.suffix
+                ? `${item.section}.${item.division}.${item.suffix}`
+                : `${item.section}.${item.division}`;
+            return existingIdentifier === pkdIdentifier;
+        });
+        
+        if (!exists) {
+            // Dodaj z wygenerowanym identyfikatorem
+            const newPKD = {
+                ...currentPKD,
+                pkd: pkdIdentifier,
+                full: pkdIdentifier
+            };
+            const newList = [...pkdList, newPKD];
+            setPkdList(newList);
+            // Notify parent component
+            onPKDsChange?.(newList);
+            // Reset current selection after adding
+            setCurrentPKD(null);
+        } else {
+            setErrorMessage('Ten kod PKD jest już na liście');
         }
     };
 
@@ -77,13 +104,20 @@ export default function PKDModal({ onPKDsChange }: PKDModalProps) {
 
                                 {/* Add Button */}
                                 <div className="mb-4">
+                                    {errorMessage && (
+                                        <div className="mb-2 p-2 bg-red-100 border border-red-400 text-red-700 rounded text-sm">
+                                            {errorMessage}
+                                        </div>
+                                    )}
                                     <Button 
                                         color="primary" 
                                         onPress={handleAddPKD}
-                                        isDisabled={!currentPKD?.pkd}
+                                        isDisabled={!currentPKD?.section || !currentPKD?.division}
                                         fullWidth
                                     >
-                                        Dodaj PKD {currentPKD?.pkd ? `(${currentPKD.pkd})` : ''}
+                                        Dodaj PKD {currentPKD?.section && currentPKD?.division 
+                                            ? `(${currentPKD.section}.${currentPKD.division}${currentPKD.suffix ? '.' + currentPKD.suffix : ''})` 
+                                            : ''}
                                     </Button>
                                 </div>
 
@@ -100,6 +134,11 @@ export default function PKDModal({ onPKDsChange }: PKDModalProps) {
                                         <div className="flex flex-wrap gap-2">
                                             {pkdList.map((item) => {
                                                 console.log(item);
+                                                // Zbuduj wyświetlaną etykietę
+                                                const displayLabel = item.suffix 
+                                                    ? `${item.section}.${item.division}.${item.suffix}`
+                                                    : `${item.section}.${item.division}`;
+                                                
                                                 return (
                                                     <Chip
                                                         key={item.pkd}
@@ -107,7 +146,7 @@ export default function PKDModal({ onPKDsChange }: PKDModalProps) {
                                                         variant="flat"
                                                         color="primary"
                                                     >
-                                                        {item.suffix === undefined ? item.pkd : item.section + "." + item.suffix}
+                                                        {displayLabel}
                                                     </Chip>
                                                 );
                                             })}
