@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Tabs, Tab} from "@heroui/tabs";
-import { PieChart, TrendingUp, AttachMoney, AccountBalance, ReportProblem } from '@mui/icons-material';
+import { PieChart, TrendingUp, AttachMoney, AccountBalance, ReportProblem, Category, EmojiEvents } from '@mui/icons-material';
 import Image from "next/image";
 
 export type SidebarProps = {
@@ -17,6 +17,8 @@ export default function Sidebar({ selectedKey, onSelectionChange }: SidebarProps
         { key: "Finance", title: "Finanse", Icon: AttachMoney },
         { key: "Debt", title: "Zadłużenie", Icon: AccountBalance },
         { key: "Risk", title: "Ryzyko", Icon: ReportProblem },
+        { key: "Classifications", title: "Klasyfikacje", Icon: Category },
+        { key: "Rankings", title: "Rankingi", Icon: EmojiEvents },
     ];
 
     return (

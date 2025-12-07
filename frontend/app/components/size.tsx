@@ -4,7 +4,7 @@ import React from "react";
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { BarChart } from '@mui/x-charts/BarChart';
-import { getIndustry } from "@/app/lib/client/pkdClient";
+import { getIndustry, compareIndustries } from "@/app/lib/client/pkdClient";
 import { usePKD } from "@/app/context/PKDContext";
 
 type PKDItem = {
@@ -88,7 +88,7 @@ export default function Size() {
     const [aggregatedData, setAggregatedData] = React.useState<AggregatedData[]>([]);
     const [loading, setLoading] = React.useState(false);
 
-    // Fetch data when PKDs are selected
+    // Fetch data when PKDs are selected - OPTIMIZED with /api/compare
     React.useEffect(() => {
         const fetchIndustryData = async () => {
             if (selectedPKDs.length === 0) {
@@ -99,92 +99,96 @@ export default function Size() {
 
             setLoading(true);
             try {
+                // Build codes string for compare API (e.g., "G.46,C.10,A")
+                const codes = selectedPKDs
+                    .filter(pkd => pkd.section)
+                    .map(pkd => {
+                        const parts = [pkd.section];
+                        if (pkd.division) parts.push(pkd.division);
+                        if (pkd.suffix) parts.push(pkd.suffix);
+                        return parts.join('.');
+                    })
+                    .join(',');
+
+                if (!codes) {
+                    setIndustryData([]);
+                    setAggregatedData([]);
+                    setLoading(false);
+                    return;
+                }
+
+                // Single API call to compare all branches
+                const yearsRange = startYear && endYear ? `${startYear}-${endYear}` : undefined;
+                const compareResults = await compareIndustries(codes, "2025", yearsRange);
+
                 const aggregatedResults: AggregatedData[] = [];
-                
-                const dataPromises = selectedPKDs.map(async (pkd) => {
-                    try {
-                        // Walidacja - wymagamy przynajmniej section
-                        if (!pkd.section) {
-                            console.warn('Pominięto PKD bez section:', pkd);
-                            return [];
+                const allTableRows: any[] = [];
+
+                // Process compare results
+                for (const result of compareResults) {
+                    const summary = result.summary || {};
+                    const pkdCode = result.id || '';
+                    
+                    aggregatedResults.push({
+                        pkdCode,
+                        totalRevenue: summary.total_revenue || 0,
+                        totalUnits: summary.total_units || 0,
+                    });
+
+                    // For detailed table, we still need individual industry data
+                    // (compare API returns aggregated time series, not per-code breakdown)
+                    const matchingPKD = selectedPKDs.find(p => {
+                        const fullCode = [p.section, p.division, p.suffix].filter(Boolean).join('.');
+                        return pkdCode.includes(fullCode) || fullCode.includes(pkdCode.replace(/^[A-U]\./, ''));
+                    });
+
+                    if (matchingPKD && matchingPKD.section) {
+                        try {
+                            const detailResponse = await getIndustry({
+                                section: matchingPKD.section,
+                                division: matchingPKD.division,
+                                group: matchingPKD.suffix,
+                                version: "2025",
+                                year_from: startYear,
+                                year_to: endYear
+                            });
+
+                            const pkdCodes = detailResponse.pkd_codes || [];
+                            const financialData = detailResponse.financial_data || {};
+
+                            const codesWithData = pkdCodes.filter((code: any) => {
+                                const cleanSymbol = code.symbol.replace(/^[A-U]\./, '').replace(/\.Z$/, '');
+                                return financialData[cleanSymbol] && Object.keys(financialData[cleanSymbol]).length > 0;
+                            });
+
+                            const rows = codesWithData.map((code: any, index: number) => {
+                                const symbolWithoutSection = code.symbol.replace(/^[A-U]\./, '');
+                                const cleanSymbol = symbolWithoutSection.replace(/\.Z$/, '');
+                                const codeFinancialData = financialData[cleanSymbol] || {};
+                                const years = Object.keys(codeFinancialData).sort().reverse();
+                                const latestYear = years[0];
+                                const latestData = latestYear ? codeFinancialData[latestYear] : null;
+
+                                return {
+                                    id: `${matchingPKD.pkd}-${code.symbol}-${index}`,
+                                    pkd_code: code.symbol || matchingPKD.pkd || '',
+                                    name: code.name || 'Brak nazwy',
+                                    level: code.level || 'N/A',
+                                    section: code.section || matchingPKD.section,
+                                    units: latestData?.unit_count,
+                                    revenue: latestData?.revenue,
+                                    profitability: latestData?.profitability_ratio,
+                                };
+                            });
+
+                            allTableRows.push(...rows);
+                        } catch (error) {
+                            console.error(`Error fetching detail for ${pkdCode}:`, error);
                         }
-
-                        const response = await getIndustry({
-                            section: pkd.section,
-                            division: pkd.division,
-                            group: pkd.suffix,
-                            version: "2025",
-                            year_from: startYear,
-                            year_to: endYear
-                        });
-
-                        // Pobierz summary statistics dla wykresu
-                        const summary = response.summary_statistics || {};
-                        aggregatedResults.push({
-                            pkdCode: pkd.pkd || `${pkd.section}${pkd.division ? '.' + pkd.division : ''}${pkd.suffix ? '.' + pkd.suffix : ''}`,
-                            totalRevenue: summary.total_revenue || 0,
-                            totalUnits: summary.total_units || 0,
-                        });
-                        
-                        // Extract relevant data from response
-                        const pkdCodes = response.pkd_codes || [];
-                        const financialData = response.financial_data || {};
-                        
-                        // Pokaż wszystkie poziomy które mają dane finansowe (nie tylko subklasy)
-                        const codesWithData = pkdCodes.filter((code: any) => {
-                            const cleanSymbol = code.symbol.replace(/^[A-U]\./, '').replace(/\.Z$/, '');
-                            return financialData[cleanSymbol] && Object.keys(financialData[cleanSymbol]).length > 0;
-                        });
-                        
-                        return codesWithData.map((code: any, index: number) => {
-                            // Backend teraz zwraca klucze w formacie bez sekcji i bez .Z (np. "02.10")
-                            // Usuń tylko sekcję z symbolu: A.02.10.Z -> 02.10.Z
-                            const symbolWithoutSection = code.symbol.replace(/^[A-U]\./, '');
-                            // Usuń .Z: 02.10.Z -> 02.10
-                            const cleanSymbol = symbolWithoutSection.replace(/\.Z$/, '');
-                            
-                            const codeFinancialData = financialData[cleanSymbol] || {};
-                            const years = Object.keys(codeFinancialData).sort().reverse();
-                            const latestYear = years[0];
-                            const latestData = latestYear ? codeFinancialData[latestYear] : null;
-
-                            const rowData = {
-                                id: `${pkd.pkd}-${code.symbol}-${index}`,
-                                pkd_code: code.symbol || pkd.pkd || '',
-                                name: code.name || 'Brak nazwy',
-                                level: code.level || 'N/A',
-                                section: code.section || pkd.section,
-                                units: latestData?.unit_count,
-                                revenue: latestData?.revenue,
-                                profitability: latestData?.profitability_ratio,
-                            };
-                            
-                            // Debug pierwszego wiersza
-                            if (index === 0) {
-                                console.log('🔍 Pierwszy wiersz tabeli:', rowData);
-                                console.log('📊 latestData:', latestData);
-                            }
-                            
-                            return rowData;
-                        });
-                    } catch (error) {
-                        console.error(`Error fetching data for PKD ${pkd.pkd}:`, error);
-                        return [{
-                            id: pkd.pkd || Math.random().toString(),
-                            pkd_code: pkd.pkd || 'N/A',
-                            name: 'Błąd ładowania danych',
-                            level: 'N/A',
-                            section: pkd.section,
-                            units: undefined,
-                            revenue: undefined,
-                            profitability: undefined,
-                        }];
                     }
-                });
+                }
 
-                const results = await Promise.all(dataPromises);
-                const flattenedData = results.flat();
-                setIndustryData(flattenedData);
+                setIndustryData(allTableRows);
                 setAggregatedData(aggregatedResults);
             } catch (error) {
                 console.error('Error fetching industry data:', error);

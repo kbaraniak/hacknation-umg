@@ -231,3 +231,61 @@ export async function translateCode(
 ) {
   return request("/api/translate", { code, from_version, to_version });
 }
+
+/**
+ * Compare multiple branches (codes or sections)
+ * Example: codes="46,47,G,C"
+ */
+export async function compareIndustries(
+  codes: string,
+  version?: string,
+  years?: string
+) {
+  return request("/api/compare", { codes, version, years });
+}
+
+/**
+ * Get industry rankings by level
+ */
+export async function getRankings(
+  level?: string,
+  version?: string,
+  limit?: number,
+  min_score?: number,
+  order?: string
+) {
+  return request("/api/rankings", { level, version, limit, min_score, order });
+}
+
+/**
+ * Get classifications by type
+ * Types: risky, growing, high-credit-needs, stable
+ */
+export async function getClassifications(
+  classification_type: string,
+  version?: string,
+  limit?: number
+) {
+  return request(`/api/classifications/${classification_type}`, { version, limit });
+}
+
+/**
+ * Get trends over time for multiple codes
+ */
+export async function getTrends(
+  codes: string,
+  years?: string,
+  metrics?: string
+) {
+  return request("/api/trends", { codes, years, metrics });
+}
+
+/**
+ * Get economy snapshot for a specific year
+ */
+export async function getEconomySnapshot(
+  version?: string,
+  year?: number
+) {
+  return request("/api/economy/snapshot", { version, year });
+}

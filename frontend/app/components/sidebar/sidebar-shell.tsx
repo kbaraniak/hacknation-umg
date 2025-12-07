@@ -7,6 +7,8 @@ import IndustryGrowth from "../tabs/IndustryGrowth";
 import IndustryProfitability from "../tabs/IndustryProfitability";
 import IndustryDebt from "../tabs/IndustryDebt";
 import IndustryBankruptcy from "../tabs/IndustryBankruptcy";
+import IndustryClassifications from "../tabs/IndustryClassifications";
+import IndustryRankings from "../tabs/IndustryRankings";
 import { saveToStorage, loadFromStorage } from '@/lib/client/storage';
 
 const STORAGE_KEY_CATEGORY = 'hacknation_last_category';
@@ -44,6 +46,10 @@ export default function SidebarShell({children}: { children: React.ReactNode }) 
                 return <IndustryDebt />;
             case "Risk":
                 return <IndustryBankruptcy />;
+            case "Classifications":
+                return <IndustryClassifications />;
+            case "Rankings":
+                return <IndustryRankings />;
             default:
                 return <div>Empty</div>;
         }
