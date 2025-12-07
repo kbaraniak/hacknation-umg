@@ -142,8 +142,8 @@ export default function IndustryRankings() {
 
     return (
         <div className="rounded-md">
-            <h1 className="text-2xl font-bold mb-4 text-gray-900">Rankingi Branż</h1>
-            <p className="mb-4 text-gray-700">
+            <h1 className="text-2xl font-bold mb-4 text-white">Rankingi Branż</h1>
+            <p className="mb-4 text-white">
                 Kompleksowy ranking branż według kondycji finansowej, potencjału wzrostu i poziomu ryzyka.
             </p>
 
