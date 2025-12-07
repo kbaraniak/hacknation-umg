@@ -55,8 +55,6 @@ export default function IndustryBankruptcy() {
     const [bankruptcyData, setBankruptcyData] = React.useState<BankruptcyData[]>([]);
     const [aggregatedData, setAggregatedData] = React.useState<any[]>([]);
     const [loading, setLoading] = React.useState(false);
-    console.log('bankruptcyData', bankruptcyData);
-    
 
     React.useEffect(() => {
         const fetchBankruptcyData = async () => {
@@ -84,66 +82,134 @@ export default function IndustryBankruptcy() {
                         const financialData = response.financial_data || {};
                         const bankruptcyDataApi = response.bankruptcy_data || {};
                         const pkdCodes = response.pkd_codes || [];
-                        
-                        const codesWithData = pkdCodes.filter((code: any) => {
-                            const cleanSymbol = code.symbol.replace(/^[A-U]\./, '').replace(/\.Z$/, '');
-                            return financialData[cleanSymbol] || bankruptcyDataApi[code.symbol];
+
+                        // Flatten financial data to get all PKD codes with data
+                        const allBankruptcyRecords: Array<{
+                            pkdCode: string;
+                            year: number;
+                            unitCount: number;
+                            bankruptcies: number;
+                        }> = [];
+
+                        // Process financial data for unit counts
+                        Object.entries(financialData).forEach(([pkdCode, yearData]: [string, any]) => {
+                            Object.entries(yearData).forEach(([year, data]: [string, any]) => {
+                                if (data && typeof data === 'object') {
+                                    allBankruptcyRecords.push({
+                                        pkdCode,
+                                        year: parseInt(year),
+                                        unitCount: data.unit_count || 0,
+                                        bankruptcies: 0
+                                    });
+                                }
+                            });
                         });
 
-                        return codesWithData.map((code: any, index: number) => {
-                            const cleanSymbol = code.symbol.replace(/^[A-U]\./, '').replace(/\.Z$/, '');
-                            const codeFinancialData = financialData[cleanSymbol] || {};
-                            const years = Object.keys(codeFinancialData).sort();
-                            
-                            const latestYear = years[years.length - 1];
-                            const latestData = latestYear ? codeFinancialData[latestYear] : null;
-                            const totalUnits = latestData?.unit_count || 0;
+                        // Process bankruptcy data
+                        Object.entries(bankruptcyDataApi).forEach(([symbol, yearData]: [string, any]) => {
+                            const cleanSymbol = symbol.replace(/^[A-U]\./, '').replace(/\.Z$/, '');
+                            Object.entries(yearData).forEach(([year, bankruptcyCount]: [string, any]) => {
+                                const yearNum = parseInt(year);
+                                const existingRecord = allBankruptcyRecords.find(
+                                    r => r.pkdCode === cleanSymbol && r.year === yearNum
+                                );
+                                
+                                if (existingRecord) {
+                                    existingRecord.bankruptcies = bankruptcyCount || 0;
+                                } else {
+                                    allBankruptcyRecords.push({
+                                        pkdCode: cleanSymbol,
+                                        year: yearNum,
+                                        unitCount: 0,
+                                        bankruptcies: bankruptcyCount || 0
+                                    });
+                                }
+                            });
+                        });
 
-                            // Pobierz dane o upadłościach
-                            const bankruptcies = bankruptcyDataApi[code.symbol] || {};
-                            const bankruptcyYears = Object.keys(bankruptcies).sort();
-                            const latestBankruptcyYear = bankruptcyYears[bankruptcyYears.length - 1];
-                            const latestBankruptcies = latestBankruptcyYear ? bankruptcies[latestBankruptcyYear] : 0;
+                        // Group by PKD code and calculate metrics
+                        const pkdGrouped = new Map<string, Array<typeof allBankruptcyRecords[0]>>();
+                        allBankruptcyRecords.forEach(record => {
+                            if (!pkdGrouped.has(record.pkdCode)) {
+                                pkdGrouped.set(record.pkdCode, []);
+                            }
+                            pkdGrouped.get(record.pkdCode)!.push(record);
+                        });
 
-                            // Oblicz wskaźnik upadłości
-                            const bankruptcyRate = totalUnits > 0 ? (latestBankruptcies / totalUnits) * 100 : 0;
+                        return Array.from(pkdGrouped.entries()).map(([pkdCode, records], index) => {
+                            // Sort by year
+                            const sortedRecords = records.sort((a, b) => b.year - a.year);
+                            const latestRecord = sortedRecords[0];
+                            const previousRecord = sortedRecords[1];
 
-                            // Oblicz trend
+                            if (!latestRecord) return null;
+
+                            // Calculate bankruptcy rate
+                            const bankruptcyRate = latestRecord.unitCount > 0
+                                ? (latestRecord.bankruptcies / latestRecord.unitCount) * 100
+                                : 0;
+
+                            // Calculate trend (change in bankruptcy rate)
                             let bankruptcyTrend = 0;
-                            if (bankruptcyYears.length >= 2) {
-                                const previousYear = bankruptcyYears[bankruptcyYears.length - 2];
-                                const previousBankruptcies = bankruptcies[previousYear] || 0;
-                                const previousRate = totalUnits > 0 ? (previousBankruptcies / totalUnits) * 100 : 0;
+                            if (previousRecord && previousRecord.unitCount > 0) {
+                                const previousRate = (previousRecord.bankruptcies / previousRecord.unitCount) * 100;
                                 bankruptcyTrend = bankruptcyRate - previousRate;
                             }
 
+                            // Find the code information
+                            const codeInfo = pkdCodes.find((c: any) => {
+                                const cleanSym = c.symbol.replace(/^[A-U]\./, '').replace(/\.Z$/, '');
+                                return cleanSym === pkdCode;
+                            });
+
                             return {
-                                id: `${pkd.pkd}-${code.symbol}-${index}`,
-                                pkd_code: code.symbol,
-                                name: code.name || 'Brak nazwy',
-                                total_units: totalUnits,
-                                bankruptcies: latestBankruptcies,
+                                id: `${pkd.pkd}-${pkdCode}-${index}`,
+                                pkd_code: codeInfo?.symbol || pkdCode,
+                                name: codeInfo?.name || 'Brak nazwy',
+                                total_units: latestRecord.unitCount,
+                                bankruptcies: latestRecord.bankruptcies,
                                 bankruptcy_rate: bankruptcyRate,
                                 bankruptcy_trend: bankruptcyTrend,
                             };
-                        }).filter(Boolean);
+                        }).filter((item): item is BankruptcyData => item !== null);
                     })
                 );
 
                 const flattenedData = results.flat().filter(Boolean) as BankruptcyData[];
                 setBankruptcyData(flattenedData);
 
-                // Agreguj dane
+                // Aggregate data by selected PKD
                 const aggregated = selectedPKDs.map(pkd => {
-                    const pkdData = flattenedData.filter(d => d.pkd_code.startsWith(pkd.pkd || ''));
+                    const basePkdCode = pkd.pkd || '';
+                    
+                    // Filter data for this PKD (match by removing section prefix)
+                    const pkdData = flattenedData.filter(d => {
+                        const cleanCode = d.pkd_code.replace(/^[A-U]\./, '').replace(/\.Z$/, '');
+                        return cleanCode.startsWith(basePkdCode);
+                    });
+
+                    if (pkdData.length === 0) {
+                        return {
+                            pkdCode: basePkdCode,
+                            totalBankruptcies: 0,
+                            bankruptcyRate: 0,
+                        };
+                    }
+
+                    // Calculate averages
                     const totalUnits = pkdData.reduce((sum, d) => sum + d.total_units, 0);
                     const totalBankruptcies = pkdData.reduce((sum, d) => sum + d.bankruptcies, 0);
+                    
+                    // Average bankruptcy rate
+                    const avgBankruptcyRate = pkdData.reduce((sum, d) => sum + d.bankruptcy_rate, 0) / pkdData.length;
+
                     return {
-                        pkdCode: pkd.pkd || '',
+                        pkdCode: basePkdCode,
                         totalBankruptcies: totalBankruptcies,
-                        bankruptcyRate: totalUnits > 0 ? (totalBankruptcies / totalUnits) * 100 : 0,
+                        bankruptcyRate: avgBankruptcyRate,
                     };
                 });
+                
                 setAggregatedData(aggregated);
 
             } catch (error) {
@@ -181,8 +247,8 @@ export default function IndustryBankruptcy() {
 
     return (
         <div className="rounded-md p-2 sm:p-0">
-            <h1 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">Szkodowość Branży</h1>
-            <p className="mb-3 sm:mb-4 text-sm sm:text-base text-gray-200">Wskaźnik upadłości i jego dynamika w wybranych branżach.</p>
+            <h1 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-gray-100">Szkodowość Branży</h1>
+            <p className="mb-3 sm:mb-4 text-sm sm:text-base text-gray-300">Wskaźnik upadłości i jego dynamika w wybranych branżach.</p>
 
             {selectedPKDs.length > 0 && aggregatedData.length > 0 && (
                 <IndustryComparison

@@ -162,8 +162,8 @@ export default function IndustryGrowth() {
 
     return (
         <div className="rounded-md p-2 sm:p-0">
-            <h1 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">Rozwój Branży</h1>
-            <p className="mb-3 sm:mb-4 text-sm sm:text-base text-gray-200">Analiza trendu, wzrostu i prognozy dla wybranych branż (dane z Industry Index).</p>
+            <h1 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-gray-100">Rozwój Branży</h1>
+            <p className="mb-3 sm:mb-4 text-sm sm:text-base text-gray-300">Analiza trendu, wzrostu i prognozy dla wybranych branż (dane z Industry Index).</p>
 
             {selectedPKDs.length > 0 && aggregatedData.length > 0 && (
                 <IndustryComparison

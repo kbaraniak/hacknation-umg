@@ -109,9 +109,9 @@ export default function IndustryClassifications() {
     };
 
     return (
-        <div className="rounded-md">
-            <h1 className="text-2xl font-bold mb-4 text-white">Klasyfikacje Branż</h1>
-            <p className="mb-4 text-white">
+        <div className="rounded-md p-2 sm:p-0">
+            <h1 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-gray-100">Klasyfikacje Branż</h1>
+            <p className="mb-3 sm:mb-4 text-sm sm:text-base text-gray-300">
                 Automatyczna klasyfikacja branż według kondycji finansowej i potencjału rozwoju.
             </p>
 

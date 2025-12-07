@@ -47,7 +47,6 @@ export default function IndustryProfitability() {
     const [profitabilityData, setProfitabilityData] = React.useState<ProfitabilityData[]>([]);
     const [aggregatedData, setAggregatedData] = React.useState<any[]>([]);
     const [loading, setLoading] = React.useState(false);
-    console.log('profitabilityData', profitabilityData);
 
     React.useEffect(() => {
         const fetchProfitabilityData = async () => {
@@ -88,22 +87,61 @@ export default function IndustryProfitability() {
                             const latestYear = years[years.length - 1];
                             const latestData = latestYear ? codeFinancialData[latestYear] : null;
 
+                            // Oblicz rentowność i marżę z dostępnych danych
+                            let profitability = 0;
+                            let margin = 0;
+                            
+                            if (latestData) {
+                                const revenue = latestData.revenue || 0;
+                                const netIncome = latestData.net_income || 0;
+                                const operatingIncome = latestData.operating_income || 0;
+                                const totalCosts = latestData.total_costs || 0;
+                                
+                                // Rentowność = (zysk netto / przychody) * 100
+                                if (revenue > 0 && netIncome !== null) {
+                                    profitability = (netIncome / revenue);
+                                } else if (latestData.profitability_ratio !== null) {
+                                    profitability = latestData.profitability_ratio;
+                                }
+                                
+                                // Marża = (przychody - koszty) / przychody * 100
+                                // lub (zysk operacyjny / przychody) * 100
+                                if (revenue > 0 && operatingIncome !== null) {
+                                    margin = (operatingIncome / revenue);
+                                } else if (revenue > 0 && totalCosts > 0) {
+                                    margin = ((revenue - totalCosts) / revenue);
+                                } else if (latestData.margin_ratio !== null) {
+                                    margin = latestData.margin_ratio;
+                                }
+                            }
+
                             // Oblicz zmianę rentowności
                             let profitabilityGrowth = 0;
-                            if (years.length >= 2) {
+                            if (years.length >= 2 && profitability > 0) {
                                 const previousYear = years[years.length - 2];
                                 const previousData = codeFinancialData[previousYear];
-                                const currentProf = latestData?.profitability_ratio || 0;
-                                const previousProf = previousData?.profitability_ratio || 0;
-                                profitabilityGrowth = (currentProf - previousProf) * 100; // w punktach procentowych
+                                
+                                let previousProf = 0;
+                                if (previousData) {
+                                    const prevRevenue = previousData.revenue || 0;
+                                    const prevNetIncome = previousData.net_income || 0;
+                                    
+                                    if (prevRevenue > 0 && prevNetIncome !== null) {
+                                        previousProf = (prevNetIncome / prevRevenue);
+                                    } else if (previousData.profitability_ratio !== null) {
+                                        previousProf = previousData.profitability_ratio;
+                                    }
+                                }
+                                
+                                profitabilityGrowth = (profitability - previousProf) * 100;
                             }
 
                             return {
                                 id: `${pkd.pkd}-${code.symbol}-${index}`,
                                 pkd_code: code.symbol,
                                 name: code.name || 'Brak nazwy',
-                                profitability_ratio: latestData?.profitability_ratio || 0,
-                                margin_ratio: latestData?.margin_ratio || 0,
+                                profitability_ratio: profitability,
+                                margin_ratio: margin,
                                 profitability_growth: profitabilityGrowth,
                             };
                         }).filter(Boolean);
@@ -113,16 +151,31 @@ export default function IndustryProfitability() {
                 const flattenedData = results.flat().filter(Boolean) as ProfitabilityData[];
                 setProfitabilityData(flattenedData);
 
-                // Agreguj dane
-                const aggregated = selectedPKDs.map(pkd => ({
-                    pkdCode: pkd.pkd || '',
-                    avgProfitability: flattenedData
-                        .filter(d => d.pkd_code.startsWith(pkd.pkd || ''))
-                        .reduce((sum, d) => sum + d.profitability_ratio * 100, 0) / flattenedData.length || 0,
-                    avgMargin: flattenedData
-                        .filter(d => d.pkd_code.startsWith(pkd.pkd || ''))
-                        .reduce((sum, d) => sum + d.margin_ratio * 100, 0) / flattenedData.length || 0,
-                }));
+                // Agreguj dane - poprawiona logika
+                const aggregated = selectedPKDs.map(pkd => {
+                    // Znajdź wszystkie dane dla tego PKD
+                    const pkdData = flattenedData.filter(d => {
+                        // Porównaj bez prefiksu sekcji
+                        const pkdCodeWithoutSection = pkd.pkd?.replace(/^[A-Z]\./, '') || '';
+                        const dataCodeWithoutSection = d.pkd_code.replace(/^[A-Z]\./, '');
+                        return dataCodeWithoutSection.startsWith(pkdCodeWithoutSection);
+                    });
+
+                    // Oblicz średnie tylko z danych tego PKD
+                    const count = pkdData.length;
+                    const avgProfitability = count > 0
+                        ? pkdData.reduce((sum, d) => sum + (d.profitability_ratio * 100), 0) / count
+                        : 0;
+                    const avgMargin = count > 0
+                        ? pkdData.reduce((sum, d) => sum + (d.margin_ratio * 100), 0) / count
+                        : 0;
+
+                    return {
+                        pkdCode: pkd.pkd || '',
+                        avgProfitability,
+                        avgMargin,
+                    };
+                });
                 setAggregatedData(aggregated);
 
             } catch (error) {
@@ -160,8 +213,8 @@ export default function IndustryProfitability() {
 
     return (
         <div className="rounded-md p-2 sm:p-0">
-            <h1 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">Rentowność Branży</h1>
-            <p className="mb-3 sm:mb-4 text-sm sm:text-base text-gray-200">Rentowność i marża w wybranych branżach.</p>
+            <h1 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-gray-100">Rentowność Branży</h1>
+            <p className="mb-3 sm:mb-4 text-sm sm:text-base text-gray-300">Rentowność i marża w wybranych branżach.</p>
 
             {selectedPKDs.length > 0 && aggregatedData.length > 0 && (
                 <IndustryComparison

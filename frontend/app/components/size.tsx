@@ -202,8 +202,8 @@ export default function Size() {
 
     return (
         <div className="rounded-md p-2 sm:p-0">
-            <h1 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">Wielkość Branży</h1>
-            <p className="mb-3 sm:mb-4 text-sm sm:text-base text-gray-200">Wybierz kody PKD w głównym menu, aby wyświetlić dane branżowe.</p>
+            <h1 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-gray-100">Wielkość Branży</h1>
+            <p className="mb-3 sm:mb-4 text-sm sm:text-base text-gray-300">Wybierz kody PKD w głównym menu, aby wyświetlić dane branżowe.</p>
 
             {/* Bar Chart - Comparison */}
             {selectedPKDs.length > 0 && aggregatedData.length > 0 && (
