@@ -100,7 +100,9 @@ export default function MultiIndustryChart({
   };
 
   React.useEffect(() => {
-    let cancelled = false;
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     const load = async () => {
       setError(null);
       if (!range) return;
@@ -117,11 +119,12 @@ export default function MultiIndustryChart({
       setLoading(true);
 
       try {
-        // Use the /api/trends endpoint (accepts codes comma separated) per OpenAPI
+        // Use the /api/compare endpoint (accepts codes comma separated) per OpenAPI
         const codesParam = industries.join(',');
         const yearsParam = `${range.from}-${range.to}`;
-        const url = `${API_URL}/api/trends?codes=${encodeURIComponent(codesParam)}&years=${encodeURIComponent(yearsParam)}&metrics=${encodeURIComponent(metricKey)}`;
-        const res = await fetch(url);
+        const url = `${API_URL}/api/compare?codes=${encodeURIComponent(codesParam)}&years=${encodeURIComponent(yearsParam)}`;
+        
+        const res = await fetch(url, { signal });
         let resultsRaw: any;
         if (res.ok) {
           resultsRaw = await res.json();
@@ -130,7 +133,7 @@ export default function MultiIndustryChart({
           resultsRaw = null;
         }
         // debug log the request and raw response to help diagnose API shapes
-        console.debug('[MultiIndustryChart] trendsUrl', url, 'resultsRaw', resultsRaw);
+        console.debug('[MultiIndustryChart] compareUrl', url, 'resultsRaw', resultsRaw);
 
          // Normalize results into array of { kod, data }
          let results: Array<{ kod: string; data: Point[] }> = [];
@@ -140,12 +143,23 @@ export default function MultiIndustryChart({
            // array of series or objects
            resultsRaw.forEach((item: any) => {
              if (!item) return;
-             if (item.id && (item.data || item.series || item.points)) {
-               const pts = parseResponseToPoints(item.data ?? item.series ?? item.points);
-               results.push({ kod: item.id, data: pts });
-             } else if (item.kod && item.data) {
-               const pts = parseResponseToPoints(item.data);
-               results.push({ kod: item.kod, data: pts });
+             
+             // Try to find the data for the requested metric
+             let rawData = item.data || item.series || item.points;
+             
+             // If we have a metricKey, look for it in common places
+             if (metricKey) {
+                if (item[metricKey]) rawData = item[metricKey];
+                else if (item.metrics && item.metrics[metricKey]) rawData = item.metrics[metricKey];
+                else if (item.metrics_summary && item.metrics_summary[metricKey]) rawData = item.metrics_summary[metricKey];
+                else if (item.values && item.values[metricKey]) rawData = item.values[metricKey];
+             }
+
+             const id = item.id || item.kod || item.pkd_code || item.symbol;
+             
+             if (id && rawData) {
+               const pts = parseResponseToPoints(rawData);
+               results.push({ kod: id, data: pts });
              }
            });
          } else if (typeof resultsRaw === 'object') {
@@ -153,7 +167,13 @@ export default function MultiIndustryChart({
            const container = resultsRaw.series ?? resultsRaw.data ?? resultsRaw;
            if (container && typeof container === 'object') {
              for (const [k, v] of Object.entries(container)) {
-               const pts = parseResponseToPoints(v);
+               // If v is object and has metricKey
+               let val = v;
+               if (metricKey && val && typeof val === 'object' && !Array.isArray(val)) {
+                   if ((val as any)[metricKey]) val = (val as any)[metricKey];
+               }
+               
+               const pts = parseResponseToPoints(val);
                results.push({ kod: k, data: pts });
              }
            }
@@ -185,15 +205,16 @@ export default function MultiIndustryChart({
 
          setSeries(built);
        } catch (e: any) {
-         if (!cancelled) setError(e?.message ?? String(e));
+         if (e.name === 'AbortError') return;
+         setError(e?.message ?? String(e));
          setSeries([]);
        } finally {
-         if (!cancelled) setLoading(false);
+         if (!signal.aborted) setLoading(false);
        }
      };
 
      load();
-     return () => { cancelled = true; };
+     return () => { controller.abort(); };
    }, [industries, range, metricKey, years]);
 
    if (!range) return <div>Wybierz przedział czasowy</div>;
