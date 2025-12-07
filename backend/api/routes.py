@@ -1,8 +1,3 @@
-from typing import Optional
-from fastapi import APIRouter
-
-router = APIRouter()
-
 from typing import Optional, List
 from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel, Field
@@ -516,23 +511,65 @@ async def compare_branches(
 			code_clean = code_str.rstrip('.')
 			
 			rep_code = None
+			extracted_section = None
+			numeric_part = code_clean
+			
+			# Parsowanie niestandardowych formatów (C29.10, 29.10C, E38.18, 38.18E)
+			import re
+			# Próbuj wyodrębnić literę sekcji na początku lub końcu
+			match_start = re.match(r'^([A-U])(.+)$', code_clean, re.IGNORECASE)
+			match_end = re.match(r'^(.+?)([A-U])$', code_clean, re.IGNORECASE)
+			
+			if match_start:
+				# Format: C29.10 lub E38.18
+				extracted_section = match_start.group(1).upper()
+				numeric_part = match_start.group(2)
+			elif match_end:
+				# Format: 29.10C lub 38.18E
+				numeric_part = match_end.group(1)
+				extracted_section = match_end.group(2).upper()
 			
 			# 1. Sprawdź czy to litera sekcji (A-U)
 			if len(code_clean) == 1 and code_clean.isalpha():
 				sec_codes = hierarchy.get_by_section(code_clean.upper())
 				rep_code = sec_codes[0] if sec_codes else None
-			# 2. Sprawdź bezpośrednie dopasowanie w codes
+			# 2. Sprawdź bezpośrednie dopasowanie w codes (dla standardowych formatów)
 			elif code_clean in hierarchy.codes:
 				rep_code = hierarchy.codes[code_clean]
-			# 3. Sprawdź w indeksie działów
+			# 3. Jeśli wyodrębniono sekcję i część numeryczną
+			elif extracted_section and numeric_part:
+				# Próbuj numeric_part bezpośrednio jako symbol
+				if numeric_part in hierarchy.codes:
+					candidate = hierarchy.codes[numeric_part]
+					if candidate.section == extracted_section:
+						rep_code = candidate
+				
+				# Jeśli nie znaleziono, szukaj w indeksach działów/grup dla danej sekcji
+				if not rep_code:
+					# Sprawdź czy numeric_part to dział
+					if numeric_part in hierarchy.division_index:
+						div_codes = [hierarchy.codes[s] for s in hierarchy.division_index[numeric_part]]
+						for candidate in div_codes:
+							if candidate.section == extracted_section:
+								rep_code = candidate
+								break
+					
+					# Sprawdź czy numeric_part to grupa
+					if not rep_code and numeric_part in hierarchy.group_index:
+						grp_codes = [hierarchy.codes[s] for s in hierarchy.group_index[numeric_part]]
+						for candidate in grp_codes:
+							if candidate.section == extracted_section:
+								rep_code = candidate
+								break
+			# 4. Sprawdź w indeksie działów
 			elif code_clean in hierarchy.division_index:
 				div_codes = hierarchy.get_by_division(code_clean)
 				rep_code = div_codes[0] if div_codes else None
-			# 4. Sprawdź w indeksie grup
+			# 5. Sprawdź w indeksie grup
 			elif code_clean in hierarchy.group_index:
 				grp_codes = hierarchy.get_by_group(code_clean)
 				rep_code = grp_codes[0] if grp_codes else None
-			# 5. Fallback: próbuj sekcję
+			# 6. Fallback: próbuj sekcję
 			else:
 				sec_codes = hierarchy.get_by_section(code_clean.upper())
 				rep_code = sec_codes[0] if sec_codes else None
@@ -580,8 +617,14 @@ async def compare_branches(
 					values_by_metric["net_income"].append({"year": year, "value": vals["net_income"]})
 					values_by_metric["unit_count"].append({"year": year, "value": vals["unit_count"]})
 
+				# Konstruuj pełny identyfikator z sekcją
+				full_id = rep_code.symbol
+				if rep_code.section and not rep_code.symbol.startswith(rep_code.section):
+					# Dodaj sekcję na początku jeśli jej brak
+					full_id = f"{rep_code.section}.{rep_code.symbol}"
+
 				results.append({
-					"id": rep_code.symbol,  # Użyj pełnego symbolu z sekcją
+					"id": full_id,
 					"values": values_by_metric,
 					"summary": industry_data.get_summary_statistics()
 				})
