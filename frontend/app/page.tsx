@@ -18,9 +18,9 @@ export default function Home() {
 
     return (
         <>
-            <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 mb-4">
+            <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 mb-4 mt-16 lg:mt-0">
                 {/* Date Range */}
-                <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+                <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto justify-center lg:justify-start">
                     <Input
                         isRequired
                         className="w-full sm:max-w-[200px]"
@@ -53,7 +53,7 @@ export default function Home() {
                         ))}
                     </Input>
                 </div>
-                <div className="flex gap-2 sm:gap-4 w-full lg:w-auto">
+                <div className="flex gap-2 sm:gap-4 w-full lg:w-auto justify-center lg:justify-start">
                     <PKDModal onPKDsChange={setSelectedPKDs} />
                     <Button 
                         variant="bordered" 

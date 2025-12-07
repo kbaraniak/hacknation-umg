@@ -159,8 +159,8 @@ export default function IndustryProfitability() {
 
     return (
         <div className="rounded-md p-2 sm:p-0">
-            <h1 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-gray-900">Rentowność Branży</h1>
-            <p className="mb-3 sm:mb-4 text-sm sm:text-base text-gray-700">Rentowność i marża w wybranych branżach.</p>
+            <h1 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">Rentowność Branży</h1>
+            <p className="mb-3 sm:mb-4 text-sm sm:text-base text-gray-200">Rentowność i marża w wybranych branżach.</p>
 
             {selectedPKDs.length > 0 && aggregatedData.length > 0 && (
                 <IndustryComparison

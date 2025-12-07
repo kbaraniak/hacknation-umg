@@ -173,8 +173,8 @@ export default function IndustryDebt() {
 
     return (
         <div className="rounded-md p-2 sm:p-0">
-            <h1 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-gray-900">Zadłużenie Branży</h1>
-            <p className="mb-3 sm:mb-4 text-sm sm:text-base text-gray-700">Poziom i dynamika zadłużenia w wybranych branżach.</p>
+            <h1 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">Zadłużenie Branży</h1>
+            <p className="mb-3 sm:mb-4 text-sm sm:text-base text-gray-200">Poziom i dynamika zadłużenia w wybranych branżach.</p>
 
             {selectedPKDs.length > 0 && aggregatedData.length > 0 && (
                 <IndustryComparison
