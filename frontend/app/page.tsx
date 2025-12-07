@@ -18,12 +18,12 @@ export default function Home() {
 
     return (
         <>
-            <div className="flex justify-between items-center gap-4 mb-4">
+            <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 mb-4">
                 {/* Date Range */}
-                <div className="flex gap-4">
+                <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
                     <Input
                         isRequired
-                        className="max-w-30"
+                        className="w-full sm:max-w-[200px]"
                         value={startYear.toString()}
                         onChange={(e) => setStartYear(Number(e.target.value))}
                         minLength={4}
@@ -38,7 +38,7 @@ export default function Home() {
                     </Input>
                     <Input
                         isRequired
-                        className="max-w-30"
+                        className="w-full sm:max-w-[200px]"
                         value={endYear.toString()}
                         onChange={(e) => setEndYear(Number(e.target.value))}
                         minLength={4}
@@ -53,20 +53,20 @@ export default function Home() {
                         ))}
                     </Input>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex gap-2 sm:gap-4 w-full lg:w-auto">
                     <PKDModal onPKDsChange={setSelectedPKDs} />
                     <Button 
                         variant="bordered" 
                         color="danger" 
                         isIconOnly 
-                        className="hover:text-white"
+                        className="hover:text-white shrink-0"
                         onPress={handleClearAll}
                         isDisabled={selectedPKDs.length === 0}
                     >
                         <DeleteOutlineIcon/>
                     </Button>
                 </div>
-                <Button className="h-100%" color="primary">Szukaj</Button>
+                <Button className="w-full lg:w-auto" color="primary">Szukaj</Button>
             </div>
         </>
     );

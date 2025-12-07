@@ -34,14 +34,18 @@ export default function IndustryComparison({
         <Box sx={{ 
             width: '100%', 
             mb: 4, 
-            p: 3, 
+            p: { xs: 2, sm: 3 }, 
             backgroundColor: 'white', 
             borderRadius: 2, 
             border: '1px solid #e5e7eb' 
         }}>
-            <h2 className="text-xl font-semibold mb-3 text-gray-900">{title}</h2>
+            <h2 className="text-lg sm:text-xl font-semibold mb-3 text-gray-900">{title}</h2>
             
-            <div className={`grid gap-4 ${metrics.length === 2 ? 'grid-cols-2' : metrics.length === 3 ? 'grid-cols-3' : 'grid-cols-1'}`}>
+            <div className={`grid gap-4 grid-cols-1 ${
+                metrics.length === 2 ? 'md:grid-cols-2' : 
+                metrics.length === 3 ? 'lg:grid-cols-3' : 
+                ''
+            }`}>
                 {metrics.map((metric, index) => (
                     <IndustryMetricCard
                         key={index}
@@ -54,7 +58,7 @@ export default function IndustryComparison({
             </div>
             
             {summaryData.length > 0 && (
-                <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
+                <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                     {summaryData.map(d => (
                         <div key={d.pkdCode} className="p-3 bg-gray-50 rounded border border-gray-300">
                             {Object.entries(d).map(([key, value]) => (

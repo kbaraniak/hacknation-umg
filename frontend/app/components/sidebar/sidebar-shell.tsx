@@ -56,15 +56,17 @@ export default function SidebarShell({children}: { children: React.ReactNode }) 
     };
 
     return (
-        <div className="min-h-screen flex">
-            <div className="w-64">
+        <div className="min-h-screen flex flex-col lg:flex-row">
+            {/* Sidebar - hidden on mobile, shown as drawer or on desktop */}
+            <div className="w-full lg:w-64 lg:fixed lg:inset-y-0 lg:left-0">
                 <Sidebar selectedKey={selectedKey} onSelectionChange={(k) => setSelectedKey(k)}/>
             </div>
-            <main className="flex-1 flex flex-col p-6 pb-0">
+            {/* Main content - full width on mobile, offset on desktop */}
+            <main className="flex-1 flex flex-col p-4 sm:p-6 pb-0 lg:ml-64 w-full">
                 <div className="max-w-7xl w-full mx-auto flex-1 flex flex-col">
                     <div>{children}</div>
                     {/* render the tab-controlled content above the page children; flex-1 so it grows */}
-                    <div className="">{renderContent()}</div>
+                    <div className="mt-4 lg:mt-0">{renderContent()}</div>
                 </div>
             </main>
         </div>

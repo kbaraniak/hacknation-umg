@@ -112,15 +112,17 @@ export default function PKDModal({ onPKDsChange }: PKDModalProps) {
 
     return (
         <>
-            <Button onPress={onOpen} className="w-80">Numery PKD ({pkdList.length})</Button>
-            <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl">
+            <Button onPress={onOpen} className="w-full sm:w-80 text-sm sm:text-base">
+                Numery PKD ({pkdList.length})
+            </Button>
+            <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl" className="mx-4">
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1">
+                            <ModalHeader className="flex flex-col gap-1 text-lg sm:text-xl">
                                 Numery PKD
                             </ModalHeader>
-                            <ModalBody>
+                            <ModalBody className="max-h-[70vh] overflow-y-auto">
                                 {/* PKD Input Component */}
                                 <div className="mb-4">
                                     <PKDInput onChangeAction={setCurrentPKD} />
@@ -138,6 +140,7 @@ export default function PKDModal({ onPKDsChange }: PKDModalProps) {
                                         onPress={handleAddPKD}
                                         isDisabled={!currentPKD?.section}
                                         fullWidth
+                                        className="text-sm sm:text-base"
                                     >
                                         Dodaj PKD {(() => {
                                             if (!currentPKD?.section) return '';
@@ -213,16 +216,17 @@ export default function PKDModal({ onPKDsChange }: PKDModalProps) {
                                     )}
                                 </div>
                             </ModalBody>
-                            <ModalFooter>
+                            <ModalFooter className="flex-col sm:flex-row gap-2">
                                 <Button 
                                     variant="light" 
                                     color="danger" 
                                     onPress={handleClearAll}
                                     isDisabled={pkdList.length === 0}
+                                    className="w-full sm:w-auto"
                                 >
                                     Wyczyść wszystkie
                                 </Button>
-                                <Button color="primary" onPress={onClose}>
+                                <Button color="primary" onPress={onClose} className="w-full sm:w-auto">
                                     Zamknij
                                 </Button>
                             </ModalFooter>

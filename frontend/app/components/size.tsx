@@ -201,19 +201,26 @@ export default function Size() {
     }, [selectedPKDs, startYear, endYear]);
 
     return (
-        <div className="rounded-md">
-            <h1 className="text-2xl font-bold mb-4 text-gray-900">Wielkość Branży</h1>
-            <p className="mb-4 text-gray-700">Wybierz kody PKD w głównym menu, aby wyświetlić dane branżowe.</p>
+        <div className="rounded-md p-2 sm:p-0">
+            <h1 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-gray-900">Wielkość Branży</h1>
+            <p className="mb-3 sm:mb-4 text-sm sm:text-base text-gray-700">Wybierz kody PKD w głównym menu, aby wyświetlić dane branżowe.</p>
 
             {/* Bar Chart - Comparison */}
             {selectedPKDs.length > 0 && aggregatedData.length > 0 && (
-                <Box sx={{ width: '100%', mb: 4, p: 3, backgroundColor: 'white', borderRadius: 2, border: '1px solid #e5e7eb' }}>
-                    <h2 className="text-xl font-semibold mb-3 text-gray-900">Porównanie wybranych PKD</h2>
+                <Box sx={{ 
+                    width: '100%', 
+                    mb: 4, 
+                    p: { xs: 2, sm: 3 }, 
+                    backgroundColor: 'white', 
+                    borderRadius: 2, 
+                    border: '1px solid #e5e7eb' 
+                }}>
+                    <h2 className="text-lg sm:text-xl font-semibold mb-3 text-gray-900">Porównanie wybranych PKD</h2>
                     
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         {/* Wykres przychodów */}
-                        <div>
-                            <h3 className="text-lg font-medium mb-2 text-gray-800">Przychody (mln PLN)</h3>
+                        <div className="w-full overflow-x-auto">
+                            <h3 className="text-base sm:text-lg font-medium mb-2 text-gray-800">Przychody (mln PLN)</h3>
                             <BarChart
                                 xAxis={[{ 
                                     scaleType: 'band', 
@@ -232,8 +239,8 @@ export default function Size() {
                         </div>
                         
                         {/* Wykres jednostek */}
-                        <div>
-                            <h3 className="text-lg font-medium mb-2 text-gray-800">Liczba jednostek</h3>
+                        <div className="w-full overflow-x-auto">
+                            <h3 className="text-base sm:text-lg font-medium mb-2 text-gray-800">Liczba jednostek</h3>
                             <BarChart
                                 xAxis={[{ 
                                     scaleType: 'band', 
@@ -252,7 +259,7 @@ export default function Size() {
                         </div>
                     </div>
                     
-                    <div className="mt-4 grid grid-cols-2 gap-4 text-sm text-gray-900">
+                    <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-gray-900">
                         {aggregatedData.map(d => (
                             <div key={d.pkdCode} className="p-2 bg-gray-100 rounded border border-gray-300">
                                 <strong className="text-gray-900">{d.pkdCode}</strong>: {d.totalRevenue.toLocaleString('pl-PL')} mln PLN 
@@ -266,38 +273,49 @@ export default function Size() {
 
             {/* Data Grid */}
             {selectedPKDs.length > 0 && (
-                <Box sx={{ height: 600, width: '100%', backgroundColor: 'white', p: 2, borderRadius: 2, border: '1px solid #e5e7eb' }}>
-                    <h2 className="text-xl font-semibold mb-3 text-gray-900">Szczegółowe dane</h2>
-                    <DataGrid
-                        rows={industryData}
-                        columns={columns}
-                        loading={loading}
-                        initialState={{
-                            pagination: {
-                                paginationModel: {
-                                    pageSize: 10,
+                <Box sx={{ 
+                    height: { xs: 500, sm: 600 }, 
+                    width: '100%', 
+                    backgroundColor: 'white', 
+                    p: { xs: 1.5, sm: 2 }, 
+                    borderRadius: 2, 
+                    border: '1px solid #e5e7eb' 
+                }}>
+                    <h2 className="text-lg sm:text-xl font-semibold mb-3 text-gray-900">Szczegółowe dane</h2>
+                    <div className="w-full overflow-x-auto">
+                        <DataGrid
+                            rows={industryData}
+                            columns={columns}
+                            loading={loading}
+                            initialState={{
+                                pagination: {
+                                    paginationModel: {
+                                        pageSize: 10,
+                                    },
                                 },
-                            },
-                        }}
-                        className="rounded-md"
-                        pageSizeOptions={[5, 10, 25, 50]}
-                        checkboxSelection
-                        disableRowSelectionOnClick
-                        sx={{
-                            '& .MuiDataGrid-cell': {
-                                fontSize: '0.875rem',
-                            },
-                            '& .MuiDataGrid-columnHeaders': {
-                                backgroundColor: '#f5f5f5',
-                                fontWeight: 'bold',
-                            },
-                        }}
-                    />
+                            }}
+                            className="rounded-md"
+                            pageSizeOptions={[5, 10, 25, 50]}
+                            checkboxSelection
+                            disableRowSelectionOnClick
+                            sx={{
+                                minWidth: { xs: '600px', sm: '100%' },
+                                '& .MuiDataGrid-cell': {
+                                    fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                                },
+                                '& .MuiDataGrid-columnHeaders': {
+                                    backgroundColor: '#f5f5f5',
+                                    fontWeight: 'bold',
+                                    fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                                },
+                            }}
+                        />
+                    </div>
                 </Box>
             )}
 
             {selectedPKDs.length === 0 && (
-                <div className="text-center py-12 text-gray-500">
+                <div className="text-center py-12 text-gray-500 text-sm sm:text-base">
                     <p>Nie wybrano żadnych kodów PKD. Użyj przycisku "Numery PKD" w głównym menu, aby wybrać kody.</p>
                 </div>
             )}

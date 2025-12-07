@@ -22,19 +22,20 @@ export default function Sidebar({ selectedKey, onSelectionChange }: SidebarProps
     ];
 
     return (
-        <div className="flex flex-col items-center fixed inset-y-0 left-0 w-64 bg-gray-800 text-white p-4">
-            <Image className="rounded-md mt-2 mb-6" src="/favicon.ico" alt="Logo PKOBP" width={80} height={80} />
+        <div className="flex flex-col items-center w-full lg:fixed lg:inset-y-0 lg:left-0 lg:w-64 bg-gray-800 text-white p-4">
+            <Image className="rounded-md mt-2 mb-4 lg:mb-6 w-16 h-16 lg:w-20 lg:h-20" src="/favicon.ico" alt="Logo PKOBP" width={80} height={80} />
             <Tabs 
                 aria-label="Menu" 
                 fullWidth 
-                isVertical 
+                isVertical={false}
                 selectedKey={selectedKey ?? undefined} 
                 onSelectionChange={(k) => onSelectionChange?.(k as string)}
                 classNames={{
-                    tabList: "bg-transparent",
-                    cursor: "bg-gray-700",
-                    tab: "justify-start h-12",
-                    tabContent: "text-white group-data-[selected=true]:text-white"
+                    base: "w-full",
+                    tabList: "bg-transparent flex-col gap-2 w-full",
+                    cursor: "bg-gray-700 w-full",
+                    tab: "justify-start h-12 px-4 w-full data-[hover-unselected=true]:opacity-100",
+                    tabContent: "text-white group-data-[selected=true]:text-white text-sm w-full"
                 
                 }}
             >
@@ -42,12 +43,12 @@ export default function Sidebar({ selectedKey, onSelectionChange }: SidebarProps
                     <Tab 
                         key={item.key} 
                         title={
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 w-full">
                                 <item.Icon sx={{ fontSize: 20 }} />
                                 <span>{item.title}</span>
                             </div>
                         }
-                        className={`justify-start h-12 ${selectedKey === item.key ? 'font-bold' : ''}`}
+                        className={`justify-start w-full ${selectedKey === item.key ? 'font-bold' : ''}`}
                     />
                 ))}
             </Tabs>
