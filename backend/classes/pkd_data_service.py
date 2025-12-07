@@ -158,10 +158,16 @@ class PKDDataService:
         bankruptcy_data = {}
         
         for pkd_code in pkd_codes:
-            # Dane finansowe
-            fin_metrics = self.loader.get_financial_metrics(pkd_code.symbol)
-            if fin_metrics:
-                financial_data[pkd_code.symbol] = fin_metrics
+            # Dane finansowe - spróbuj różnych wariantów symbolu
+            fin_metrics = None
+            for symbol_variant in self._get_financial_symbol_variants(pkd_code.symbol):
+                fin_metrics = self.loader.get_financial_metrics(symbol_variant)
+                if fin_metrics:
+                    # Zapisz pod ORYGINALNYM symbolem bez sekcji dla spójności z frontendem
+                    # np. A.02.10.Z -> 02.10
+                    clean_symbol = pkd_code.symbol.replace(f"{pkd_code.section}.", "").replace(".Z", "")
+                    financial_data[clean_symbol] = fin_metrics
+                    break
             
             # Dane o upadłościach - pobierz dla wszystkich dostępnych lat
             bankruptcy_dict = {}
@@ -236,6 +242,33 @@ class PKDDataService:
             symbols.append(code_5)
         
         return symbols
+    
+    def _get_financial_symbol_variants(self, symbol: str) -> List[str]:
+        """
+        Zwróć warianty symbolu dla szukania w wsk_fin.csv
+        np. dla "A.02.10.Z" szukaj: "02.10.Z", "02.10", "02.1", "02"
+        """
+        variants = []
+        
+        # Usuń sekcję (A-U)
+        no_section = symbol
+        if '.' in symbol and symbol[0].isalpha() and symbol[0].isupper():
+            no_section = '.'.join(symbol.split('.')[1:])
+        
+        variants.append(no_section)  # "02.10.Z"
+        
+        # Bez końcówki .Z
+        if no_section.endswith('.Z'):
+            variants.append(no_section[:-2])  # "02.10"
+        
+        # Warianty skrócone
+        parts = no_section.replace('.Z', '').split('.')
+        if len(parts) >= 2:
+            variants.append(f"{parts[0]}.{parts[1][0]}")  # "02.1"
+        if len(parts) >= 1:
+            variants.append(parts[0])  # "02"
+        
+        return variants
     
     def get_codes_for_section(self, section: str, version: Optional[PKDVersion] = None) -> List[PKDCode]:
         """Zwróć wszystkie kody w sekcji"""
