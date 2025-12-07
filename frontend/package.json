@@ -51,6 +51,7 @@
     "@heroui/toast": "2.0.17",
     "@heroui/tooltip": "2.2.24",
     "@heroui/user": "2.2.22",
+    "@mui/icons-material": "^7.3.6",
     "@mui/material": "^7.3.6",
     "@mui/x-charts": "^8.21.0",
     "@mui/x-data-grid": "^8.21.0",
