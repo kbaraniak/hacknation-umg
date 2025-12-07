@@ -480,45 +480,61 @@ async def get_industry_index(
 
 @router.get("/compare")
 async def compare_branches(
-	codes: str = Query(..., description="Lista kodów PKD oddzielonych przecinkami (np. 46,47,46.11)"),
+	codes: str = Query(..., description="Lista kodów PKD lub sekcji oddzielonych przecinkami (np. 46,47,G,C)"),
 	version: Optional[str] = Query("2025", description="Wersja PKD (2007 lub 2025)"),
 	years: Optional[str] = Query(None, description="Zakres lat, np. 2020-2024")
 ):
 	"""
-	Porównaj wiele branż jednocześnie. Przyjmuje kody PKD (sekcja/dział/grupa).
+	Porównaj wiele branż jednocześnie. Przyjmuje kody PKD (działy, grupy) lub litery sekcji.
 	Zwraca metryki, score oraz serię czasową gotową do wizualizacji.
+	
+	Przykłady:
+	- /compare?codes=46,47 → porównaj działy 46 i 47
+	- /compare?codes=G,C → porównaj sekcje G i C
+	- /compare?codes=46.11,47.1 → porównaj grupy
 	"""
 	try:
 		pkd_version = PKDVersion.VERSION_2025 if version == "2025" else PKDVersion.VERSION_2007
 		hierarchy = service.loader.get_hierarchy(pkd_version)
 		
-		# Parsuj zakres lat
-		years_range = None
-		if years:
-			try:
-				start, end = years.split("-")
-				years_range = (int(start), int(end))
-			except Exception:
-				raise HTTPException(status_code=400, detail="Nieprawidłowy format years. Użyj np. 2020-2024")
-		
 		code_list = [c.strip() for c in codes.split(",") if c.strip()]
-		if not code_list:
-			raise HTTPException(status_code=400, detail="Brak kodów PKD")
-		
 		results = []
 		
+		# Parse years range
+		start_year, end_year = 0, 9999
+		if years:
+			try:
+				parts = years.split("-")
+				if len(parts) == 2:
+					start_year = int(parts[0])
+					end_year = int(parts[1])
+			except:
+				pass
+		
 		for code_str in code_list:
+			# Usuń kropki z końca (dane mają "46.", API przyjmuje "46")
+			code_clean = code_str.rstrip('.')
+			
 			rep_code = None
-			if code_str in hierarchy.codes:
-				rep_code = hierarchy.codes[code_str]
-			elif code_str in hierarchy.division_index:
-				div_codes = hierarchy.get_by_division(code_str)
+			
+			# 1. Sprawdź czy to litera sekcji (A-U)
+			if len(code_clean) == 1 and code_clean.isalpha():
+				sec_codes = hierarchy.get_by_section(code_clean.upper())
+				rep_code = sec_codes[0] if sec_codes else None
+			# 2. Sprawdź bezpośrednie dopasowanie w codes
+			elif code_clean in hierarchy.codes:
+				rep_code = hierarchy.codes[code_clean]
+			# 3. Sprawdź w indeksie działów
+			elif code_clean in hierarchy.division_index:
+				div_codes = hierarchy.get_by_division(code_clean)
 				rep_code = div_codes[0] if div_codes else None
-			elif code_str in hierarchy.group_index:
-				grp_codes = hierarchy.get_by_group(code_str)
+			# 4. Sprawdź w indeksie grup
+			elif code_clean in hierarchy.group_index:
+				grp_codes = hierarchy.get_by_group(code_clean)
 				rep_code = grp_codes[0] if grp_codes else None
+			# 5. Fallback: próbuj sekcję
 			else:
-				sec_codes = hierarchy.get_by_section(code_str)
+				sec_codes = hierarchy.get_by_section(code_clean.upper())
 				rep_code = sec_codes[0] if sec_codes else None
 			
 			if rep_code is None:
@@ -533,105 +549,46 @@ async def compare_branches(
 					subclass=rep_code.subclass,
 					version=pkd_version
 				)
-			elif rep_code.group:
-				industry_data = service.get_data(
-					section=rep_code.section,
-					division=rep_code.division,
-					group=rep_code.group,
-					version=pkd_version
-				)
-			elif rep_code.division:
-				industry_data = service.get_data(
-					section=rep_code.section,
-					division=rep_code.division,
-					version=pkd_version
-				)
-			else:
-				industry_data = service.get_data(section=rep_code.section, version=pkd_version)
-			
-			if not industry_data.financial_data:
-				continue
-			
-			from classes.pkd_data_loader import FinancialMetrics
-			agg_financial = {}
-			agg_bankruptcies = {}
-			for fin_data in industry_data.financial_data.values():
-				for yr, m in fin_data.items():
-					if years_range and not (years_range[0] <= yr <= years_range[1]):
+				
+				# Aggregate financial data
+				years_set = data.get_all_years()
+				aggregated_values = {} # year -> { revenue, net_income, ... }
+				
+				for year in years_set:
+					if not (start_year <= year <= end_year):
 						continue
-					if yr not in agg_financial:
-						agg_financial[yr] = FinancialMetrics(year=yr)
-					cur = agg_financial[yr]
-					cur.unit_count = (cur.unit_count or 0) + (m.unit_count or 0)
-					cur.profitable_units = (cur.profitable_units or 0) + (m.profitable_units or 0)
-					cur.revenue = (cur.revenue or 0) + (m.revenue or 0)
-					cur.net_income = (cur.net_income or 0) + (m.net_income or 0)
-					cur.operating_income = (cur.operating_income or 0) + (m.operating_income or 0)
-					cur.total_costs = (cur.total_costs or 0) + (m.total_costs or 0)
-					cur.long_term_debt = (cur.long_term_debt or 0) + (m.long_term_debt or 0)
-					cur.short_term_debt = (cur.short_term_debt or 0) + (m.short_term_debt or 0)
-			for bank_data in industry_data.bankruptcy_data.values():
-				for yr, cnt in bank_data.items():
-					if years_range and not (years_range[0] <= yr <= years_range[1]):
-						continue
-					agg_bankruptcies[yr] = agg_bankruptcies.get(yr, 0) + cnt
-			
-			if not agg_financial:
-				continue
-			
-			index_result = index_calculator.calculate_full_index(
-				agg_financial,
-				agg_bankruptcies,
-				forecast_years=2
-			)
-			
-			time_series = {}
-			for yr in sorted(agg_financial.keys()):
-				m = agg_financial[yr]
-				time_series[str(yr)] = {
-					"revenue": m.revenue or 0,
-					"net_income": m.net_income or 0,
-					"unit_count": m.unit_count or 0,
-					"bankruptcies": agg_bankruptcies.get(yr, 0)
+						
+					agg = {"revenue": 0.0, "net_income": 0.0, "unit_count": 0}
+					for symbol, history in data.financial_data.items():
+						if year in history:
+							m = history[year]
+							if m.revenue: agg["revenue"] += m.revenue
+							if m.net_income: agg["net_income"] += m.net_income
+							if m.unit_count: agg["unit_count"] += m.unit_count
+					aggregated_values[year] = agg
+				
+				# Format for frontend
+				values_by_metric = {
+					"revenue": [],
+					"net_income": [],
+					"unit_count": []
 				}
-			
-			results.append({
-				"code": code_str,
-				"name": rep_code.name,
-				"section": rep_code.section,
-				"level": rep_code.level.value,
-				"scores": index_result["scores"],
-				"classification": index_result["classification"],
-				"trend": index_result["trend"],
-				"time_series": time_series
-			})
+				for year in sorted(aggregated_values.keys()):
+					vals = aggregated_values[year]
+					values_by_metric["revenue"].append({"year": year, "value": vals["revenue"]})
+					values_by_metric["net_income"].append({"year": year, "value": vals["net_income"]})
+					values_by_metric["unit_count"].append({"year": year, "value": vals["unit_count"]})
+
+				results.append({
+					"id": code_str,
+					"values": values_by_metric,
+					"summary": data.get_summary_statistics()
+				})
 		
-		if not results:
-			raise HTTPException(status_code=404, detail="Brak danych dla podanych kodów")
-		
-		best_overall = max(results, key=lambda x: x["scores"]["overall"])
-		worst_risk = min(results, key=lambda x: x["scores"]["risk"])
-		
-		return {
-			"version": pkd_version.value,
-			"input_codes": code_list,
-			"comparison": results,
-			"relative_comparison": {
-				"best_overall": {
-					"code": best_overall["code"],
-					"score": best_overall["scores"]["overall"]
-				},
-				"worst_risk": {
-					"code": worst_risk["code"],
-					"risk": worst_risk["scores"]["risk"]
-				}
-			}
-		}
-	
-	except HTTPException:
-		raise
+		return results
+
 	except Exception as e:
-		raise HTTPException(status_code=500, detail=f"Błąd: {str(e)}")
+		raise HTTPException(status_code=500, detail=str(e))
 
 
 @router.get("/trends")
