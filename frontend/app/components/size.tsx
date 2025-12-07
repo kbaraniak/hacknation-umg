@@ -92,9 +92,9 @@ export default function Size() {
             try {
                 const dataPromises = selectedPKDs.map(async (pkd) => {
                     try {
-                        // Walidacja - wymagamy section i division
-                        if (!pkd.section || !pkd.division) {
-                            console.warn('Pominięto PKD bez section lub division:', pkd);
+                        // Walidacja - wymagamy przynajmniej section
+                        if (!pkd.section) {
+                            console.warn('Pominięto PKD bez section:', pkd);
                             return [];
                         }
 

@@ -123,29 +123,25 @@ async def get_industry_data(
 	Pobierz dane dla wybranej branży.
     
 	Obsługuje hierarchię PKD:
-	- section + division: Dział (wymagane, użyj /sections i /divisions do pobrania listy)
+	- section: Sekcja (A-U) - wszystkie elementy w sekcji
+	- section + division: Dział - wszystkie elementy w dziale
 	- group: Grupa (opcjonalne, wymaga division)  
 	- subclass: Podklasa (opcjonalne, wymaga group)
     
 	Przykłady:
+	- /industry?section=G → wszystkie kody w sekcji G
 	- /industry?section=G&division=46 → wszystkie kody w dziale 46
 	- /industry?section=G&division=46&group=11 → grupa 46.11
 	- /industry?section=G&division=46&group=11&subclass=A → kod 46.11.A
 	
-	Uwaga: Aby pobrać dane tylko dla sekcji, użyj endpointu /sections
+	Uwaga: Użyj /sections aby pobrać listę sekcji
 	"""
 	try:
-		# Walidacja - wymagamy przynajmniej section + division
+		# Walidacja - wymagamy przynajmniej section
 		if section is None:
 			raise HTTPException(
 				status_code=400,
 				detail="Parametr 'section' jest wymagany. Użyj /sections aby pobrać listę sekcji."
-			)
-		
-		if division is None:
-			raise HTTPException(
-				status_code=400,
-				detail="Parametr 'division' jest wymagany. Użyj /divisions?section={section} aby pobrać listę działów."
 			)
 		
 		# Konwertuj wersję
@@ -335,7 +331,11 @@ async def get_industry_index(
 	
 	Wymagane parametry:
 	- **section**: Sekcja PKD (A-U)
+	
+	Opcjonalne parametry:
 	- **division**: Dział PKD (2-cyfrowy)
+	- **group**: Grupa PKD
+	- **subclass**: Podklasa PKD
 	
 	Zwraca:
 	- **scores**: Komponenty oceny (rozmiar, rentowność, wzrost, ryzyko)
@@ -345,17 +345,11 @@ async def get_industry_index(
 	Przykład: /index?section=G&division=46 → Handel hurtowy
 	"""
 	try:
-		# Walidacja - wymagamy przynajmniej section + division
+		# Walidacja - wymagamy przynajmniej section
 		if section is None:
 			raise HTTPException(
 				status_code=400,
 				detail="Parametr 'section' jest wymagany."
-			)
-		
-		if division is None:
-			raise HTTPException(
-				status_code=400,
-				detail="Parametr 'division' jest wymagany."
 			)
 		
 		# Limit prognozy

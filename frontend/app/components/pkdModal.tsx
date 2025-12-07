@@ -35,24 +35,47 @@ export default function PKDModal({ onPKDsChange }: PKDModalProps) {
         // Reset error
         setErrorMessage("");
         
-        // Walidacja - wymagamy section i division
-        if (!currentPKD?.section || !currentPKD?.division) {
-            setErrorMessage('Wybierz przynajmniej Sekcję i Dział przed dodaniem PKD');
+        // Walidacja - wymagamy przynajmniej section
+        if (!currentPKD?.section) {
+            setErrorMessage('Wybierz przynajmniej Sekcję przed dodaniem PKD');
             return;
         }
         
-        // Stwórz identyfikator PKD (nawet jeśli suffix/group nie jest wybrany)
-        const pkdIdentifier = currentPKD.suffix 
-            ? `${currentPKD.section}.${currentPKD.division}.${currentPKD.suffix}`
-            : `${currentPKD.section}.${currentPKD.division}`;
+        // Debug log
+        console.log('Adding PKD:', currentPKD);
+        
+        // Stwórz identyfikator PKD
+        // Uwaga: suffix może już zawierać division (np. suffix="14.21" gdy division="14")
+        let pkdIdentifier: string;
+        if (currentPKD.suffix && currentPKD.division) {
+            // Sprawdź czy suffix już zawiera division
+            if (currentPKD.suffix.startsWith(currentPKD.division + '.')) {
+                // suffix = "14.21", division = "14" -> C.14.21
+                pkdIdentifier = `${currentPKD.section}.${currentPKD.suffix}`;
+            } else if (currentPKD.suffix.startsWith(currentPKD.division)) {
+                // suffix = "1421", division = "14" -> C.14.21 (usuń duplikację)
+                pkdIdentifier = `${currentPKD.section}.${currentPKD.division}.${currentPKD.suffix.slice(currentPKD.division.length)}`;
+            } else {
+                // suffix = "21", division = "14" -> C.14.21 (normalny przypadek)
+                pkdIdentifier = `${currentPKD.section}.${currentPKD.division}.${currentPKD.suffix}`;
+            }
+        } else if (currentPKD.division) {
+            // Format: C.14 (section.division)
+            pkdIdentifier = `${currentPKD.section}.${currentPKD.division}`;
+        } else if (currentPKD.suffix) {
+            // Gdy jest suffix ale nie ma division - błąd danych
+            console.error('Invalid PKD: suffix without division', currentPKD);
+            setErrorMessage('Błąd: wybrano klasę bez działu');
+            return;
+        } else {
+            // Format: C (tylko section)
+            pkdIdentifier = currentPKD.section;
+        }
+        
+        console.log('Generated PKD identifier:', pkdIdentifier);
         
         // Sprawdź czy PKD już nie istnieje na liście
-        const exists = pkdList.some(item => {
-            const existingIdentifier = item.suffix
-                ? `${item.section}.${item.division}.${item.suffix}`
-                : `${item.section}.${item.division}`;
-            return existingIdentifier === pkdIdentifier;
-        });
+        const exists = pkdList.some(item => item.pkd === pkdIdentifier);
         
         if (!exists) {
             // Dodaj z wygenerowanym identyfikatorem
@@ -112,12 +135,28 @@ export default function PKDModal({ onPKDsChange }: PKDModalProps) {
                                     <Button 
                                         color="primary" 
                                         onPress={handleAddPKD}
-                                        isDisabled={!currentPKD?.section || !currentPKD?.division}
+                                        isDisabled={!currentPKD?.section}
                                         fullWidth
                                     >
-                                        Dodaj PKD {currentPKD?.section && currentPKD?.division 
-                                            ? `(${currentPKD.section}.${currentPKD.division}${currentPKD.suffix ? '.' + currentPKD.suffix : ''})` 
-                                            : ''}
+                                        Dodaj PKD {(() => {
+                                            if (!currentPKD?.section) return '';
+                                            
+                                            let preview = currentPKD.section;
+                                            if (currentPKD.suffix && currentPKD.division) {
+                                                // Sprawdź czy suffix już zawiera division
+                                                if (currentPKD.suffix.startsWith(currentPKD.division + '.')) {
+                                                    preview = `${currentPKD.section}.${currentPKD.suffix}`;
+                                                } else if (currentPKD.suffix.startsWith(currentPKD.division)) {
+                                                    preview = `${currentPKD.section}.${currentPKD.division}.${currentPKD.suffix.slice(currentPKD.division.length)}`;
+                                                } else {
+                                                    preview = `${currentPKD.section}.${currentPKD.division}.${currentPKD.suffix}`;
+                                                }
+                                            } else if (currentPKD.division) {
+                                                preview = `${currentPKD.section}.${currentPKD.division}`;
+                                            }
+                                            
+                                            return `(${preview})`;
+                                        })()}
                                     </Button>
                                 </div>
 
@@ -133,11 +172,30 @@ export default function PKDModal({ onPKDsChange }: PKDModalProps) {
                                     ) : (
                                         <div className="flex flex-wrap gap-2">
                                             {pkdList.map((item) => {
-                                                console.log(item);
+                                                console.log('PKD Item:', item);
+                                                
                                                 // Zbuduj wyświetlaną etykietę
-                                                const displayLabel = item.suffix 
-                                                    ? `${item.section}.${item.division}.${item.suffix}`
-                                                    : `${item.section}.${item.division}`;
+                                                // suffix może już zawierać division (np. "14.21" gdy division="14")
+                                                let displayLabel: string;
+                                                if (item.suffix && item.division) {
+                                                    // Sprawdź czy suffix już zawiera division
+                                                    if (item.suffix.startsWith(item.division + '.')) {
+                                                        // suffix = "14.21" -> C.14.21
+                                                        displayLabel = `${item.section}.${item.suffix}`;
+                                                    } else if (item.suffix.startsWith(item.division)) {
+                                                        // suffix = "1421" -> C.14.21
+                                                        displayLabel = `${item.section}.${item.division}.${item.suffix.slice(item.division.length)}`;
+                                                    } else {
+                                                        // suffix = "21" -> C.14.21
+                                                        displayLabel = `${item.section}.${item.division}.${item.suffix}`;
+                                                    }
+                                                } else if (item.division) {
+                                                    // Tylko dział: C.14
+                                                    displayLabel = `${item.section}.${item.division}`;
+                                                } else {
+                                                    // Tylko sekcja: C
+                                                    displayLabel = item.section || item.pkd || '';
+                                                }
                                                 
                                                 return (
                                                     <Chip
