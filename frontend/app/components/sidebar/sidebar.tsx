@@ -3,6 +3,7 @@
 import React from "react";
 import {Tabs, Tab} from "@heroui/tabs";
 import { PieChart, TrendingUp, AttachMoney, AccountBalance, ReportProblem } from '@mui/icons-material';
+import Image from "next/image";
 
 export type SidebarProps = {
     selectedKey?: string | null;
@@ -19,8 +20,8 @@ export default function Sidebar({ selectedKey, onSelectionChange }: SidebarProps
     ];
 
     return (
-        <div className="fixed inset-y-0 left-0 w-64 bg-gray-800 text-white p-4">
-            <p className="text-xl font-bold mb-6">PKO LOGO</p>
+        <div className="flex flex-col items-center fixed inset-y-0 left-0 w-64 bg-gray-800 text-white p-4">
+            <Image className="rounded-md mt-2 mb-6" src="/favicon.ico" alt="Logo PKOBP" width={80} height={80} />
             <Tabs 
                 aria-label="Menu" 
                 fullWidth 
@@ -32,6 +33,7 @@ export default function Sidebar({ selectedKey, onSelectionChange }: SidebarProps
                     cursor: "bg-gray-700",
                     tab: "justify-start h-12",
                     tabContent: "text-white group-data-[selected=true]:text-white"
+                
                 }}
             >
                 {MENU_ITEMS.map((item) => (
@@ -43,6 +45,7 @@ export default function Sidebar({ selectedKey, onSelectionChange }: SidebarProps
                                 <span>{item.title}</span>
                             </div>
                         }
+                        className={`justify-start h-12 ${selectedKey === item.key ? 'font-bold' : ''}`}
                     />
                 ))}
             </Tabs>
