@@ -218,16 +218,21 @@ export default function Size() {
                                 xAxis={[{ 
                                     scaleType: 'band', 
                                     data: aggregatedData.map(d => d.pkdCode),
+                                    label: 'Kod PKD',
                                 }]}
                                 series={[
                                     { 
                                         data: aggregatedData.map(d => d.totalRevenue), 
                                         label: 'Przychody (mln PLN)',
                                         color: '#1976d2',
+                                        type: 'bar' as const,
                                     },
                                 ]}
                                 height={300}
-                                margin={{ top: 20, right: 20, bottom: 60, left: 60 }}
+                                margin={{ top: 20, right: 20, bottom: 60, left: 80 }}
+                                slotProps={{
+                                    legend: { hidden: false }
+                                }}
                             />
                         </div>
                         
@@ -238,16 +243,21 @@ export default function Size() {
                                 xAxis={[{ 
                                     scaleType: 'band', 
                                     data: aggregatedData.map(d => d.pkdCode),
+                                    label: 'Kod PKD',
                                 }]}
                                 series={[
                                     { 
                                         data: aggregatedData.map(d => d.totalUnits), 
                                         label: 'Jednostki',
                                         color: '#dc004e',
+                                        type: 'bar' as const,
                                     },
                                 ]}
                                 height={300}
-                                margin={{ top: 20, right: 20, bottom: 60, left: 60 }}
+                                margin={{ top: 20, right: 20, bottom: 60, left: 80 }}
+                                slotProps={{
+                                    legend: { hidden: false }
+                                }}
                             />
                         </div>
                     </div>

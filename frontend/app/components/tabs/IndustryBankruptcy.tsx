@@ -128,21 +128,34 @@ export default function IndustryBankruptcy() {
                     })
                 );
 
-                const flattenedData = results.flat().filter(Boolean) as BankruptcyData[];
-                setBankruptcyData(flattenedData);
+                // Każdy rezultat odpowiada jednemu PKD w tej samej kolejności
+                const allTableData: BankruptcyData[] = [];
+                const aggregatedResults: any[] = [];
 
-                // Agreguj dane
-                const aggregated = selectedPKDs.map(pkd => {
-                    const pkdData = flattenedData.filter(d => d.pkd_code.startsWith(pkd.pkd || ''));
-                    const totalUnits = pkdData.reduce((sum, d) => sum + d.total_units, 0);
-                    const totalBankruptcies = pkdData.reduce((sum, d) => sum + d.bankruptcies, 0);
-                    return {
-                        pkdCode: pkd.pkd || '',
-                        totalBankruptcies: totalBankruptcies,
-                        bankruptcyRate: totalUnits > 0 ? (totalBankruptcies / totalUnits) * 100 : 0,
-                    };
+                results.forEach((result, index) => {
+                    if (result && Array.isArray(result)) {
+                        const pkd = selectedPKDs[index];
+                        let totalUnits = 0;
+                        let totalBankruptcies = 0;
+
+                        result.forEach((item: BankruptcyData) => {
+                            allTableData.push(item);
+                            totalUnits += item.total_units;
+                            totalBankruptcies += item.bankruptcies;
+                        });
+
+                        if (result.length > 0) {
+                            aggregatedResults.push({
+                                pkdCode: pkd.pkd || `${pkd.section}${pkd.division ? '.' + pkd.division : ''}${pkd.suffix ? '.' + pkd.suffix : ''}`,
+                                totalBankruptcies,
+                                bankruptcyRate: totalUnits > 0 ? (totalBankruptcies / totalUnits) * 100 : 0,
+                            });
+                        }
+                    }
                 });
-                setAggregatedData(aggregated);
+
+                setBankruptcyData(allTableData);
+                setAggregatedData(aggregatedResults);
 
             } catch (error) {
                 console.error('Error fetching bankruptcy data:', error);

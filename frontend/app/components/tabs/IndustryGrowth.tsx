@@ -113,17 +113,32 @@ export default function IndustryGrowth() {
                 const flattenedData = results.flat().filter(Boolean) as GrowthData[];
                 setGrowthData(flattenedData);
 
-                // Agreguj dane dla wykresów
-                const aggregated = selectedPKDs.map(pkd => ({
-                    pkdCode: pkd.pkd || '',
-                    avgScore: flattenedData
-                        .filter(d => d.pkd_code.startsWith(pkd.section || ''))
-                        .reduce((sum, d) => sum + d.overall_score, 0) / (flattenedData.filter(d => d.pkd_code.startsWith(pkd.section || '')).length || 1),
-                    avgGrowth: flattenedData
-                        .filter(d => d.pkd_code.startsWith(pkd.section || ''))
-                        .reduce((sum, d) => sum + d.yoy_growth, 0) / (flattenedData.filter(d => d.pkd_code.startsWith(pkd.section || '')).length || 1),
-                }));
-                setAggregatedData(aggregated);
+                // Agreguj dane dla wykresów - każdy rezultat to dane dla jednego PKD
+                const aggregatedResults: any[] = [];
+
+                results.forEach((result, index) => {
+                    if (result && Array.isArray(result)) {
+                        const pkd = selectedPKDs[index];
+                        let sumScore = 0;
+                        let sumGrowth = 0;
+                        const count = result.length;
+
+                        result.forEach((item: GrowthData) => {
+                            sumScore += item.overall_score;
+                            sumGrowth += item.yoy_growth;
+                        });
+
+                        if (count > 0) {
+                            aggregatedResults.push({
+                                pkdCode: pkd.pkd || `${pkd.section}${pkd.division ? '.' + pkd.division : ''}${pkd.suffix ? '.' + pkd.suffix : ''}`,
+                                avgScore: sumScore / count,
+                                avgGrowth: sumGrowth / count,
+                            });
+                        }
+                    }
+                });
+
+                setAggregatedData(aggregatedResults);
 
             } catch (error) {
                 console.error('Error fetching growth data:', error);
@@ -144,7 +159,8 @@ export default function IndustryGrowth() {
                 label: 'Ocena'
             })),
             color: '#1976d2',
-            unit: ''
+            unit: '',
+            chartType: 'line' as const
         },
         {
             title: 'Wzrost YoY (%)',
@@ -154,7 +170,8 @@ export default function IndustryGrowth() {
                 label: 'Wzrost'
             })),
             color: '#2e7d32',
-            unit: '%'
+            unit: '%',
+            chartType: 'line' as const
         },
     ];
 

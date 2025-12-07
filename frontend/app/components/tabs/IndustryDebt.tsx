@@ -123,20 +123,37 @@ export default function IndustryDebt() {
                     })
                 );
 
-                const flattenedData = results.flat().filter(Boolean) as DebtData[];
-                setDebtData(flattenedData);
+                // Każdy rezultat odpowiada jednemu PKD w tej samej kolejności
+                const allTableData: DebtData[] = [];
+                const aggregatedResults: any[] = [];
 
-                // Agreguj dane
-                const aggregated = selectedPKDs.map(pkd => {
-                    const pkdData = flattenedData.filter(d => d.pkd_code.startsWith(pkd.pkd || ''));
-                    return {
-                        pkdCode: pkd.pkd || '',
-                        totalLongTermDebt: pkdData.reduce((sum, d) => sum + d.long_term_debt, 0),
-                        totalShortTermDebt: pkdData.reduce((sum, d) => sum + d.short_term_debt, 0),
-                        totalDebt: pkdData.reduce((sum, d) => sum + d.total_debt, 0),
-                    };
+                results.forEach((result, index) => {
+                    if (result && Array.isArray(result)) {
+                        const pkd = selectedPKDs[index];
+                        let totalLong = 0;
+                        let totalShort = 0;
+                        let totalAll = 0;
+
+                        result.forEach((item: DebtData) => {
+                            allTableData.push(item);
+                            totalLong += item.long_term_debt;
+                            totalShort += item.short_term_debt;
+                            totalAll += item.total_debt;
+                        });
+
+                        if (result.length > 0) {
+                            aggregatedResults.push({
+                                pkdCode: pkd.pkd || `${pkd.section}${pkd.division ? '.' + pkd.division : ''}${pkd.suffix ? '.' + pkd.suffix : ''}`,
+                                totalLongTermDebt: totalLong,
+                                totalShortTermDebt: totalShort,
+                                totalDebt: totalAll,
+                            });
+                        }
+                    }
                 });
-                setAggregatedData(aggregated);
+
+                setDebtData(allTableData);
+                setAggregatedData(aggregatedResults);
 
             } catch (error) {
                 console.error('Error fetching debt data:', error);

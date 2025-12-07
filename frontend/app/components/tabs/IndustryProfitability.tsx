@@ -59,8 +59,8 @@ export default function IndustryProfitability() {
             setLoading(true);
             try {
                 const results = await Promise.all(
-                    selectedPKDs.map(async (pkd) => {
-                        if (!pkd.section) return null;
+                    selectedPKDs.map(async (pkd, pkdIndex) => {
+                        if (!pkd.section) return { tableData: [], aggregated: null };
 
                         const response = await getIndustry({
                             section: pkd.section,
@@ -74,12 +74,16 @@ export default function IndustryProfitability() {
                         const financialData = response.financial_data || {};
                         const pkdCodes = response.pkd_codes || [];
                         
+                        let totalProfitability = 0;
+                        let totalMargin = 0;
+                        let itemCount = 0;
+                        
                         const codesWithData = pkdCodes.filter((code: any) => {
                             const cleanSymbol = code.symbol.replace(/^[A-U]\./, '').replace(/\.Z$/, '');
                             return financialData[cleanSymbol] && Object.keys(financialData[cleanSymbol]).length > 0;
                         });
 
-                        return codesWithData.map((code: any, index: number) => {
+                        const tableData = codesWithData.map((code: any, index: number) => {
                             const cleanSymbol = code.symbol.replace(/^[A-U]\./, '').replace(/\.Z$/, '');
                             const codeFinancialData = financialData[cleanSymbol] || {};
                             const years = Object.keys(codeFinancialData).sort();
@@ -87,42 +91,51 @@ export default function IndustryProfitability() {
                             const latestYear = years[years.length - 1];
                             const latestData = latestYear ? codeFinancialData[latestYear] : null;
 
+                            const profRatio = latestData?.profitability_ratio || 0;
+                            const margRatio = latestData?.margin_ratio || 0;
+                            
+                            totalProfitability += profRatio * 100;
+                            totalMargin += margRatio * 100;
+                            itemCount++;
+
                             // Oblicz zmianę rentowności
                             let profitabilityGrowth = 0;
                             if (years.length >= 2) {
                                 const previousYear = years[years.length - 2];
                                 const previousData = codeFinancialData[previousYear];
-                                const currentProf = latestData?.profitability_ratio || 0;
+                                const currentProf = profRatio;
                                 const previousProf = previousData?.profitability_ratio || 0;
-                                profitabilityGrowth = (currentProf - previousProf) * 100; // w punktach procentowych
+                                profitabilityGrowth = (currentProf - previousProf) * 100;
                             }
 
                             return {
-                                id: `${pkd.pkd}-${code.symbol}-${index}`,
+                                id: `${pkdIndex}-${code.symbol}-${index}`,
                                 pkd_code: code.symbol,
                                 name: code.name || 'Brak nazwy',
-                                profitability_ratio: latestData?.profitability_ratio || 0,
-                                margin_ratio: latestData?.margin_ratio || 0,
+                                profitability_ratio: profRatio,
+                                margin_ratio: margRatio,
                                 profitability_growth: profitabilityGrowth,
                             };
                         }).filter(Boolean);
+
+                        const aggregated = itemCount > 0 ? {
+                            pkdCode: pkd.pkd || `${pkd.section}${pkd.division ? '.' + pkd.division : ''}${pkd.suffix ? '.' + pkd.suffix : ''}`,
+                            avgProfitability: totalProfitability / itemCount,
+                            avgMargin: totalMargin / itemCount,
+                        } : null;
+
+                        return { tableData, aggregated };
                     })
                 );
 
-                const flattenedData = results.flat().filter(Boolean) as ProfitabilityData[];
-                setProfitabilityData(flattenedData);
+                const allTableData = results.flatMap(r => r.tableData).filter(Boolean) as ProfitabilityData[];
+                const aggregatedData = results.map(r => r.aggregated).filter(Boolean);
+                
+                console.log('📊 Table data:', allTableData);
+                console.log('📈 Aggregated data:', aggregatedData);
 
-                // Agreguj dane
-                const aggregated = selectedPKDs.map(pkd => ({
-                    pkdCode: pkd.pkd || '',
-                    avgProfitability: flattenedData
-                        .filter(d => d.pkd_code.startsWith(pkd.pkd || ''))
-                        .reduce((sum, d) => sum + d.profitability_ratio * 100, 0) / flattenedData.length || 0,
-                    avgMargin: flattenedData
-                        .filter(d => d.pkd_code.startsWith(pkd.pkd || ''))
-                        .reduce((sum, d) => sum + d.margin_ratio * 100, 0) / flattenedData.length || 0,
-                }));
-                setAggregatedData(aggregated);
+                setProfitabilityData(allTableData);
+                setAggregatedData(aggregatedData);
 
             } catch (error) {
                 console.error('Error fetching profitability data:', error);

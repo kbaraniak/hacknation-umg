@@ -17,6 +17,7 @@ type IndustryComparisonProps = {
         data: MetricData[];
         color?: string;
         unit?: string;
+        chartType?: 'bar' | 'line';
     }[];
     summaryData?: { pkdCode: string; [key: string]: any }[];
 };
@@ -49,6 +50,7 @@ export default function IndustryComparison({
                         data={metric.data}
                         color={metric.color}
                         unit={metric.unit}
+                        chartType={metric.chartType}
                     />
                 ))}
             </div>
