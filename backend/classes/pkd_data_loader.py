@@ -273,6 +273,27 @@ class PKDDataLoader:
         self.mapper = PKDMapper(self.data_dir)
         print(f"    ✓ {len(self.mapper.mapping_2007_to_2025)} mapowań załadowanych")
     
+    def _normalize_pkd_key(self, code: str) -> str:
+        """Normalizuj klucz PKD z formatu CSV do formatu hierarchii.
+        
+        Konwersje:
+        - SEK_A → A, SEK_B → B, itd.
+        - 01. → 01
+        - 01.1 → 01.1 (zostaje bez zmian)
+        - 01.11 → 01.11 (zostaje bez zmian)
+        """
+        code = code.strip()
+        
+        # Konwertuj SEK_X na X (sekcje)
+        if code.startswith('SEK_'):
+            return code[4:]  # Usuń 'SEK_' prefix
+        
+        # Konwertuj XX. na XX (działów z kropką na końcu)
+        if code.endswith('.') and len(code) >= 3:
+            return code[:-1]  # Usuń ostatnią kropkę
+        
+        return code
+    
     def _load_financial_data(self) -> None:
         """Wczytaj dane finansowe z wsk_fin.csv"""
         print("  → Ładowanie danych finansowych...")
@@ -290,7 +311,7 @@ class PKDDataLoader:
             years = sorted([int(col) for col in year_columns])
             
             for _, row in df.iterrows():
-                pkd = str(row['PKD']).strip()
+                pkd = self._normalize_pkd_key(str(row['PKD']))
                 wskaznik = str(row['WSKAZNIK']).strip()
                 
                 if pkd not in self.financial_data:

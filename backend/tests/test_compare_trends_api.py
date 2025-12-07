@@ -29,7 +29,7 @@ def test_compare_invalid_years():
 
 
 def test_trends_basic():
-    resp = client.get("/api/trends?sections=G,C")
+    resp = client.get("/api/trends?codes=G,C")
     assert resp.status_code == 200
     data = resp.json()
     assert "sections_data" in data
@@ -37,5 +37,5 @@ def test_trends_basic():
 
 
 def test_trends_invalid_years():
-    resp = client.get("/api/trends?sections=G&years=bad")
+    resp = client.get("/api/trends?codes=G&years=bad")
     assert resp.status_code == 400

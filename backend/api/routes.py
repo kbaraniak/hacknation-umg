@@ -8,7 +8,7 @@ from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel, Field
 
 from classes.pkd_data_service import PKDDataService
-from classes.pkd_classification import PKDVersion
+from classes.pkd_classification import PKDVersion, PKDLevel
 from classes.industry_index import IndustryIndexCalculator
 
 # Inicjalizacja serwisu
@@ -480,18 +480,13 @@ async def get_industry_index(
 
 @router.get("/compare")
 async def compare_branches(
-	codes: str = Query(..., description="Lista kodów PKD lub sekcji oddzielonych przecinkami (np. 46,47,G,C)"),
+	codes: str = Query(..., description="Lista kodów PKD oddzielonych przecinkami (np. 46,47,46.11)"),
 	version: Optional[str] = Query("2025", description="Wersja PKD (2007 lub 2025)"),
 	years: Optional[str] = Query(None, description="Zakres lat, np. 2020-2024")
 ):
 	"""
-	Porównaj wiele branż jednocześnie. Przyjmuje kody PKD (działy, grupy) lub litery sekcji.
+	Porównaj wiele branż jednocześnie. Przyjmuje kody PKD (sekcja/dział/grupa).
 	Zwraca metryki, score oraz serię czasową gotową do wizualizacji.
-	
-	Przykłady:
-	- /compare?codes=46,47 → porównaj działy 46 i 47
-	- /compare?codes=G,C → porównaj sekcje G i C
-	- /compare?codes=46.11,47.1 → porównaj grupy
 	"""
 	try:
 		pkd_version = PKDVersion.VERSION_2025 if version == "2025" else PKDVersion.VERSION_2007
@@ -513,29 +508,17 @@ async def compare_branches(
 		results = []
 		
 		for code_str in code_list:
-			# Usuń kropki z końca (dane mają "46.", API przyjmuje "46")
-			code_clean = code_str.rstrip('.')
-			
 			rep_code = None
-			
-			# 1. Sprawdź czy to litera sekcji (A-U)
-			if len(code_clean) == 1 and code_clean.isalpha():
-				sec_codes = hierarchy.get_by_section(code_clean.upper())
-				rep_code = sec_codes[0] if sec_codes else None
-			# 2. Sprawdź bezpośrednie dopasowanie w codes
-			elif code_clean in hierarchy.codes:
-				rep_code = hierarchy.codes[code_clean]
-			# 3. Sprawdź w indeksie działów
-			elif code_clean in hierarchy.division_index:
-				div_codes = hierarchy.get_by_division(code_clean)
+			if code_str in hierarchy.codes:
+				rep_code = hierarchy.codes[code_str]
+			elif code_str in hierarchy.division_index:
+				div_codes = hierarchy.get_by_division(code_str)
 				rep_code = div_codes[0] if div_codes else None
-			# 4. Sprawdź w indeksie grup
-			elif code_clean in hierarchy.group_index:
-				grp_codes = hierarchy.get_by_group(code_clean)
+			elif code_str in hierarchy.group_index:
+				grp_codes = hierarchy.get_by_group(code_str)
 				rep_code = grp_codes[0] if grp_codes else None
-			# 5. Fallback: próbuj sekcję
 			else:
-				sec_codes = hierarchy.get_by_section(code_clean.upper())
+				sec_codes = hierarchy.get_by_section(code_str)
 				rep_code = sec_codes[0] if sec_codes else None
 			
 			if rep_code is None:
@@ -653,24 +636,17 @@ async def compare_branches(
 
 @router.get("/trends")
 async def get_trends(
-	codes: str = Query(..., description="Kody PKD lub sekcje oddzielone przecinkami (np. 46,47,G,C)"),
+	codes: str = Query(..., description="Sekcje lub kody PKD oddzielone przecinkami, np. G,C,46"),
 	years: Optional[str] = Query(None, description="Zakres lat np. 2018-2024"),
 	metrics: Optional[str] = Query("revenue,growth,bankruptcies", description="Lista metryk")
 ):
 	"""
-	Trendy w czasie dla wielu branż jednocześnie. Zwraca dane do wykresów.
-	
-	Przyjmuje kody PKD (działy, grupy) lub litery sekcji.
-	
-	Przykłady:
-	- /trends?codes=46,47 → trendy dla działów 46 i 47
-	- /trends?codes=G,C → trendy dla sekcji G i C
-	- /trends?codes=46.11,47.1&years=2020-2024 → grupy w latach 2020-2024
+	Trendy w czasie dla wielu sekcji/kodów jednocześnie. Zwraca dane do wykresów.
 	"""
 	try:
-		code_list = [c.strip() for c in codes.split(",") if c.strip()]
-		if not code_list:
-			raise HTTPException(status_code=400, detail="Brak kodów PKD")
+		codes_list = [s.strip() for s in codes.split(",") if s.strip()]
+		if not codes_list:
+			raise HTTPException(status_code=400, detail="Brak kodów")
 		
 		years_range = None
 		if years:
@@ -687,61 +663,40 @@ async def get_trends(
 		sections_data = {}
 		labels = []
 		
-		for code_str in code_list:
-			# Usuń kropki z końca (dane mają "46.", API przyjmuje "46")
-			code_clean = code_str.rstrip('.')
+		for sec in codes_list:
+			# Obsługa zarówno sekcji jak i kodów
+			target_code = sec
 			
-			# Znajdź reprezentatywny kod PKD (tak jak w /compare)
-			rep_code = None
-			
-			# 1. Sprawdź czy to litera sekcji (A-U)
-			if len(code_clean) == 1 and code_clean.isalpha():
-				sec_codes = hierarchy.get_by_section(code_clean.upper())
-				rep_code = sec_codes[0] if sec_codes else None
-			# 2. Sprawdź bezpośrednie dopasowanie w codes
-			elif code_clean in hierarchy.codes:
-				rep_code = hierarchy.codes[code_clean]
-			# 3. Sprawdź w indeksie działów
-			elif code_clean in hierarchy.division_index:
-				div_codes = hierarchy.get_by_division(code_clean)
-				rep_code = div_codes[0] if div_codes else None
-			# 4. Sprawdź w indeksie grup
-			elif code_clean in hierarchy.group_index:
-				grp_codes = hierarchy.get_by_group(code_clean)
-				rep_code = grp_codes[0] if grp_codes else None
-			# 5. Fallback: próbuj sekcję
+			# Sprawdź czy to sekcja czy kod
+			if len(sec) == 1 and sec.isalpha():
+				# To sekcja
+				ind_data = service.get_data(section=sec, version=pkd_version)
+				name = hierarchy.get_by_symbol(sec).name if hierarchy.get_by_symbol(sec) else f"Sekcja {sec}"
 			else:
-				sec_codes = hierarchy.get_by_section(code_clean.upper())
-				rep_code = sec_codes[0] if sec_codes else None
-			
-			if rep_code is None:
-				print(f"Warning: code {code_str} not found in /trends")
-				continue
-			
-			# Pobierz dane dla odpowiedniego poziomu hierarchii
-			if rep_code.subclass:
-				ind_data = service.get_data(
-					section=rep_code.section,
-					division=rep_code.division,
-					group=rep_code.group,
-					subclass=rep_code.subclass,
-					version=pkd_version
-				)
-			elif rep_code.group:
-				ind_data = service.get_data(
-					section=rep_code.section,
-					division=rep_code.division,
-					group=rep_code.group,
-					version=pkd_version
-				)
-			elif rep_code.division:
-				ind_data = service.get_data(
-					section=rep_code.section,
-					division=rep_code.division,
-					version=pkd_version
-				)
-			else:
-				ind_data = service.get_data(section=rep_code.section, version=pkd_version)
+				# To kod (dział, grupa itp)
+				# Znajdź kod w hierarchii
+				code_obj = hierarchy.get_by_symbol(sec)
+				if not code_obj:
+					# Spróbuj znaleźć w indeksach
+					if sec in hierarchy.division_index:
+						code_obj = hierarchy.codes[hierarchy.division_index[sec][0]]
+					elif sec in hierarchy.group_index:
+						code_obj = hierarchy.codes[hierarchy.group_index[sec][0]]
+				
+				if code_obj:
+					name = code_obj.name
+					if code_obj.level == PKDLevel.SECTION:
+						ind_data = service.get_data(section=code_obj.section, version=pkd_version)
+					elif code_obj.level == PKDLevel.DIVISION:
+						ind_data = service.get_data(section=code_obj.section, division=code_obj.division, version=pkd_version)
+					elif code_obj.level == PKDLevel.GROUP:
+						ind_data = service.get_data(section=code_obj.section, division=code_obj.division, group=code_obj.group, version=pkd_version)
+					else:
+						ind_data = service.get_data(section=code_obj.section, version=pkd_version) # Fallback
+				else:
+					print(f"Warning: Code {sec} not found")
+					continue
+
 			if not ind_data.financial_data:
 				continue
 			from classes.pkd_data_loader import FinancialMetrics
@@ -779,8 +734,8 @@ async def get_trends(
 					growth = 0
 				growth_series[str(cur_y)] = growth
 			
-			sections_data[code_str] = {
-				"name": rep_code.name,
+			sections_data[sec] = {
+				"name": name,
 				"time_series": {
 					"revenue": {str(y): agg_financial[y].revenue or 0 for y in years_sorted},
 					"net_income": {str(y): agg_financial[y].net_income or 0 for y in years_sorted},
@@ -796,23 +751,23 @@ async def get_trends(
 			}
 		
 		if not sections_data:
-			raise HTTPException(status_code=404, detail="Brak danych dla wybranych kodów PKD")
+			raise HTTPException(status_code=404, detail="Brak danych dla wybranych sekcji")
 		
 		datasets = []
-		for code, data in sections_data.items():
+		for sec, data in sections_data.items():
 			if "revenue" in metrics_list:
 				datasets.append({
-					"label": f"{data['name']} - Przychody",
+					"label": f"Sekcja {sec} - Przychody",
 					"data": [data["time_series"]["revenue"].get(l, 0) for l in labels]
 				})
 			if "growth" in metrics_list:
 				datasets.append({
-					"label": f"{data['name']} - YoY %",
+					"label": f"Sekcja {sec} - YoY %",
 					"data": [data["growth"].get(l, 0) for l in labels]
 				})
 			if "bankruptcies" in metrics_list:
 				datasets.append({
-					"label": f"{data['name']} - Upadłości",
+					"label": f"Sekcja {sec} - Upadłości",
 					"data": [data["time_series"]["bankruptcies"].get(l, 0) for l in labels]
 				})
 		
