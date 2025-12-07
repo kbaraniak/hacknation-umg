@@ -3,6 +3,10 @@
 import React, {useState} from "react";
 import Sidebar from "./sidebar";
 import Size from "@/app/components/size";
+import IndustryGrowth from "../tabs/IndustryGrowth";
+import IndustryProfitability from "../tabs/IndustryProfitability";
+import IndustryDebt from "../tabs/IndustryDebt";
+import IndustryBankruptcy from "../tabs/IndustryBankruptcy";
 
 export default function SidebarShell({children}: { children: React.ReactNode }) {
     const [selectedKey, setSelectedKey] = useState<string | null>("photos");
@@ -11,6 +15,14 @@ export default function SidebarShell({children}: { children: React.ReactNode }) 
         switch (selectedKey) {
             case "Size":
                 return <Size/>;
+            case "Trends":
+                return <IndustryGrowth />;
+            case "Finance":
+                return <IndustryProfitability />;
+            case "Debt":
+                return <IndustryDebt />;
+            case "Risk":
+                return <IndustryBankruptcy />;
             default:
                 return <div>Empty</div>;
         }
@@ -21,11 +33,11 @@ export default function SidebarShell({children}: { children: React.ReactNode }) 
             <div className="w-64">
                 <Sidebar selectedKey={selectedKey} onSelectionChange={(k) => setSelectedKey(k)}/>
             </div>
-            <main className="flex-1 flex flex-col p-6">
+            <main className="flex-1 flex flex-col p-6 pb-0">
                 <div className="max-w-7xl w-full mx-auto flex-1 flex flex-col">
                     <div>{children}</div>
                     {/* render the tab-controlled content above the page children; flex-1 so it grows */}
-                    <div className="mb-6">{renderContent()}</div>
+                    <div className="">{renderContent()}</div>
                 </div>
             </main>
         </div>

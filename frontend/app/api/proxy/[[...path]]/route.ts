@@ -10,8 +10,11 @@ export async function GET(
   { params }: { params: { path?: string[] } }
 ) {
   try {
+    // Await params first
+    const resolvedParams = await params;
+    
     // Get the path segments (e.g., ["divisions"], ["groups"], etc.)
-    const pathSegments = params.path || [];
+    const pathSegments = resolvedParams.path || [];
     const path = pathSegments.join('/');
     
     // Get query parameters
@@ -59,7 +62,7 @@ export async function POST(
   { params }: { params: { path?: string[] } }
 ) {
   try {
-    const pathSegments = params.path || [];
+    const pathSegments = await params.path || [];
     const path = pathSegments.join('/');
     
     const searchParams = request.nextUrl.searchParams;
