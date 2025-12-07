@@ -46,3 +46,6 @@ frontend/pnpm-lock.yaml
 # IDEs and editors
 frontend/.idea
 frontend/.vscode/
+
+# cache
+backend/*/__pycache__/*
