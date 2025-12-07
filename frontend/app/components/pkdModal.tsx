@@ -21,7 +21,11 @@ type PKDItem = {
     full?: string;
 };
 
-export default function PKDModal() {
+type PKDModalProps = {
+    onPKDsChange?: (pkds: PKDItem[]) => void;
+};
+
+export default function PKDModal({ onPKDsChange }: PKDModalProps) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [pkdList, setPkdList] = React.useState<PKDItem[]>([]);
     const [currentPKD, setCurrentPKD] = React.useState<PKDItem | null>(null);
@@ -31,7 +35,10 @@ export default function PKDModal() {
             // Sprawdź czy PKD już nie istnieje na liście
             const exists = pkdList.some(item => item.pkd === currentPKD.pkd);
             if (!exists) {
-                setPkdList([...pkdList, currentPKD]);
+                const newList = [...pkdList, currentPKD];
+                setPkdList(newList);
+                // Notify parent component
+                onPKDsChange?.(newList);
                 // Reset current selection after adding
                 setCurrentPKD(null);
             }
@@ -39,12 +46,17 @@ export default function PKDModal() {
     };
 
     const handleRemovePKD = (pkdToRemove: string) => {
-        setPkdList(pkdList.filter(item => item.pkd !== pkdToRemove));
+        const newList = pkdList.filter(item => item.pkd !== pkdToRemove);
+        setPkdList(newList);
+        // Notify parent component
+        onPKDsChange?.(newList);
     };
 
     const handleClearAll = () => {
         setPkdList([]);
         setCurrentPKD(null);
+        // Notify parent component
+        onPKDsChange?.([]);
     };
 
     return (
@@ -86,16 +98,19 @@ export default function PKDModal() {
                                         </p>
                                     ) : (
                                         <div className="flex flex-wrap gap-2">
-                                            {pkdList.map((item) => (
-                                                <Chip
-                                                    key={item.pkd}
-                                                    onClose={() => handleRemovePKD(item.pkd!)}
-                                                    variant="flat"
-                                                    color="primary"
-                                                >
-                                                    {item.pkd}
-                                                </Chip>
-                                            ))}
+                                            {pkdList.map((item) => {
+                                                console.log(item);
+                                                return (
+                                                    <Chip
+                                                        key={item.pkd}
+                                                        onClose={() => handleRemovePKD(item.pkd!)}
+                                                        variant="flat"
+                                                        color="primary"
+                                                    >
+                                                        {item.suffix === undefined ? item.pkd : item.section + "." + item.suffix}
+                                                    </Chip>
+                                                );
+                                            })}
                                         </div>
                                     )}
                                 </div>

@@ -7,6 +7,7 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import SidebarShell from "@/app/components/sidebar/sidebar-shell";
+import { PKDProvider } from "@/app/context/PKDContext";
 
 export const metadata: Metadata = {
   title: {
@@ -41,7 +42,9 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+          <PKDProvider>
             <SidebarShell>{children}</SidebarShell>
+          </PKDProvider>
         </Providers>
       </body>
     </html>

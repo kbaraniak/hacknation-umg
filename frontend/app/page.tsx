@@ -1,11 +1,20 @@
+"use client";
+
 import {Input} from "@heroui/input";
 import {Button} from "@heroui/button";
 import PKDModal from "@/app/components/pkdModal";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { usePKD } from "@/app/context/PKDContext";
 
 export default function Home() {
+    const { selectedPKDs, setSelectedPKDs } = usePKD();
+    
     // Create an array of years (example range from 2000 to 2030)
     const years = Array.from({length: 31}, (_, i) => 2000 + i);
+
+    const handleClearAll = () => {
+        setSelectedPKDs([]);
+    };
 
     return (
         <>
@@ -43,8 +52,17 @@ export default function Home() {
                     </Input>
                 </div>
                 <div className="flex gap-4">
-                    <PKDModal/>
-                    <Button variant="bordered" color="danger" isIconOnly className="hover:text-white"><DeleteOutlineIcon/></Button>
+                    <PKDModal onPKDsChange={setSelectedPKDs} />
+                    <Button 
+                        variant="bordered" 
+                        color="danger" 
+                        isIconOnly 
+                        className="hover:text-white"
+                        onPress={handleClearAll}
+                        isDisabled={selectedPKDs.length === 0}
+                    >
+                        <DeleteOutlineIcon/>
+                    </Button>
                 </div>
                 <Button className="h-100%" color="primary">Szukaj</Button>
             </div>
