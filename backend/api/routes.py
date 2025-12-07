@@ -541,17 +541,18 @@ async def compare_branches(
 				print(f"Warning: code {code_str} not found")
 				continue
 			
-			if rep_code.subclass:
-				industry_data = service.get_data(
-					section=rep_code.section,
-					division=rep_code.division,
-					group=rep_code.group,
-					subclass=rep_code.subclass,
-					version=pkd_version
-				)
-				
+			# Pobierz dane dla znalezionego reprezentatywnego kodu
+			industry_data = service.get_data(
+				section=rep_code.section,
+				division=rep_code.division,
+				group=rep_code.group,
+				subclass=rep_code.subclass,
+				version=pkd_version
+			)
+			
+			if industry_data and industry_data.financial_data:
 				# Aggregate financial data
-				years_set = data.get_all_years()
+				years_set = industry_data.get_all_years()
 				aggregated_values = {} # year -> { revenue, net_income, ... }
 				
 				for year in years_set:
@@ -559,7 +560,7 @@ async def compare_branches(
 						continue
 						
 					agg = {"revenue": 0.0, "net_income": 0.0, "unit_count": 0}
-					for symbol, history in data.financial_data.items():
+					for symbol, history in industry_data.financial_data.items():
 						if year in history:
 							m = history[year]
 							if m.revenue: agg["revenue"] += m.revenue
@@ -580,9 +581,9 @@ async def compare_branches(
 					values_by_metric["unit_count"].append({"year": year, "value": vals["unit_count"]})
 
 				results.append({
-					"id": code_str,
+					"id": rep_code.symbol,  # Użyj pełnego symbolu z sekcją
 					"values": values_by_metric,
-					"summary": data.get_summary_statistics()
+					"summary": industry_data.get_summary_statistics()
 				})
 		
 		return results
