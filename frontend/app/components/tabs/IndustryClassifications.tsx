@@ -69,6 +69,8 @@ export default function IndustryClassifications() {
     const [loading, setLoading] = React.useState(false);
     const [description, setDescription] = React.useState('');
     const [criteria, setCriteria] = React.useState<any>({});
+        console.log('classificationData', data);
+    
 
     React.useEffect(() => {
         const fetchData = async () => {

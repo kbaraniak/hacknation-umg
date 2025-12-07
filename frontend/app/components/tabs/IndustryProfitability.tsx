@@ -47,6 +47,7 @@ export default function IndustryProfitability() {
     const [profitabilityData, setProfitabilityData] = React.useState<ProfitabilityData[]>([]);
     const [aggregatedData, setAggregatedData] = React.useState<any[]>([]);
     const [loading, setLoading] = React.useState(false);
+    console.log('profitabilityData', profitabilityData);
 
     React.useEffect(() => {
         const fetchProfitabilityData = async () => {

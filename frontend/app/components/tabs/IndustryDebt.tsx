@@ -55,6 +55,7 @@ export default function IndustryDebt() {
     const [debtData, setDebtData] = React.useState<DebtData[]>([]);
     const [aggregatedData, setAggregatedData] = React.useState<any[]>([]);
     const [loading, setLoading] = React.useState(false);
+    console.log('debtData', debtData);
 
     React.useEffect(() => {
         const fetchDebtData = async () => {

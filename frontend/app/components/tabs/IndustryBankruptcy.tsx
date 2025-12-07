@@ -55,6 +55,8 @@ export default function IndustryBankruptcy() {
     const [bankruptcyData, setBankruptcyData] = React.useState<BankruptcyData[]>([]);
     const [aggregatedData, setAggregatedData] = React.useState<any[]>([]);
     const [loading, setLoading] = React.useState(false);
+    console.log('bankruptcyData', bankruptcyData);
+    
 
     React.useEffect(() => {
         const fetchBankruptcyData = async () => {

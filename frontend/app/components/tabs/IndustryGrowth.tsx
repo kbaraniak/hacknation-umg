@@ -53,6 +53,8 @@ export default function IndustryGrowth() {
     const [growthData, setGrowthData] = React.useState<GrowthData[]>([]);
     const [aggregatedData, setAggregatedData] = React.useState<any[]>([]);
     const [loading, setLoading] = React.useState(false);
+    console.log('selectedPKDs', selectedPKDs);
+    console.log('growthData', growthData);
 
     React.useEffect(() => {
         const fetchGrowthData = async () => {

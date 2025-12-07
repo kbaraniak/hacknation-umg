@@ -42,7 +42,7 @@ export default function SidebarShell({children}: { children: React.ReactNode }) 
                 return <IndustryGrowth />;
             case "Finance":
                 return <IndustryProfitability />;
-            case "Debt":
+            case "Debt":  
                 return <IndustryDebt />;
             case "Risk":
                 return <IndustryBankruptcy />;
