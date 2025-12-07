@@ -83,7 +83,7 @@ const columns: GridColDef<IndustryData>[] = [
 ];
 
 export default function Size() {
-    const { selectedPKDs } = usePKD();
+    const { selectedPKDs, startYear, endYear } = usePKD();
     const [industryData, setIndustryData] = React.useState<IndustryData[]>([]);
     const [aggregatedData, setAggregatedData] = React.useState<AggregatedData[]>([]);
     const [loading, setLoading] = React.useState(false);
@@ -113,7 +113,9 @@ export default function Size() {
                             section: pkd.section,
                             division: pkd.division,
                             group: pkd.suffix,
-                            version: "2025"
+                            version: "2025",
+                            year_from: startYear,
+                            year_to: endYear
                         });
 
                         // Pobierz summary statistics dla wykresu
@@ -192,7 +194,7 @@ export default function Size() {
         };
 
         fetchIndustryData();
-    }, [selectedPKDs]);
+    }, [selectedPKDs, startYear, endYear]);
 
     return (
         <div className="rounded-md">

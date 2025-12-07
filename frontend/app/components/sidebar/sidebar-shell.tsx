@@ -1,15 +1,36 @@
 "use client";
 
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Sidebar from "./sidebar";
 import Size from "@/app/components/size";
 import IndustryGrowth from "../tabs/IndustryGrowth";
 import IndustryProfitability from "../tabs/IndustryProfitability";
 import IndustryDebt from "../tabs/IndustryDebt";
 import IndustryBankruptcy from "../tabs/IndustryBankruptcy";
+import { saveToStorage, loadFromStorage } from '@/lib/client/storage';
+
+const STORAGE_KEY_CATEGORY = 'hacknation_last_category';
+const DEFAULT_CATEGORY = "Size";
 
 export default function SidebarShell({children}: { children: React.ReactNode }) {
-    const [selectedKey, setSelectedKey] = useState<string | null>("photos");
+    const [isHydrated, setIsHydrated] = useState(false);
+    const [selectedKey, setSelectedKey] = useState<string | null>(DEFAULT_CATEGORY);
+
+    // Load from localStorage after hydration
+    useEffect(() => {
+        const storedCategory = loadFromStorage<string>(STORAGE_KEY_CATEGORY);
+        if (storedCategory) {
+            setSelectedKey(storedCategory);
+        }
+        setIsHydrated(true);
+    }, []);
+
+    // Save to localStorage when selection changes (only after hydration)
+    useEffect(() => {
+        if (isHydrated && selectedKey) {
+            saveToStorage(STORAGE_KEY_CATEGORY, selectedKey);
+        }
+    }, [selectedKey, isHydrated]);
 
     const renderContent = () => {
         switch (selectedKey) {

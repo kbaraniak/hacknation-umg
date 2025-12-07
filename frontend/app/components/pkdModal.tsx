@@ -12,6 +12,7 @@ import { Button } from "@heroui/button";
 import { useDisclosure } from "@heroui/use-disclosure";
 import { Chip } from "@heroui/chip";
 import PKDInput from "./input/pkd";
+import { usePKD } from "@/app/context/PKDContext";
 
 type PKDItem = {
     section?: string;
@@ -27,9 +28,12 @@ type PKDModalProps = {
 
 export default function PKDModal({ onPKDsChange }: PKDModalProps) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
-    const [pkdList, setPkdList] = React.useState<PKDItem[]>([]);
+    const { selectedPKDs } = usePKD();
     const [currentPKD, setCurrentPKD] = React.useState<PKDItem | null>(null);
     const [errorMessage, setErrorMessage] = React.useState<string>("");
+    
+    // Use selectedPKDs from context instead of local state
+    const pkdList = selectedPKDs;
 
     const handleAddPKD = () => {
         // Reset error
@@ -85,8 +89,7 @@ export default function PKDModal({ onPKDsChange }: PKDModalProps) {
                 full: pkdIdentifier
             };
             const newList = [...pkdList, newPKD];
-            setPkdList(newList);
-            // Notify parent component
+            // Notify parent component (which updates context)
             onPKDsChange?.(newList);
             // Reset current selection after adding
             setCurrentPKD(null);
@@ -97,16 +100,14 @@ export default function PKDModal({ onPKDsChange }: PKDModalProps) {
 
     const handleRemovePKD = (pkdToRemove: string) => {
         const newList = pkdList.filter(item => item.pkd !== pkdToRemove);
-        setPkdList(newList);
-        // Notify parent component
+        // Notify parent component (which updates context)
         onPKDsChange?.(newList);
     };
 
     const handleClearAll = () => {
-        setPkdList([]);
-        setCurrentPKD(null);
-        // Notify parent component
+        // Notify parent component (which updates context)
         onPKDsChange?.([]);
+        setCurrentPKD(null);
     };
 
     return (

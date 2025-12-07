@@ -112,7 +112,9 @@ class PKDDataService:
         division: Optional[str] = None,
         group: Optional[str] = None,
         subclass: Optional[str] = None,
-        version: Optional[PKDVersion] = None
+        version: Optional[PKDVersion] = None,
+        year_from: Optional[int] = None,
+        year_to: Optional[int] = None
     ) -> IndustryData:
         """
         Pobierz dane dla wybranej branży/branż.
@@ -135,6 +137,8 @@ class PKDDataService:
             group: Grupa PKD
             subclass: Podklasa PKD
             version: Wersja PKD (domyślnie VERSION_2025)
+            year_from: Rok początkowy dla filtrowania danych (opcjonalny)
+            year_to: Rok końcowy dla filtrowania danych (opcjonalny)
         
         Returns:
             IndustryData z wybranymi kodami i danymi
@@ -163,17 +167,32 @@ class PKDDataService:
             for symbol_variant in self._get_financial_symbol_variants(pkd_code.symbol):
                 fin_metrics = self.loader.get_financial_metrics(symbol_variant)
                 if fin_metrics:
+                    # Filtruj według zakresu lat
+                    if year_from is not None or year_to is not None:
+                        filtered_metrics = {}
+                        for year, metrics in fin_metrics.items():
+                            if year_from is not None and year < year_from:
+                                continue
+                            if year_to is not None and year > year_to:
+                                continue
+                            filtered_metrics[year] = metrics
+                        fin_metrics = filtered_metrics
+                    
                     # Zapisz pod ORYGINALNYM symbolem bez sekcji dla spójności z frontendem
                     # np. A.02.10.Z -> 02.10
                     clean_symbol = pkd_code.symbol.replace(f"{pkd_code.section}.", "").replace(".Z", "")
-                    financial_data[clean_symbol] = fin_metrics
+                    if fin_metrics:  # Tylko jeśli są dane po filtrowaniu
+                        financial_data[clean_symbol] = fin_metrics
                     break
             
             # Dane o upadłościach - pobierz dla wszystkich dostępnych lat
             bankruptcy_dict = {}
+            start_year = year_from if year_from else 2018
+            end_year = year_to if year_to else 2024
+            
             for pkd_symbol_short in self._get_alternative_symbols(pkd_code.symbol):
                 # Szukaj danych w krz_pkd.csv dla wszystkich lat
-                for year in range(2018, 2024):  # Dane dostępne od 2018
+                for year in range(start_year, end_year + 1):  # Dane dostępne od 2018
                     count = self.loader.get_bankruptcy_count(pkd_symbol_short, year)
                     if count > 0:
                         if year not in bankruptcy_dict:
@@ -193,7 +212,9 @@ class PKDDataService:
                 "division": division,
                 "group": group,
                 "subclass": subclass,
-                "version": version.value
+                "version": version.value,
+                "year_from": year_from,
+                "year_to": year_to
             },
             version=version
         )

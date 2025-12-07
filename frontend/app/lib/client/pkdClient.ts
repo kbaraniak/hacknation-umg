@@ -29,6 +29,8 @@ export type IndexParams = {
   subclass?: string;
   version?: string;
   forecast_years?: number;
+  year_from?: number;
+  year_to?: number;
 };
 
 // ==================== Cache Management ====================

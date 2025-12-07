@@ -43,7 +43,7 @@ const columns: GridColDef<ProfitabilityData>[] = [
 ];
 
 export default function IndustryProfitability() {
-    const { selectedPKDs } = usePKD();
+    const { selectedPKDs, startYear, endYear } = usePKD();
     const [profitabilityData, setProfitabilityData] = React.useState<ProfitabilityData[]>([]);
     const [aggregatedData, setAggregatedData] = React.useState<any[]>([]);
     const [loading, setLoading] = React.useState(false);
@@ -66,7 +66,9 @@ export default function IndustryProfitability() {
                             section: pkd.section,
                             division: pkd.division,
                             group: pkd.suffix,
-                            version: "2025"
+                            version: "2025",
+                            year_from: startYear,
+                            year_to: endYear
                         });
 
                         const financialData = response.financial_data || {};
@@ -130,7 +132,7 @@ export default function IndustryProfitability() {
         };
 
         fetchProfitabilityData();
-    }, [selectedPKDs]);
+    }, [selectedPKDs, startYear, endYear]);
 
     const metrics = [
         {

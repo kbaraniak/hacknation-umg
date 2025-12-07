@@ -7,7 +7,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { usePKD } from "@/app/context/PKDContext";
 
 export default function Home() {
-    const { selectedPKDs, setSelectedPKDs } = usePKD();
+    const { selectedPKDs, setSelectedPKDs, startYear, setStartYear, endYear, setEndYear } = usePKD();
     
     // Create an array of years (example range from 2000 to 2030)
     const years = Array.from({length: 31}, (_, i) => 2000 + i);
@@ -24,7 +24,8 @@ export default function Home() {
                     <Input
                         isRequired
                         className="max-w-30"
-                        defaultValue="2015"
+                        value={startYear.toString()}
+                        onChange={(e) => setStartYear(Number(e.target.value))}
                         minLength={4}
                         label="Rok startowy"
                         type="select" // Custom type for select input
@@ -38,7 +39,8 @@ export default function Home() {
                     <Input
                         isRequired
                         className="max-w-30"
-                        defaultValue="2025"
+                        value={endYear.toString()}
+                        onChange={(e) => setEndYear(Number(e.target.value))}
                         minLength={4}
                         label="Rok końcowy"
                         type="select" // Custom type for select input

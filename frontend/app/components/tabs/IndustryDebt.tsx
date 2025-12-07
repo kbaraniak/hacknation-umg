@@ -51,7 +51,7 @@ const columns: GridColDef<DebtData>[] = [
 ];
 
 export default function IndustryDebt() {
-    const { selectedPKDs } = usePKD();
+    const { selectedPKDs, startYear, endYear } = usePKD();
     const [debtData, setDebtData] = React.useState<DebtData[]>([]);
     const [aggregatedData, setAggregatedData] = React.useState<any[]>([]);
     const [loading, setLoading] = React.useState(false);
@@ -74,7 +74,9 @@ export default function IndustryDebt() {
                             section: pkd.section,
                             division: pkd.division,
                             group: pkd.suffix,
-                            version: "2025"
+                            version: "2025",
+                            year_from: startYear,
+                            year_to: endYear
                         });
 
                         const financialData = response.financial_data || {};
@@ -144,7 +146,7 @@ export default function IndustryDebt() {
         };
 
         fetchDebtData();
-    }, [selectedPKDs]);
+    }, [selectedPKDs, startYear, endYear]);
 
     const metrics = [
         {

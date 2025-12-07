@@ -118,6 +118,8 @@ async def get_industry_data(
 	group: Optional[str] = Query(None, description="Grupa PKD (wymaga division)"),
 	subclass: Optional[str] = Query(None, description="Podklasa PKD (wymaga group)"),
 	version: Optional[str] = Query("2025", description="Wersja PKD (2007 lub 2025)"),
+	year_from: Optional[int] = Query(None, description="Rok początkowy (np. 2015)"),
+	year_to: Optional[int] = Query(None, description="Rok końcowy (np. 2024)"),
 ) -> IndustryDataResponse:
 	"""
 	Pobierz dane dla wybranej branży.
@@ -133,6 +135,7 @@ async def get_industry_data(
 	- /industry?section=G&division=46 → wszystkie kody w dziale 46
 	- /industry?section=G&division=46&group=11 → grupa 46.11
 	- /industry?section=G&division=46&group=11&subclass=A → kod 46.11.A
+	- /industry?section=G&division=46&year_from=2015&year_to=2024 → dane tylko dla lat 2015-2024
 	
 	Uwaga: Użyj /sections aby pobrać listę sekcji
 	"""
@@ -153,7 +156,9 @@ async def get_industry_data(
 			division=division,
 			group=group,
 			subclass=subclass,
-			version=pkd_version
+			version=pkd_version,
+			year_from=year_from,
+			year_to=year_to
 		)
         
 		# Konwertuj kody do modelu odpowiedzi
@@ -325,6 +330,8 @@ async def get_industry_index(
 	subclass: Optional[str] = Query(None, description="Podklasa PKD"),
 	version: Optional[str] = Query("2025", description="Wersja PKD (2007 lub 2025)"),
 	forecast_years: int = Query(2, description="Liczba lat do prognozy (1-5)"),
+	year_from: Optional[int] = Query(None, description="Rok początkowy (np. 2015)"),
+	year_to: Optional[int] = Query(None, description="Rok końcowy (np. 2024)"),
 ) -> IndustryIndexResponse:
 	"""
 	Pobierz indeks branży ze wskaźnikami, trendem i prognozą.
@@ -336,6 +343,8 @@ async def get_industry_index(
 	- **division**: Dział PKD (2-cyfrowy)
 	- **group**: Grupa PKD
 	- **subclass**: Podklasa PKD
+	- **year_from**: Rok początkowy dla filtrowania danych
+	- **year_to**: Rok końcowy dla filtrowania danych
 	
 	Zwraca:
 	- **scores**: Komponenty oceny (rozmiar, rentowność, wzrost, ryzyko)
@@ -364,7 +373,9 @@ async def get_industry_index(
 			division=division,
 			group=group,
 			subclass=subclass,
-			version=pkd_version
+			version=pkd_version,
+			year_from=year_from,
+			year_to=year_to
 		)
 		
 		if not industry_data.pkd_codes:

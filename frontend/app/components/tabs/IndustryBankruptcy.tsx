@@ -51,7 +51,7 @@ const columns: GridColDef<BankruptcyData>[] = [
 ];
 
 export default function IndustryBankruptcy() {
-    const { selectedPKDs } = usePKD();
+    const { selectedPKDs, startYear, endYear } = usePKD();
     const [bankruptcyData, setBankruptcyData] = React.useState<BankruptcyData[]>([]);
     const [aggregatedData, setAggregatedData] = React.useState<any[]>([]);
     const [loading, setLoading] = React.useState(false);
@@ -74,7 +74,9 @@ export default function IndustryBankruptcy() {
                             section: pkd.section,
                             division: pkd.division,
                             group: pkd.suffix,
-                            version: "2025"
+                            version: "2025",
+                            year_from: startYear,
+                            year_to: endYear
                         });
 
                         const financialData = response.financial_data || {};
@@ -150,7 +152,7 @@ export default function IndustryBankruptcy() {
         };
 
         fetchBankruptcyData();
-    }, [selectedPKDs]);
+    }, [selectedPKDs, startYear, endYear]);
 
     const metrics = [
         {
